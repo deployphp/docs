@@ -1,8 +1,3 @@
----
-layout: main
-title: Environment
----
-
 # Environment
 
 To get current environment it task call `env()` function.
@@ -41,13 +36,10 @@ config();
 env()->getConfig();
 ~~~
 
-To set <mark>global</mark> Deployer parameters use `set` and `get`:
+To set global Deployer parameters use `set` and `get`:
 
 ~~~ php
 set('key', 'value');
 
 get('key');
 ~~~
-
-
-&larr; [Verbosity](verbosity.html) &divide; [Functions](functions.html) &rarr;

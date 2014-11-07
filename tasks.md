@@ -1,8 +1,3 @@
----
-layout: main
-title: Tasks
----
-
 # Tasks
 
 You can define your own tasks in `deploy.php` file.
@@ -116,5 +111,3 @@ task('deploy', [
 ~~~
 
 **define the option on the complete chain else it will not be available**
-
-&larr; [Installation](installation.html) &divide; [Servers](servers.html) &rarr;

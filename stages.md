@@ -1,8 +1,3 @@
----
-layout: main
-title: Tasks
----
-
 # Stages
 
 You can define stages with `stage` function. Here is example of stage definition:
@@ -13,7 +8,7 @@ stage('development', array('development-server'), array('branch'=>'develop'), tr
 stage('production', array('production-primary', 'production-secondary'), array('branch'=>'master'));
 ~~~
 
-<h4><a name="default-stage">Default stage</a></h4>
+### Default stage
 
 You can defined the default stage with `multistage` function. Here is example of stage definition:
 
@@ -36,5 +31,3 @@ stage('production', array('production-server'))->set('branch','master');
 ~~~
 
 The options will overwrite the ones set in your deploy.php and just like other options you can retrieve them by calling `get`.
-
-&larr; [Servers](servers.html) &divide; [Verbosity](verbosity.html) &rarr;

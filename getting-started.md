@@ -1,13 +1,8 @@
----
-layout: main
-title: Getting Started
----
-
 # Getting Started
 
-To install Deployer download <mark>deployer.phar</mark> archive.
+To install Deployer download `deployer.phar` archive.
 
-<a class="btn btn-primary btn-lg" href="deployer.phar">Download PHAR</a>
+[Download deployer.phar](https://github.com/elfet/deployer/releases)
 
 Then move deployer.phar to your bin directory and make it executable.
 
@@ -44,5 +39,3 @@ dep deploy
 ~~~
 
 To list all available commands, run `dep` command.
-
-&larr; [Introduction](index.html) &divide; [Installation](installation.html) &rarr;

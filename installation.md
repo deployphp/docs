@@ -1,11 +1,6 @@
----
-layout: main
-title: Installation
----
-
 # Installation
 
-To install Deployer download <a href="deployer.phar">deployer.phar</a> archive
+To install Deployer download [deployer.phar](https://github.com/elfet/deployer/releases) archive
 and move deployer.phar to your bin directory and make it executable.
 
 ~~~
@@ -65,7 +60,3 @@ php ./build
 ~~~
 
 This will build phar archive `deployer.phar`
-
-&larr; [Getting Started](getting-started.html) &divide; [Tasks](tasks.html) &rarr;
-
-

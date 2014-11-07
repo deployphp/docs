@@ -1,11 +1,6 @@
----
-layout: main
-title: Recipes
----
-
 # Recipes
 
-Deployer has a set of predefined tasks called <mark>recipes</mark>.
+Deployer has a set of predefined tasks called _recipes_.
 
 Recipes can be included to your `deploy.php` file like this:
 
@@ -15,7 +10,7 @@ require 'recipe/common.php'
 
 Deployer add recipe directory to include path.
 
-<h4><a name="common-recipe">Common Recipe</a></h4>
+### Common Recipe
 
 This is common recipe use for all other recipes. This recipe creates next directory structure:
 
@@ -171,5 +166,3 @@ set('assets', ['web/css', 'web/images', 'web/js']);
 // In "-v" verbose mode will be asked to migrate
 set('auto_migrate', false);
 ~~~
-
-&larr; [Functions](functions.html) &divide; [Examples](examples.html) &rarr;

@@ -1,8 +1,3 @@
----
-layout: main
-title: Verbosity
----
-
 # Verbosity
 
 Deployer has levels of verbosity. To specify it add one of next options to `dep` command.
@@ -31,5 +26,3 @@ task('my_task', function () {
     }
 });
 ~~~
-
-&larr; [Stages](stages.html) &divide; [Environment](environment.html) &rarr;

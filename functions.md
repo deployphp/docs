@@ -1,8 +1,3 @@
----
-layout: main
-title: Functions
----
-
 # Functions
 
 Deployer also provide a lot of helpful functions.
@@ -65,5 +60,3 @@ output()
 ~~~
 
 Current console output.
-
-&larr; [Environment](environment.html) &divide; [Recipes](recipes.html) &rarr;

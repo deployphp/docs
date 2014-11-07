@@ -1,8 +1,3 @@
----
-layout: main
-title: Servers
----
-
 # Servers
 
 Deployer uses ssh2 pecl extension, but if you do not install it on you machine - do not worry,
@@ -23,7 +18,7 @@ You need to specify base working path on that server where your project will be 
 
 And specify how to connect to server's SSH. There are a few ways:
 
-<h4><a name="with-username-and-password">With username and password</a></h4>
+### With username and password
 
 ~~~ php
 server(...)
@@ -92,6 +87,3 @@ server('ec2', 'host.aws.amazon.com')
 You can upload file or directory with `upload(local, remote)` function.
 
 And download file with `download(local, remote)` function.
-
-
-&larr; [Tasks](tasks.html) &divide; [Stages](stages.html) &rarr;

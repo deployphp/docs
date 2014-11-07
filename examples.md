@@ -1,8 +1,3 @@
----
-layout: main
-title: Examples
----
-
 # Examples
 
 This example of `deploy.php` script reload php5-fpm service after deploying.
@@ -23,5 +18,3 @@ task('php-fpm:reload', function () {
 
 after('deploy:end', 'php-fpm:reload');
 ~~~
-
-&larr; [Recipes](recipes.html)
