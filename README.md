@@ -1,6 +1,3 @@
-Deployer Documentation
-======================
-
 * [Getting started](getting-started.md)
 * [Installation](installation.md)
 * [Tasks](tasks.md)
