@@ -42,7 +42,7 @@ composer require elfet/deployer:~2.0
 Then to run Deployer run next command:
 
 ~~~
-php vendors/bin/dep
+php vendor/bin/dep
 ~~~
 
 ### Source Code
