@@ -2,7 +2,7 @@
 
 To install Deployer download `deployer.phar` archive.
 
-[Download deployer.phar](https://github.com/elfet/deployer/releases)
+[Download deployer.phar](https://github.com/deployphp/deployer/releases)
 
 Then move deployer.phar to your bin directory and make it executable.
 
