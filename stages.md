@@ -8,13 +8,30 @@ stage('development', array('development-server'), array('branch'=>'develop'), tr
 stage('production', array('production-primary', 'production-secondary'), array('branch'=>'master'));
 ~~~
 
+The first argument is the name of the stage, the second argument is an array of server names, the third argument is an array of options. Using the fourth (optional) argument you can define the default stage.
+
 ### Default stage
 
-You can defined the default stage with `multistage` function. Here is example of stage definition:
+An alternative way of defining the default stage is with the `multistage` function:
 
 ~~~ php
 multistage('develop');
 ~~~
+
+### Deploying using stages
+
+You can now pass the stage name as an extra argument:
+
+```ssh
+dep deploy production
+```
+
+If not provided, the default stage is used:
+
+```ssh
+# Use the default stage ("development" in this case)
+dep deploy
+```
 
 ### Options
 
