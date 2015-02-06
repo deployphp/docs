@@ -69,7 +69,7 @@ task('deploy', [
 
 ### Before and after
 
-You can define tasks to be runned before or after some tasks.
+You can define tasks to be run before or after some tasks.
 
 ~~~ php
 task('deploy:done', function () {
