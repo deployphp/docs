@@ -4,6 +4,7 @@ To install Deployer download [deployer.phar](https://github.com/elfet/deployer/r
 and move deployer.phar to your bin directory and make it executable.
 
 ~~~
+composer install
 mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ~~~
@@ -51,6 +52,14 @@ If you want build Deployer from source code, clone project from GitHub:
 
 ~~~
 git clone git@github.com:elfet/deployer.git
+~~~
+
+Make sure "phar.readonly = 0" is in your php.ini.
+
+Install the Composer dependencies
+
+~~~
+composer install
 ~~~
 
 And run next command in project directory:
