@@ -1,20 +1,19 @@
 # Getting Started
 
-To install Deployer download `deployer.phar` archive.
+To install Deployer, download the `deployer.phar` archive.
 
-[Download deployer.phar](https://github.com/deployphp/deployer/releases)
+[Download deployer.phar](http://deployer.org/deployer.phar)
 
-Then move deployer.phar to your bin directory and make it executable.
+Then move `deployer.phar` to your bin directory and make it executable.
 
 ~~~
 mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ~~~
 
-Now you can use Deployer via `dep` command. Later, to upgrade Deployer to latest version run `dep self-update` command.
+You can now use Deployer via the `dep` command. Later on, you may upgrade Deployer to the latest version, you can run the `dep self-update` command.
 
-Next create `deploy.php` file in your project directory. Let's imagine that your project is based on Symfony2 Framework
-(other frameworks described in docs), so it will be good to use existing recipe for deploying Symfony.
+Next create a `deploy.php` file in your project directory. Let's imagine that your project is based on the Symfony2 Framework (other frameworks are described in the docs). First start off by including the provided Symfony recipe.
 
 ~~~ php
 require 'recipe/symfony.php';
@@ -32,10 +31,10 @@ server('main', 'domain.net', 22)
 set('repository', 'git@bitbucket.org:elfchat/elfchat.net.git');
 ~~~
 
-Now open in terminal your project directory and run next command:
+Now open a terminal in your project directory and run the following command to deploy your application:
 
 ~~~
 dep deploy
 ~~~
 
-To list all available commands, run `dep` command.
+To list all the available commands, run the `dep` command.
