@@ -5,14 +5,12 @@ Deployer has a set of predefined tasks called _recipes_.
 Recipes can be included to your `deploy.php` file like this:
 
 ~~~ php
-require 'recipe/common.php'
+require 'recipe/common.php';
 ~~~
-
-Deployer add recipe directory to include path.
 
 ### Common Recipe
 
-This is common recipe use for all other recipes. This recipe creates next directory structure:
+The common recipe is used by all other recipes. It creates the following directory structure:
 
 ~~~
 |-- current → /var/www/site.com/releases/20140812131123
@@ -32,30 +30,30 @@ This is common recipe use for all other recipes. This recipe creates next direct
 deploy:prepare
 ~~~
 
-This task prepare server for deploy, create `releases` and `shared` directories.
+This task prepare server for deploy, creates a `releases` and a `shared` directory.
 
-* `releases` - here will be your project releases.
-* `shared` - shared/common files and directories between releases.
+* `releases` - contains your project releases.
+* `shared` - contains shared/common files and directories between releases (logs, shared data, etc.).
 
 ~~~
 deploy:update_code
 ~~~
 
-Uploads code from repository and puts it to `releases` directory.
+Update code from the configured repository and puts it into the directory of the upcoming release.
 
-Use `set` function to specify which repository to use:
+Use the `set` function to specify which repository to use:
 
 ~~~ php
 set('repository', 'git@github.com:user/project.git');
 ~~~
 
-Remote server has to be able to clone your repository.
+**Note:** The remote server has to be able to clone your repository.
 
 ~~~
 deploy:shared
 ~~~
 
-Creates symlink to shared files and directories. Use `set` to define them.
+Creates a symlink to the shared files and directories. Use `set` to define them.
 
 ~~~ php
 set('shared_dirs', ['app/logs']);
@@ -63,15 +61,14 @@ set('shared_dirs', ['app/logs']);
 set('shared_files', ['app/config/parameters.yml']);
 ~~~
 
-
 ~~~
-deploy:writeable_dirs
+deploy:writable_dirs
 ~~~
 
-Creates writeable dirs.
+Creates writable directories.
 
 ~~~ php
-set('writeable_dirs', ['app/cache', 'app/logs']);
+set('writable_dirs', ['app/cache', 'app/logs']);
 ~~~
 
 ~~~
@@ -84,23 +81,23 @@ Installs vendors with composer.
 deploy:symlink
 ~~~
 
-Create symlink `current` to last release.
+Creates a symlink named `current` which points to the lastest release.
 
 ~~~
 cleanup
 ~~~
 
-Remove old releases and save 3 last. To change this:
+Removes old releases and keeps the last 3. To change the number of kept releases:
 
 ~~~ php
-get('keep_releases', 3);
+set('keep_releases', 5);
 ~~~
 
 ~~~
 rollback
 ~~~
 
-Rollback to previous release.
+Rollback to the previous release. If only one release is available, nothing will be done.
 
 ### Composer Recipe
 
@@ -108,9 +105,9 @@ Rollback to previous release.
 require 'recipe/composer.php'
 ~~~
 
-Simple recipe suitable for simple project which uses composer.
+The composer recipe is a simple recipe suitable for simple projects which uses composer.
 
-Consists of next tasks:
+It consists of the following tasks:
 
 * deploy:start
 * deploy:prepare
@@ -120,16 +117,15 @@ Consists of next tasks:
 * cleanup
 * deploy:end
 
-
 ### Symfony Recipe
 
 ~~~ php
 require 'recipe/symfony.php'
 ~~~
 
-Recipe for deploying Symfony2 projects.
+This recipe is specifically for deploying Symfony2 projects.
 
-Consists of next tasks:
+It consists of the following tasks:
 
 * deploy:start
 * deploy:prepare
@@ -145,7 +141,7 @@ Consists of next tasks:
 * cleanup
 * deploy:end
 
-Default parameters of this recipre:
+The default parameters of this recipe are:
 
 ~~~ php
 // Symfony Environment
@@ -163,6 +159,6 @@ set('writeable_dirs', ['app/cache', 'app/logs']);
 // Assets
 set('assets', ['web/css', 'web/images', 'web/js']);
 
-// In "-v" verbose mode will be asked to migrate
+// In "-v" verbose mode you will be asked to migrate
 set('auto_migrate', false);
 ~~~
