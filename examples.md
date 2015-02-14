@@ -1,6 +1,6 @@
 # Examples
 
-This example of `deploy.php` script reload php5-fpm service after deploying.
+This is an example of a `deploy.php` script used to reload the `php5-fpm` service after deploying.
 
 ~~~ php
 require 'recipe/symfony.php';
