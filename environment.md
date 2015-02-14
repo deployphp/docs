@@ -1,6 +1,6 @@
 # Environment
 
-To get current environment it task call `env()` function.
+To get current environment in a task, use the `env()` function.
 
 ~~~ php
 task('my_task', function () {
@@ -8,35 +8,35 @@ task('my_task', function () {
 });
 ~~~
 
-To set environment parameter:
+To set an environment variable:
 
 ~~~ php
 env()->set('key', 'value');
 ~~~
 
-To get environment parameter:
+To get an environment variable:
 
 ~~~ php
 env()->get('key');
 ~~~
 
-To get release path:
+To get the current release path:
 
 ~~~ php
 env()->getReleasePath();
 ~~~
 
-To get server configuration:
+To get the server configuration:
 
 ~~~ php
 config();
 
-// Is same as
+// Which is the same as
 
 env()->getConfig();
 ~~~
 
-To set global Deployer parameters use `set` and `get`:
+To set global Deployer variables (shared amongst servers), use `set` and `get`:
 
 ~~~ php
 set('key', 'value');

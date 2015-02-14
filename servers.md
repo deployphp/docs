@@ -1,9 +1,9 @@
 # Servers
 
-Deployer uses ssh2 pecl extension, but if you do not install it on you machine - do not worry,
-Deployer will use [PHPSecLib](https://github.com/phpseclib/phpseclib).
+Deployer uses ssh2 pecl extension, but if you do not have it installed it on you machine - do not worry,
+Deployer will also use [PHPSecLib](https://github.com/phpseclib/phpseclib).
 
-You can define servers with `server` function. Here is example of server definition:
+You can define servers with the `server` function. Here is an example of a server definition:
 
 ~~~ php
 server('main', 'site.com')
@@ -12,22 +12,22 @@ server('main', 'site.com')
     ->pubKey();
 ~~~
 
-This function gets 3 parameters `server(server_name, host, port)` and return `Deployer\Server\Configuration` object which contains server configuration.
+This function gets 3 parameters `server(server_name, host, port)` and return a `Deployer\Server\Configuration` object which contains the server configuration.
 
-You need to specify base working path on that server where your project will be deployed with `path()` method.
+You then need to specify the base deployment path where your project will be deployed with the `path()` method.
 
-And specify how to connect to server's SSH. There are a few ways:
+Finally, you need to specify how to connect to server using SSH. There are a few ways:
 
-### With username and password
+### With a username and a password
 
 ~~~ php
 server(...)
   ->user('name', 'password')
 ~~~
 
-You can skip password and it will be asked on deploy.
+You can provide only the username and you will be prompted for your password on deploy.
 
-### With public key
+### With a public key
 
 ~~~ php
 server(...)
@@ -35,7 +35,7 @@ server(...)
     ->pubKey();
 ~~~
 
-If you keys created with password or located outside of `.ssh` directory, you can specify it:
+If your keys were created with a password or are located outside of the `.ssh` directory, you can specify it:
 
 ~~~ php
 server(...)
@@ -43,10 +43,10 @@ server(...)
     ->pubKey('~/.ssh/id_rsa.pub', '~/.ssh/id_rsa', 'pass phrase');
 ~~~
 
-Symbol `~` will be replaced with your home directory. If you set pass phrase as `null`,
-it will be asked on deploy.
+The `~` symbol  will be replaced with your home directory. If you set the pass phrase as `null`,
+you will be prompted for it on deploy.
 
-Also you can specify everything with next methods:
+You may prefer to use the following methods (if you are more verbose):
 
 ~~~ php
 server(...)
@@ -56,7 +56,7 @@ server(...)
     ->setPassPhrase(...);
 ~~~
 
-### With config file
+### With a config file
 
 Deployer can use your SSH config file.
 
@@ -66,12 +66,11 @@ server(...)
     ->configFile('/path/to/file');
 ~~~
 
-This can be used only with installed ssh2 pecl extension.
+This can only be used with the ssh2 pecl extension.
 
+### With a pem file
 
-### With pem file
-
-Auth with pem file now supported only with PhpSecLib.
+Authentication using a pem file is currently only supported with PhpSecLib.
 
 ~~~ php
 // Switch to PhpSecLib
@@ -84,6 +83,6 @@ server('ec2', 'host.aws.amazon.com')
 
 ### Upload and download
 
-You can upload file or directory with `upload(local, remote)` function.
+You can upload a file or directory with the `upload(local, remote)` function.
 
-And download file with `download(local, remote)` function.
+You can download a file with the `download(local, remote)` function.
