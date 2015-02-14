@@ -1,9 +1,9 @@
 # Tasks
 
-You can define your own tasks in `deploy.php` file.
-Then you run `dep` command, Deployer will scan current dir for `deploy.php` file and include it.
+You can define your own tasks in the `deploy.php` file.
+When you run the `dep` command, Deployer will scan the current directory for a `deploy.php` file and use it.
 
-To define you own tasks use `task` function:
+To define you own tasks, use the `task` function:
 
 ~~~ php
 task('my_task', function () {
@@ -11,19 +11,19 @@ task('my_task', function () {
 });
 ~~~
 
-To run your tasks run next command:
+To run your tasks:
 
 ~~~
 dep my_task
 ~~~
 
-To list all available commands run command:
+To list all available commands:
 
 ~~~
 dep list
 ~~~
 
-You can give you task a description with `desc` method:
+You can give your tasks a description with the `desc` method:
 
 ~~~ php
 task('my_task', function () {
@@ -31,20 +31,20 @@ task('my_task', function () {
 })->desc('Doing my stuff');
 ~~~
 
-And then your task will be running you will see this description:
+When your task will be running, you will see the description in the output:
 
 ~~~
 $ dep my_task
 Doing my stuff..............................✔
 ~~~
 
-To get help of task run help commad:
+To get help on a task:
 
 ~~~
 dep help deploy
 ~~~
 
-To run command only on specified server add `--server` option:
+To run a task only on a specified server add the `--server` option:
 
 ~~~
 dep deploy --server=main
@@ -79,9 +79,9 @@ task('deploy:done', function () {
 after('deploy', 'deploy:done');
 ~~~
 
-Then `deploy` task will be called, after this task will be runned `deploy:done` tasks.
+After the `deploy` task is be called, `deploy:done` will be executed.
 
-Also you can define unnamed task:
+You may also use an anonymous function:
 
 ~~~ php
 before('task', function () {
@@ -89,16 +89,15 @@ before('task', function () {
 });
 ~~~
 
-
 ### Using input options
 
-You can define additional input options by calling `option` on your defined tasks.
+You can define additional input options by calling the `option` method on your defined tasks.
 
 ~~~ php
 // Task->option(name, shortcut = null, description = '', default = null);
 
 task('deploy:upload_code', function (InputInterface $input) {
-    $branch = $input->getArgument('stage') !== 'production'?$input->getOption('branch',get('branch', null)):get('branch', null);
+    $branch = $input->getArgument('stage') !== 'production' ? $input->getOption('branch',get('branch', null)) : get('branch', null);
     ...
 })->option('branch', 'b', 'Set the deployed branch', 'develop');
 
@@ -110,4 +109,4 @@ task('deploy', [
 ])->option('branch', 'b', 'Set the deployed branch', 'develop');
 ~~~
 
-**define the option on the complete chain else it will not be available**
+**define the option on the complete chain or else it will not be available to all of the tasks**
