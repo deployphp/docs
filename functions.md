@@ -1,62 +1,57 @@
 # Functions
 
-Deployer also provide a lot of helpful functions.
+Deployer provides a lot of helpful functions. Make sure to learn about them!
 
 ~~~ php
 run(string $command)
 ~~~
 
-Runs command on remote server in working path (`server(...)->path('/working/path')`).
+Runs a command on a remote server in the working path (`server(...)->path('/working/path')`).
 
 ~~~ php
 cd(string $path)
 ~~~
 
-Sets current working path for `run` functions. Every task restore working path to base working path.
+Sets the working path for the following `run` functions. Every task restores the working path to the base working path at the beginning of the task.
 
 ~~~ php
 runLocally(string $command)
 ~~~
 
-Runs command on local machine.
-
+Runs a command on your local machine.
 
 ~~~ php
  write(string $message)
 ~~~
 
-Write message in console. You can format message with tags `<info>...</info>`, `<comment></comment>`, `<error></error>`.
-
+Write message in the console. You can format the message with the tags `<info>...</info>`, `<comment></comment>` or `<error></error>` (see [Symfony Console](http://symfony.com/doc/current/components/console/introduction.html#coloring-the-output).
 
 ~~~ php
  writeln(string $message)
 ~~~
 
-Same as `write` function, but also writes new line.
-
+Same as the `write` function, but also writes a new line.
 
 ~~~ php
 ask(string $message, mixed $default)
 ~~~
 
-Ask user for input. You need to specify default value. This default value will be used in quiet mode too.
-
+Ask the user for input. You need to specify a default value which will be used in quiet mode.
 
 ~~~ php
 askConfirmation(string $message[, bool $default = false])
 ~~~
 
-Ask user for yes or no input.
-
+Ask the user a yes or no question.
 
 ~~~ php
 askHiddenResponse(string $message)
 ~~~
 
-Ask user for password.
+Ask the user for a password.
 
 ~~~ php
 output()
 ~~~
 
-Current console output.
+Get the current console output.
