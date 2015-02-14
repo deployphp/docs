@@ -1,45 +1,49 @@
 # Installation
 
-To install Deployer download [deployer.phar](https://github.com/elfet/deployer/releases) archive
-and move deployer.phar to your bin directory and make it executable.
+To install Deployer, download the `deployer.phar` archive.
+
+[Download deployer.phar](http://deployer.org/deployer.phar)
+
+Then move `deployer.phar` to your bin directory and make it executable.
 
 ~~~
 mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ~~~
 
-To upgrade Deployer run command:
+To upgrade Deployer, run the command:
 
 ~~~
 dep self-update
 ~~~
 
-To redownload update if already using current version add option `--redo (-r)`
+To redownload an update if already using the current version, use the `--redo (-r)` option 
 
 ~~~
 dep self-update --redo
 ~~~
 
-To allow pre-release updates add option `--pre (-p)`
+To allow pre-release updates, use the `--pre (-p)` option 
 
 ~~~
 dep self-update --pre
 ~~~
 
-To upgrade to next major release, if available add option `--upgrade (-u)`
+To upgrade to the next major release, if available, use the `--upgrade (-u)` option 
 
 ~~~
 dep self-update --upgrade
 ~~~
 
 ### Via Composer
+
 You can install Deployer with composer:
 
 ~~~
 composer require deployer/deployer:~2.0
 ~~~
 
-Then to run Deployer run next command:
+Then to use Deployer you may run the following command:
 
 ~~~
 php vendor/bin/dep
@@ -47,16 +51,16 @@ php vendor/bin/dep
 
 ### Source Code
 
-If you want build Deployer from source code, clone project from GitHub:
+If you want build Deployer from source code, clone the project from GitHub:
 
 ~~~
-git clone git@github.com:elfet/deployer.git
+git clone https://github.com/deployphp/deployer.git
 ~~~
 
-And run next command in project directory:
+Then run the following command in the project directory:
 
 ~~~
 php ./build
 ~~~
 
-This will build phar archive `deployer.phar`
+This will build the `deployer.phar` phar archive.
