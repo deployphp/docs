@@ -20,6 +20,12 @@ To get an environment variable:
 env()->get('key');
 ~~~
 
+To get the working path:
+
+~~~ php
+env()->getWorkingPath();
+~~~
+
 To get the current release path:
 
 ~~~ php
