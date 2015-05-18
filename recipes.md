@@ -13,17 +13,12 @@ require 'recipe/common.php';
 The common recipe is used by all other recipes. It creates the following directory structure:
 
 ~~~
-|-- current → /var/www/site.com/releases/20140812131123
+|-- current → /home/www/releases/20140812131123
 |-- releases
 |   `-- 20140812131123
 |   `-- 20140809150234
 |   `-- 20140801145678
 `-- shared
-   |-- web
-   |   `-- uploads
-   |-- log
-   `-- config
-       `-- databases.yml
 ~~~
 
 ~~~
@@ -46,8 +41,6 @@ Use the `set` function to specify which repository to use:
 ~~~ php
 set('repository', 'git@github.com:user/project.git');
 ~~~
-
-**Note:** The remote server has to be able to clone your repository.
 
 ~~~
 deploy:shared
@@ -109,13 +102,12 @@ The composer recipe is a simple recipe suitable for simple projects which uses c
 
 It consists of the following tasks:
 
-* deploy:start
 * deploy:prepare
+* deploy:release
 * deploy:update_code
 * deploy:vendors
 * deploy:symlink
 * cleanup
-* deploy:end
 
 ### Symfony Recipe
 
@@ -123,29 +115,13 @@ It consists of the following tasks:
 require 'recipe/symfony.php'
 ~~~
 
-This recipe is specifically for deploying Symfony2 projects.
-
-It consists of the following tasks:
-
-* deploy:start
-* deploy:prepare
-* deploy:update_code
-* deploy:shared
-* deploy:writeable_dirs
-* deploy:assets
-* deploy:vendors
-* deploy:assetic:dump
-* database:migrate
-* deploy:cache:warmup
-* deploy:symlink
-* cleanup
-* deploy:end
-
-The default parameters of this recipe are:
+This recipe is specifically for deploying Symfony2 projects. Default Symfony configuration of this recipe are:
 
 ~~~ php
-// Symfony Environment
-set('env', 'prod');
+
+/**
+ * Symfony Configuration
+ */
 
 // Symfony shared dirs
 set('shared_dirs', ['app/logs']);
@@ -153,12 +129,16 @@ set('shared_dirs', ['app/logs']);
 // Symfony shared files
 set('shared_files', ['app/config/parameters.yml']);
 
-// Symfony writeable dirs
-set('writeable_dirs', ['app/cache', 'app/logs']);
+// Symfony writable dirs
+set('writable_dirs', ['app/cache', 'app/logs']);
 
 // Assets
 set('assets', ['web/css', 'web/images', 'web/js']);
 
-// In "-v" verbose mode you will be asked to migrate
+// Auto migrate
 set('auto_migrate', false);
+
+// Environment vars
+env('env_vars', 'SYMFONY_ENV=prod');
+env('env', 'prod');
 ~~~
