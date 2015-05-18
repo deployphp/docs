@@ -2,7 +2,6 @@
 * [Installation](installation.md)
 * [Tasks](tasks.md)
 * [Servers](servers.md)
-* [Stages](stages.md)
 * [Verbosity](verbosity.md)
 * [Environment](environment.md)
 * [Functions](functions.md)
