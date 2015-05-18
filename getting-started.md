@@ -82,4 +82,4 @@ after('deploy', 'reload:php-fpm');
 
 Configure you server to serve `currect` directory as root. 
 
-What's all!
+That's all!
