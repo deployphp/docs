@@ -115,3 +115,23 @@ And then in `deploy.php`:
 ~~~ php
 serverList('servers.yml');
 ~~~
+
+
+### Stages
+
+You can define every server with a stage, or list of stages:
+
+~~~ php
+server(...)
+    ->stage('prod');
+    
+server(...)
+    ->stage(['prod', 'stage']);    
+    
+server(...)
+    ->env('stages', ['stage']);    
+~~~
+
+And then you call command `dep [task] [server or stage]`, it will be executed only on specified stage server.
+
+If you run command without specify stage, it will be executed on server without specifed stage.
