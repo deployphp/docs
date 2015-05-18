@@ -40,7 +40,7 @@ dep self-update --upgrade
 You can install Deployer with composer:
 
 ~~~
-composer require deployer/deployer:~2.0
+composer require deployer/deployer:~3.0
 ~~~
 
 Then to use Deployer you may run the following command:
