@@ -1,19 +1,21 @@
 # Getting Started
 
-To install Deployer, download the `deployer.phar` archive.
+Deployer will help you deploy your applications to remote servers. First install Deployer, download the `deployer.phar` archive.
 
 [Download deployer.phar](http://deployer.org/deployer.phar)
 
-Then move `deployer.phar` to your bin directory and make it executable.
+Then move `deployer.phar` to your bin directory and make it executable:
 
 ~~~
 mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ~~~
 
-You can now use Deployer via the `dep` command. Later on, you may upgrade Deployer to the latest version, you can run the `dep self-update` command.
+You can now use Deployer via the `dep` command. Later, you may upgrade Deployer to the latest version, you can run the `dep self-update` command.
 
-Next create a `deploy.php` file in your project directory. Let's imagine that your project is based on the Symfony2 Framework (other frameworks are described in the docs). First start off by including the provided Symfony recipe.
+Now imagine that we are going to deploy Symfony-like application (other frameworks and apps pretty same).
+
+Create a `deploy.php` file in your project directory. Let's imagine that your project is based on the Symfony2 Framework (other frameworks are described in the docs). First start off by including the provided Symfony recipe.
 
 ~~~ php
 require 'recipe/symfony.php';
