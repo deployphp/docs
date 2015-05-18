@@ -35,7 +35,7 @@ When your task will be running, you will see the description in the output:
 
 ~~~
 $ dep my_task
-Doing my stuff..............................✔
+✔ Executing task my_task
 ~~~
 
 To get help on a task:
@@ -44,11 +44,12 @@ To get help on a task:
 dep help deploy
 ~~~
 
-To run a task only on a specified server add the `--server` option:
+To run a task only on a specified server:
 
 ~~~
-dep deploy --server=main
+dep deploy main
 ~~~
+
 
 ### Group tasks
 
@@ -56,13 +57,11 @@ You can combine tasks in groups:
 
 ~~~ php
 task('deploy', [
-    'deploy:start',
     'deploy:prepare',
     'deploy:update_code',
     'deploy:vendors',
     'deploy:symlink',
-    'cleanup',
-    'deploy:end'
+    'deploy:cleanup'
 ]);
 ~~~
 
@@ -81,32 +80,12 @@ after('deploy', 'deploy:done');
 
 After the `deploy` task is be called, `deploy:done` will be executed.
 
-You may also use an anonymous function:
-
-~~~ php
-before('task', function () {
-    // Do your stuff...
-});
-~~~
-
 ### Using input options
 
-You can define additional input options by calling the `option` method on your defined tasks.
+You can define additional input options and arguments:
 
 ~~~ php
-// Task->option(name, shortcut = null, description = '', default = null);
+argument('stage', InputArgument::OPTIONAL, 'Run tasks only on this server or group of servers.');
 
-task('deploy:upload_code', function (InputInterface $input) {
-    $branch = $input->getArgument('stage') !== 'production' ? $input->getOption('branch',get('branch', null)) : get('branch', null);
-    ...
-})->option('branch', 'b', 'Set the deployed branch', 'develop');
-
-
-task('deploy', [
-    ...
-    'deploy:upload_code'
-    ...
-])->option('branch', 'b', 'Set the deployed branch', 'develop');
+option('tag', null, InputOption::VALUE_OPTIONAL, 'Tag to deploy.');
 ~~~
-
-**define the option on the complete chain or else it will not be available to all of the tasks**
