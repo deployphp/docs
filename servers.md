@@ -75,3 +75,43 @@ server('ec2', 'host.aws.amazon.com')
 You can upload a file or directory with the `upload(local, remote)` function.
 
 You can download a file with the `download(local, remote)` function.
+
+### Servers list
+
+You can define servers in YAML file:
+
+~~~
+prod:
+  host: domain.com
+  user: www
+  identity_file: ~
+  stage: production
+  deploy_path: /home/www/
+  
+prod.a:
+  host: a.domain.com
+  user: www
+  identity_file: ~
+  stage: production
+  deploy_path: /home/www/  
+  
+beta:
+  host: beta.domain.com
+  user: www
+  password: pass
+  stage: beta
+  deploy_path: /home/www/
+  
+test:
+  host: test.domain.com
+  user: www
+  password: pass
+  stage: beta
+  deploy_path: /home/www/  
+~~~
+
+And then in `deploy.php`:
+
+~~~ php
+serverList('servers.yml');
+~~~
