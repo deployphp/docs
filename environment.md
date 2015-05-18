@@ -1,45 +1,54 @@
 # Environment
 
+Every server has it's own independet enviroment, which contains information such as deploy path, release path, stages, etc.
+
 To get current environment in a task, use the `env()` function.
 
 ~~~ php
 task('my_task', function () {
-    env()->get(...);
+    env(...);
 });
+~~~
+
+You can you environment variable in your run commands with `{{...}}`:
+
+~~~ php
+run("cd {{deploy_path}} && ln -sfn {{release_path}} current");
 ~~~
 
 To set an environment variable:
 
 ~~~ php
-env()->set('key', 'value');
+env('key', 'value');
 ~~~
 
 To get an environment variable:
 
 ~~~ php
-env()->get('key');
+env('key');
 ~~~
 
-To get the current release path:
-
-~~~ php
-env()->getReleasePath();
-~~~
-
-To get the server configuration:
-
-~~~ php
-config();
-
-// Which is the same as
-
-env()->getConfig();
-~~~
-
-To set global Deployer variables (shared amongst servers), use `set` and `get`:
+To set global variables (not enviroment), use `set` and `get`:
 
 ~~~ php
 set('key', 'value');
 
 get('key');
+~~~
+
+To set default enviroment variable, you can define it in `deploy.php`:
+
+~~~ php
+env('deploy_path', '/home/www');
+~~~
+
+You can also setup a callback for enviroment variable which will be called of first access to it.
+
+~~~ php
+/**
+ * Return current release path.
+ */
+env('current', function () {
+    return run("readlink {{deploy_path}}/current")->toString();
+});
 ~~~
