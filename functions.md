@@ -24,7 +24,7 @@ Runs a command on your local machine.
  write(string $message)
 ~~~
 
-Write message in the console. You can format the message with the tags `<info>...</info>`, `<comment></comment>` or `<error></error>` (see [Symfony Console](http://symfony.com/doc/current/components/console/introduction.html#coloring-the-output).
+Write message in the console. You can format the message with the tags `<info>...</info>`, `<comment></comment>` or `<error></error>` (see [Symfony Console](http://symfony.com/doc/current/components/console/introduction.html#coloring-the-output)).
 
 ~~~ php
  writeln(string $message)
