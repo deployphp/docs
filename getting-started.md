@@ -13,8 +13,6 @@ chmod +x /usr/local/bin/dep
 
 You can now use Deployer via the `dep` command. Later, you may upgrade Deployer to the latest version, you can run the `dep self-update` command.
 
-Now imagine that we are going to deploy Symfony-like application (other frameworks and apps pretty much same).
-
 Create a `deploy.php` file in your project directory. First start from including the provided Symfony recipe. All Deployer recipes based on `recipe/common.php` recipe. 
 
 ~~~ php
