@@ -13,7 +13,7 @@ chmod +x /usr/local/bin/dep
 
 You can now use Deployer via the `dep` command. Later, you may upgrade Deployer to the latest version, you can run the `dep self-update` command.
 
-Create a `deploy.php` file in your project directory. First start from including the provided Symfony recipe. All Deployer recipes based on `recipe/common.php` recipe. 
+Create a `deploy.php` file in your project directory. First start from including the provided Symfony recipe. All Deployer recipes are based on `recipe/common.php`. 
 
 ~~~ php
 require 'recipe/symfony.php';
@@ -39,7 +39,7 @@ dep deploy production
 
 > To list all the available commands, run the `dep` command.
 
-> Note what Deployer try to give write permissions with `sudo` command, so this command has to be running without promt passwords.
+> Note what Deployer will try to give write permissions with `sudo` command, so this command has to be running without prompt passwords.
 > For that connect to you server via ssh, and run next command:
 > ```
 > sudo visudo
@@ -48,9 +48,9 @@ dep deploy production
 > ```
 > name   ALL=(ALL) NOPASSWD: /usr/bin/setfacl
 > ```
-> When save file. If you don't want Deployer to take care of writable dirs, override `deploy:writable` task as you wish.
+> When saving the file, if you don't want Deployer to take care of writable dirs, override `deploy:writable` task as you wish.
 
-Deployer will create next directory structure on `prod` server:
+Deployer will create the directory structure on `prod` server:
 
 ```
 /home/your/project
@@ -61,9 +61,9 @@ Deployer will create next directory structure on `prod` server:
 |--current -> /home/elfet/new.xu.su/releases/20150513120631
 ```
 
-On next deploy will be create new directory in `releases`, and `current` symlink will be pointed to new release only in end. By default Deployer keeps 3 releases in `releases` dir, you can increase this by setting this option: `set('keep_releases', 3)`.
+Next, deploy will create a new directory in `releases`, and `current` symlink will be pointed to new release only at the end. By default Deployer keeps the last 3 releases in `releases` dir, you can increase this by setting this option: `set('keep_releases', 3)`.
 
-If something goes wrong during deployment procces, or something wrong with your new release, simple rollback to previos succesful deploy:
+If something goes wrong during deployment procces, or something is wrong with your new release, simple rollback to previous succesful deploy:
 ```
 dep rollback prod
 ```
@@ -78,7 +78,7 @@ task('reload:php-fpm', function () {
 after('deploy', 'reload:php-fpm');
 ```
 
-> If you want to see what exactly deployer runs on you server, run `dep deploy -vvv`.
+> If you want to see exactly what deployer runs on you server, run `dep deploy -vvv`.
 
 Configure you server to serve `currect` directory as root. 
 
