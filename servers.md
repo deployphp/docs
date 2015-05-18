@@ -1,6 +1,6 @@
 # Servers
 
-Define servers with the `server` function. Here is an example of a server definition:
+You can define servers with the `server` function. Here is an example of a server definition:
 
 ~~~ php
 server('prod_1', 'domain.com')
@@ -15,7 +15,7 @@ server('prod_2', 'domain.com')
     ->stage('production');
 ~~~
 
-This function gets 3 parameters `server(server_name, host, port)` and return a `Deployer\Server\Builder` object.
+This function takes 3 parameters, like this: `server(server_name, host, port)`. It returns a `Deployer\Server\Builder` object.
 
 To specify how to connect to server using SSH, there are a few ways:
 
@@ -26,7 +26,7 @@ server(...)
   ->user('name', 'password')
 ~~~
 
-### With a identity file
+### With an identity file
 
 ~~~ php
 server(...)
@@ -34,7 +34,7 @@ server(...)
     ->identityFile();
 ~~~
 
-If your keys were created with a password or are located outside of the `.ssh` directory, you can specify it:
+If your keys were created with a password or if they are located outside of the `.ssh` directory, you can specify the location by providing the full path:
 
 ~~~ php
 server(...)
@@ -134,4 +134,4 @@ server(...)
 
 And then you call command `dep [task] [server or stage]`, it will be executed only on specified stage server.
 
-If you run command without specify stage, it will be executed on server without specifed stage.
+If you run a command without specifying a stage, it will be executed on the server without a specified stage.
