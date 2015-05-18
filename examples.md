@@ -3,18 +3,17 @@
 This is an example of a `deploy.php` script used to reload the `php5-fpm` service after deploying.
 
 ~~~ php
+<?php
 require 'recipe/symfony.php';
 
-server('main', 'site.com')
-    ->path('/home/user/site.com')
-    ->user('user')
-    ->pubKey();
+serverList('app/config/servers.yml');
 
-set('repository', 'git@github.com:user/site.git');
+set('repository', 'https://github.com/user/app.git');
 
-task('php-fpm:reload', function () {
-	run("sudo /usr/sbin/service php5-fpm reload");
-})->description('Reloading PHP5-FPM');
+task('reload:php-fpm', function () {
+    run('sudo /usr/sbin/service php5-fpm reload');
+});
 
-after('deploy:end', 'php-fpm:reload');
+after('deploy', 'reload:php-fpm');
+after('rollback', 'reload:php-fpm');
 ~~~
