@@ -6,7 +6,7 @@ Deployer provides a lot of helpful functions. Make sure to learn about them!
 run(string $command)
 ~~~
 
-Runs a command on a remote server in the working path (`server(...)->path('/working/path')`).
+Runs a command on a remote server in the working path (`server(...)->env('deploy_path', '/home/path')`).
 
 ~~~ php
 cd(string $path)
