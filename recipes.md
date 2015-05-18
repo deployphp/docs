@@ -21,18 +21,15 @@ The common recipe is used by all other recipes. It creates the following directo
 `-- shared
 ~~~
 
-~~~
-deploy:prepare
-~~~
+#### deploy:prepare
+
 
 This task prepare server for deploy, creates a `releases` and a `shared` directory.
 
 * `releases` - contains your project releases.
 * `shared` - contains shared/common files and directories between releases (logs, shared data, etc.).
 
-~~~
-deploy:update_code
-~~~
+#### deploy:update_code
 
 Update code from the configured repository and puts it into the directory of the upcoming release.
 
@@ -42,9 +39,7 @@ Use the `set` function to specify which repository to use:
 set('repository', 'git@github.com:user/project.git');
 ~~~
 
-~~~
-deploy:shared
-~~~
+#### deploy:shared
 
 Creates a symlink to the shared files and directories. Use `set` to define them.
 
@@ -54,9 +49,7 @@ set('shared_dirs', ['app/logs']);
 set('shared_files', ['app/config/parameters.yml']);
 ~~~
 
-~~~
-deploy:writable_dirs
-~~~
+#### deploy:writable_dirs
 
 Creates writable directories.
 
@@ -64,21 +57,15 @@ Creates writable directories.
 set('writable_dirs', ['app/cache', 'app/logs']);
 ~~~
 
-~~~
-deploy:vendors
-~~~
+#### deploy:vendors
 
 Installs vendors with composer.
 
-~~~
-deploy:symlink
-~~~
+#### deploy:symlink
 
 Creates a symlink named `current` which points to the lastest release.
 
-~~~
-cleanup
-~~~
+#### cleanup
 
 Removes old releases and keeps the last 3. To change the number of kept releases:
 
@@ -86,9 +73,7 @@ Removes old releases and keeps the last 3. To change the number of kept releases
 set('keep_releases', 5);
 ~~~
 
-~~~
-rollback
-~~~
+#### rollback
 
 Rollback to the previous release. If only one release is available, nothing will be done.
 
@@ -118,11 +103,6 @@ require 'recipe/symfony.php'
 This recipe is specifically for deploying Symfony2 projects. Default Symfony configuration of this recipe are:
 
 ~~~ php
-
-/**
- * Symfony Configuration
- */
-
 // Symfony shared dirs
 set('shared_dirs', ['app/logs']);
 
@@ -142,3 +122,19 @@ set('auto_migrate', false);
 env('env_vars', 'SYMFONY_ENV=prod');
 env('env', 'prod');
 ~~~
+
+### Laravel Recipe
+
+TODO
+
+### Yii Recipe
+
+TODO
+
+### ZendFramework Recipe
+
+TODO
+
+### WordPress Recipe
+
+TODO
