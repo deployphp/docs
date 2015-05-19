@@ -123,6 +123,15 @@ env('env_vars', 'SYMFONY_ENV=prod');
 env('env', 'prod');
 ~~~
 
+> Switching to the Symfony3 dir structure:
+> ~~~ php
+> set('shared_dirs', ['var/logs']);
+> set('writable_dirs', ['var/cache', 'var/logs']);
+> set('bin_dir', 'bin');
+> set('var_dir', 'var');
+> ~~~
+
+
 ### Laravel Recipe
 
 TODO
