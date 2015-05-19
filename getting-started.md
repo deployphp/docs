@@ -80,6 +80,6 @@ after('deploy', 'reload:php-fpm');
 
 > If you want to see exactly what deployer runs on you server, run `dep deploy -vvv`.
 
-Configure you server to serve `currect` directory as root. 
+Configure you server to serve `current` directory as root. 
 
 That's all!
