@@ -1,8 +1,8 @@
 # Environment
 
-Every server has it's own independet enviroment, which contains information such as deploy path, release path, stages, etc.
+Every server has it's own independent environment, which contains information such as deploy path, release path, stages, etc.
 
-To get current environment in a task, use the `env()` function.
+To get current the environment in a task, use the `env()` function.
 
 ~~~ php
 task('my_task', function () {
@@ -10,19 +10,19 @@ task('my_task', function () {
 });
 ~~~
 
-You can you environment variable in your run commands with `{{...}}`:
+You can insert your environment variables in your run commands with `{{...}}`:
 
 ~~~ php
 run("cd {{deploy_path}} && ln -sfn {{release_path}} current");
 ~~~
 
-To set an environment variable:
+To set an environment variable to a new value:
 
 ~~~ php
 env('key', 'value');
 ~~~
 
-To get an environment variable:
+To get the value of an environment variable:
 
 ~~~ php
 env('key');
@@ -36,13 +36,13 @@ set('key', 'value');
 get('key');
 ~~~
 
-To set default enviroment variable, you can define it in `deploy.php`:
+To set a default environment variable, you can define it in `deploy.php`:
 
 ~~~ php
 env('deploy_path', '/home/www');
 ~~~
 
-You can also setup a callback for enviroment variable which will be called of first access to it.
+You can also setup a callback for an environment variable which will be called when it is first accessed.
 
 ~~~ php
 /**
