@@ -63,7 +63,7 @@ Installs vendors with composer.
 
 #### deploy:symlink
 
-Creates a symlink named `current` which points to the lastest release.
+Creates a symlink named `current` which points to the latest release.
 
 #### cleanup
 
