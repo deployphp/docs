@@ -63,12 +63,12 @@ Deployer will create the directory structure on `prod` server:
 
 Next, deploy will create a new directory in `releases`, and `current` symlink will be pointed to new release only at the end. By default Deployer keeps the last 3 releases in `releases` dir, you can increase this by setting this option: `set('keep_releases', 3)`.
 
-If something goes wrong during deployment procces, or something is wrong with your new release, simple rollback to previous succesful deploy:
+If something goes wrong during deployment process, or something is wrong with your new release, simple rollback to previous successful deploy:
 ```
 dep rollback prod
 ```
 
-Also you may want to do some task before/after deploy. It's realy simple, lets reload php-fpm after deploy:
+Also you may want to do some task before/after deploy. It's really simple, lets reload php-fpm after deploy:
 
 ```php
 task('reload:php-fpm', function () {

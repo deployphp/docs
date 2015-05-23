@@ -28,7 +28,7 @@ To get the value of an environment variable:
 env('key');
 ~~~
 
-To set global variables (not enviroment), use `set` and `get`:
+To set global variables (not environment), use `set` and `get`:
 
 ~~~ php
 set('key', 'value');
