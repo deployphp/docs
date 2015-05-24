@@ -1,8 +1,9 @@
 # Environment
 
-Every server has it's own independent environment, which contains information such as deploy path, release path, stages, etc.
+Every server has it's own independent environment, which contains information
+such as deploy path, release path, stages, etc.
 
-To get current the environment in a task, use the `env()` function.
+To get the current environment in a task, use the `env()` function.
 
 ~~~ php
 task('my_task', function () {
@@ -28,6 +29,20 @@ To get the value of an environment variable:
 env('key');
 ~~~
 
+Adding a server by the `server` function automatically sets some environment
+variables. These variables are protected from future changes, so that every
+task can safely rely on them.
+
+~~~ php
+// Gets the server array
+env('server');
+
+// Using the dot notation we can access arrays in a simpler way
+env('server.name');
+env('server.host');
+env('server.port');
+~~~
+
 To set global variables (not environment), use `set` and `get`:
 
 ~~~ php
@@ -42,7 +57,8 @@ To set a default environment variable, you can define it in `deploy.php`:
 env('deploy_path', '/home/www');
 ~~~
 
-You can also setup a callback for an environment variable which will be called when it is first accessed.
+You can also setup a callback for an environment variable which will be called
+when it's first accessed.
 
 ~~~ php
 /**
