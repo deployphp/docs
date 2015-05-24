@@ -43,12 +43,12 @@ env('server.host');
 env('server.port');
 ~~~
 
-To set global variables (not environment), use `set` and `get`:
+To handle global variables (not environment), use `set`, `get` and `has`:
 
 ~~~ php
 set('key', 'value');
-
 get('key');
+has('key');
 ~~~
 
 To set a default environment variable, you can define it in `deploy.php`:
