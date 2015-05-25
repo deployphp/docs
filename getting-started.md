@@ -1,37 +1,50 @@
 # Getting Started
 
-Deployer will help you deploy your applications to remote servers. First install Deployer, download the `deployer.phar` archive.
+Deployer will help you deploy your applications to remote servers.
+
+To install it, first download the `deployer.phar` archive:
 
 [Download deployer.phar](http://deployer.org/deployer.phar)
 
-Then move `deployer.phar` to your bin directory and make it executable:
+Now move `deployer.phar` to your bin directory and make it executable:
 
 ~~~
 mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ~~~
 
-You can now use Deployer via the `dep` command. Later, you may upgrade Deployer to the latest version, you can run the `dep self-update` command.
+You can now use Deployer via the `dep` command. You may upgrade Deployer to the
+latest version at any time, by running `dep self-update`.
 
-Create a `deploy.php` file in your project directory. First start from including the provided Symfony recipe. All Deployer recipes are based on `recipe/common.php`. 
+To deploy your application, you have to choose the right "recipe" for it.
+For example, let's see how a Symfony application can be deployed!
+
+Create a `deploy.php` file in your project's root directory, containing the
+following:
 
 ~~~ php
+<?php
+
+// All Deployer recipes are based on `recipe/common.php`.
 require 'recipe/symfony.php';
 
-// Define server for deploy.
-// Let's name it "prod" and use 22 port.
-server('prod', 'domain.net', 22)
+// Define a server for deployment.
+// Let's name it "prod" and use port 22.
+server('prod', 'host', 22)
     ->user('name')
-    ->forwardAgent() // You can use identity key, ssh config, or username/password to auth on server.
+    ->forwardAgent() // You can use identity key, ssh config, or username/password to auth on the server.
     ->stage('production')
-    ->env('deploy_path', '/home/your/project'); // Define base path to deploy you project.
-    
-// Specify repository from which to download your projects code.
-// If you don't using forward aget, server has to be able clone your project from this repository.
+    ->env('deploy_path', '/your/project/path'); // Define the base path to deploy your project to.
+
+// Specify the repository from which to download your project's code.
+// The server needs to have git installed for this to work.
+// If you're not using a forward agent, then the server has to be able clone
+// your project from this repository.
 set('repository', 'git@github.com:org/app.git');
 ~~~
 
-Now open a terminal in your project directory and run the following command to deploy your application:
+Now open up a terminal in your project directory and run the following command
+to deploy your application:
 
 ~~~
 dep deploy production
@@ -39,36 +52,45 @@ dep deploy production
 
 > To list all the available commands, run the `dep` command.
 
-> Note what Deployer will try to give write permissions with `sudo` command, so this command has to be running without prompt passwords.
-> For that connect to you server via ssh, and run next command:
+> Note what Deployer will try to get write permission with the `sudo` command, so this command has to be running without prompt passwords.
+> For that, connect to you server via ssh, and run the following command:
 > ```
 > sudo visudo
 > ```
-> And add next line in the end of file:
+> Add this line at the end of file:
 > ```
 > name   ALL=(ALL) NOPASSWD: /usr/bin/setfacl
 > ```
 > When saving the file, if you don't want Deployer to take care of writable dirs, override `deploy:writable` task as you wish.
 
-Deployer will create the directory structure on `prod` server:
+Deployer will create the following directory structure on the `prod` server:
 
 ```
-/home/your/project
+/your/project/path
 |--releases
 |  |--20150513120631
 |--shared
 |  |--...
-|--current -> /home/elfet/new.xu.su/releases/20150513120631
+|--current -> /your/project/path/releases/20150513120631
 ```
 
-Next, deploy will create a new directory in `releases`, and `current` symlink will be pointed to new release only at the end. By default Deployer keeps the last 3 releases in `releases` dir, you can increase this by setting this option: `set('keep_releases', 3)`.
+Every deployment will create a new directory in `releases`. When the deployment
+finished a symlink called `current` will be pointed to the new release. By
+default Deployer keeps the last 3 releases, but you can increase this number by
+modifying the `keep_releases` parameter: `set('keep_releases', 3)`.
 
-If something goes wrong during deployment process, or something is wrong with your new release, simple rollback to previous successful deploy:
+If something went wrong during the deployment process, or something is wrong
+with your new release, simply run the following command to roll back to the
+previous working release:
+
 ```
 dep rollback prod
 ```
 
-Also you may want to do some task before/after deploy. It's really simple, lets reload php-fpm after deploy:
+You may want to run some task before/after another tasks. Configuring that is
+really simple!
+
+Let's reload php-fpm after the Symfony `deploy` task:
 
 ```php
 task('reload:php-fpm', function () {
@@ -78,8 +100,8 @@ task('reload:php-fpm', function () {
 after('deploy', 'reload:php-fpm');
 ```
 
-> If you want to see exactly what deployer runs on you server, run `dep deploy -vvv`.
+> If you want to see exactly what deployer does on you server, then just run it in a more verbose mode: `dep deploy -vvv`.
 
-Configure you server to serve `current` directory as root. 
+Finally: configure you server to serve your public directory inside `current`.
 
 That's all!
