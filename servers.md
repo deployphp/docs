@@ -116,6 +116,21 @@ And then in `deploy.php`:
 serverList('servers.yml');
 ~~~
 
+### Server list YAML file and environment variables
+
+You can set environment variables per server definition. When parsing server configuration, all keys other than list below, are treated as server environment variables and can be retrieved using `env()`:
+
+~~~
+  local:
+  host: 
+  port:
+  identity_file: 
+  forward_agent:
+  user:
+  password:
+  stage:
+  pem_file:
+~~~
 
 ### Stages
 
