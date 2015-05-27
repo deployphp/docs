@@ -5,7 +5,7 @@ Deployer has a set of predefined tasks called _recipes_.
 Recipes can be included to your `deploy.php` file like this:
 
 ~~~ php
-require 'recipe/common.php';
+require './recipe/common.php';
 ~~~
 
 ### Common Recipe
