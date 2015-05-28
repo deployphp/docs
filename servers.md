@@ -4,12 +4,14 @@ You can define servers with the `server` function. Here is an example of a serve
 
 ~~~ php
 server('prod_1', 'domain.com')
-    ->user('user', 'password')
+    ->user('user')
+    ->password('pass')
     ->env('deploy_path', '/home/www')
     ->stage('production');
     
 server('prod_2', 'domain.com')
-    ->user('user', 'password')
+    ->user('user')
+    ->password('pass')
     ->env('deploy_path', '/home/www')
     ->env('extra_stuff', '...')
     ->stage('production');
@@ -23,7 +25,8 @@ To specify how to connect to server using SSH, there are a few ways:
 
 ~~~ php
 server(...)
-  ->user('name', 'password')
+  ->user('name')
+  ->password('pass')
 ~~~
 
 ### With an identity file
