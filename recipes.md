@@ -115,9 +115,6 @@ set('writable_dirs', ['app/cache', 'app/logs']);
 // Assets
 set('assets', ['web/css', 'web/images', 'web/js']);
 
-// Auto migrate
-set('auto_migrate', false);
-
 // Environment vars
 env('env_vars', 'SYMFONY_ENV=prod');
 env('env', 'prod');
@@ -129,6 +126,11 @@ env('env', 'prod');
 > set('writable_dirs', ['var/cache', 'var/logs']);
 > set('bin_dir', 'bin');
 > set('var_dir', 'var');
+> ~~~
+
+> To add automatic database migration, you can add something like the following:
+> ~~~ php
+> after('deploy:vendors', 'database:migrate');
 > ~~~
 
 
