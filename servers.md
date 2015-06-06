@@ -73,13 +73,13 @@ server('ec2', 'host.aws.amazon.com')
 
 > Authentication using a pem file is currently only supported with PhpSecLib.
 
-### Upload and download
+## Upload and download
 
 You can upload a file or directory with the `upload(local, remote)` function.
 
 You can download a file with the `download(local, remote)` function.
 
-### Servers list
+## Servers list
 
 You can define servers in YAML file:
 
@@ -119,7 +119,7 @@ And then in `deploy.php`:
 serverList('servers.yml');
 ~~~
 
-### Server list YAML file and environment variables
+## Server list YAML file and environment variables
 
 You can set environment variables per server definition. When parsing server configuration, all keys other than list below, are treated as server environment variables and can be retrieved using `env()`:
 
@@ -135,7 +135,18 @@ You can set environment variables per server definition. When parsing server con
   pem_file:
 ~~~
 
-### Stages
+## Local Server
+
+Also you can define *localServer*, it is run all command locally without ssh.
+
+~~~ php
+localServer(...)
+    ->stage('local');
+~~~
+
+For instance, you can use it for update your local project.
+
+## Stages
 
 You can define every server with a stage, or list of stages:
 
