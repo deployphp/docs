@@ -80,7 +80,7 @@ Rollback to the previous release. If only one release is available, nothing will
 ### Composer Recipe
 
 ~~~ php
-require 'recipe/composer.php'
+require 'recipe/composer.php';
 ~~~
 
 The composer recipe is a simple recipe suitable for simple projects which uses composer.
@@ -97,7 +97,7 @@ It consists of the following tasks:
 ### Symfony Recipe
 
 ~~~ php
-require 'recipe/symfony.php'
+require 'recipe/symfony.php';
 ~~~
 
 This recipe is specifically for deploying Symfony2 projects. Default Symfony configuration of this recipe are:
