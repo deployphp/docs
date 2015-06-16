@@ -60,7 +60,7 @@ server(...)
 > This can only be used with the ssh2 pecl extension.
 > ~~~ php
 > // Switch to ext-ssh2
-> set('use_ssh2', true);
+> set('ssh_type', 'ext-ssh2');
 > ~~~
 
 ### With a pem file
