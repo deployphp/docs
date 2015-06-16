@@ -57,12 +57,6 @@ server(...)
     ->configFile('/path/to/file');
 ~~~
 
-> This can only be used with the ssh2 pecl extension.
-> ~~~ php
-> // Switch to ext-ssh2
-> set('ssh_type', 'ext-ssh2');
-> ~~~
-
 ### With a pem file
 
 ~~~ php
@@ -73,6 +67,22 @@ server('ec2', 'host.aws.amazon.com')
 
 > Authentication using a pem file is currently only supported with PhpSecLib.
 
+### Using PHP SSH2 extension
+
+Package `herzult/php-ssh` is required for this to work but is not included inside `deployer.phar` so you should install `deployer/deployer` and `herzult/php-ssh` using composer:
+
+```
+composer require deployer/deployer herzult/php-ssh
+```
+Example `deploy.php` file:
+
+```php
+require 'vendor/autoload.php';
+require 'vendor/deployer/deployer/recipe/symfony.php';
+
+set('ssh_type', 'ext-ssh2');
+//...
+```
 ## Upload and download
 
 You can upload a file or directory with the `upload(local, remote)` function.
