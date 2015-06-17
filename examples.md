@@ -2,7 +2,7 @@
 
 This is an example of a `deploy.php` script used to reload the `php5-fpm` service after deploying.
 
-~~~ php
+``` php
 <?php
 require 'recipe/symfony.php';
 
@@ -16,4 +16,4 @@ task('reload:php-fpm', function () {
 
 after('deploy', 'reload:php-fpm');
 after('rollback', 'reload:php-fpm');
-~~~
+```
