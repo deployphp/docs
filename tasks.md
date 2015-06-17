@@ -13,13 +13,13 @@ task('my_task', function () {
 
 To run your tasks:
 
-~~~
+~~~ sh
 dep my_task
 ~~~
 
 To list all available commands:
 
-~~~
+~~~ sh
 dep list
 ~~~
 
@@ -33,20 +33,20 @@ task('my_task', function () {
 
 When your task will be running, you will see the description in the output:
 
-~~~
+~~~ sh
 $ dep my_task
 ✔ Executing task my_task
 ~~~
 
 To get help on a task:
 
-~~~
+~~~ sh
 dep help deploy
 ~~~
 
 To run a task only on a specified server:
 
-~~~
+~~~ sh
 dep deploy main
 ~~~
 
