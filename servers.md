@@ -2,7 +2,7 @@
 
 You can define servers with the `server` function. Here is an example of a server definition:
 
-~~~ php
+``` php
 server('prod_1', 'domain.com')
     ->user('user')
     ->password('pass')
@@ -15,7 +15,7 @@ server('prod_2', 'domain.com')
     ->env('deploy_path', '/home/www')
     ->env('extra_stuff', '...')
     ->stage('production');
-~~~
+```
 
 This function takes 3 parameters, like this: `server(server_name, host, port)`. It returns a `Deployer\Server\Builder` object.
 
@@ -23,27 +23,27 @@ To specify how to connect to server using SSH, there are a few ways:
 
 ### With a username and a password
 
-~~~ php
+``` php
 server(...)
   ->user('name')
   ->password('pass')
-~~~
+```
 
 ### With an identity file
 
-~~~ php
+``` php
 server(...)
     ->user('name')
     ->identityFile();
-~~~
+```
 
 If your keys were created with a password or if they are located outside of the `.ssh` directory, you can specify the location by providing the full path:
 
-~~~ php
+``` php
 server(...)
     ...
     ->identityFile('~/.ssh/id_rsa.pub', '~/.ssh/id_rsa', 'pass phrase');
-~~~
+```
 
 The `~` symbol  will be replaced with your home directory. 
 
@@ -51,19 +51,19 @@ The `~` symbol  will be replaced with your home directory.
 
 Deployer can use your SSH config file.
 
-~~~ php
+``` php
 server(...)
     ->user('name')
     ->configFile('/path/to/file');
-~~~
+```
 
 ### With a pem file
 
-~~~ php
+``` php
 server('ec2', 'host.aws.amazon.com')
     ->user('ec2-user')
     ->pemFile('~/.ssh/keys.pem');
-~~~
+```
 
 > Authentication using a pem file is currently only supported with PhpSecLib.
 
@@ -93,7 +93,7 @@ You can download a file with the `download(local, remote)` function.
 
 You can define servers in YAML file:
 
-~~~
+```
 prod:
   host: domain.com
   user: www
@@ -121,19 +121,19 @@ test:
   password: pass
   stage: beta
   deploy_path: /home/www/  
-~~~
+```
 
 And then in `deploy.php`:
 
-~~~ php
+``` php
 serverList('servers.yml');
-~~~
+```
 
 ## Server list YAML file and environment variables
 
 You can set environment variables per server definition. When parsing server configuration, all keys other than list below, are treated as server environment variables and can be retrieved using `env()`:
 
-~~~
+```
   local:
   host: 
   port:
@@ -143,16 +143,16 @@ You can set environment variables per server definition. When parsing server con
   password:
   stage:
   pem_file:
-~~~
+```
 
 ## Local Server
 
 Also you can define *localServer*, it is run all command locally without ssh.
 
-~~~ php
+``` php
 localServer(...)
     ->stage('local');
-~~~
+```
 
 For instance, you can use it for update your local project.
 
@@ -160,7 +160,7 @@ For instance, you can use it for update your local project.
 
 You can define every server with a stage, or list of stages:
 
-~~~ php
+``` php
 server(...)
     ->stage('prod');
     
@@ -169,8 +169,8 @@ server(...)
     
 server(...)
     ->env('stages', ['stage']);    
-~~~
+```
 
-And then you call command `dep [task] [server or stage]`, it will be executed only on specified stage server.
+And then you call command `$ dep [task] [server or stage]`, it will be executed only on specified stage server.
 
 If you run a command without specifying a stage, it will be executed on the server without a specified stage.
