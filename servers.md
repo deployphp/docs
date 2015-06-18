@@ -93,7 +93,7 @@ You can download a file with the `download(local, remote)` function.
 
 You can define servers in YAML file:
 
-~~~
+~~~ yml
 prod:
   host: domain.com
   user: www
@@ -133,7 +133,7 @@ serverList('servers.yml');
 
 You can set environment variables per server definition. When parsing server configuration, all keys other than list below, are treated as server environment variables and can be retrieved using `env()`:
 
-~~~
+~~~ yml
   local:
   host: 
   port:
