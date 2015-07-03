@@ -59,7 +59,7 @@ $ dep deploy production
 > ```
 > Add this line at the end of file:
 > ```
-> name   ALL=(ALL) NOPASSWD: /usr/bin/setfacl
+> user_name   ALL=(ALL) NOPASSWD: /usr/bin/setfacl
 > ```
 > When saving the file, if you don't want Deployer to take care of writable dirs, override `deploy:writable` task as you wish.
 
