@@ -5,4 +5,5 @@
 * [Environment](environment.md)
 * [Functions](functions.md)
 * [Recipes](recipes.md)
+* [Debugging](debugging.md)
 * [Examples](examples.md)
