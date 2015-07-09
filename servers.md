@@ -29,6 +29,16 @@ server(...)
   ->password('pass')
 ~~~
 
+### With a username and a typed password
+
+~~~ php
+server(...)
+  ->user('name')
+  ->password(null)
+~~~
+
+Set password to *null* and it will be asked.
+
 ### With an identity file
 
 ~~~ php
