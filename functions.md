@@ -21,6 +21,20 @@ runLocally(string $command)
 Runs a command on your local machine.
 
 ``` php
+upload(string $file, string $uploadFile)
+```
+
+Upload a file from your machine to your deployment machine
+You can use environment in both $file and $uploadFile - meaning you can type something like this
+
+upload('.deploy/parameters.{{env}}.yml', '{{release_path}}/app/config/parameters.yml');
+
+Which will be translated to something like this
+
+upload('.deploy/parameters.dev.yml', '/var/www/release/current/app/config/parameters.yml');
+
+
+``` php
  write(string $message)
 ```
 
