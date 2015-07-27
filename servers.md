@@ -183,4 +183,10 @@ server(...)
 
 And then you call command `dep [task] [server or stage]`, it will be executed only on specified stage server.
 
-If you run a command without specifying a stage, it will be executed on the server without a specified stage.
+It is possible to specify a default stage that will be executed if you do not give a stage on the command line. You can do this by setting the `default_stage` parameter.
+
+~~~ php 
+set('default_stage', 'staging'); 
+~~~
+
+If you run a command without specifying a stage or a default, it will be executed on the server without a specified stage.
