@@ -89,3 +89,21 @@ argument('stage', InputArgument::OPTIONAL, 'Run tasks only on this server or gro
 
 option('tag', null, InputOption::VALUE_OPTIONAL, 'Tag to deploy.');
 ```
+
+To get the input inside a task this can be used
+
+``` php
+task('foo:bar', function() {
+    // For arguments
+    $stage = null;
+    if (input()->hasArgument('stage')) {
+        $stage = input()->getArgument('stage');
+    }
+    
+    // For option
+    $tag = null;
+    if (input()->hasOption('tag')) {
+        $tag = input()->getOption('tag');
+    }
+}
+```
