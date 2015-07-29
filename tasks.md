@@ -80,6 +80,19 @@ after('deploy', 'deploy:done');
 
 After the `deploy` task is be called, `deploy:done` will be executed.
 
+### Only on
+
+You can specify on which server ro run task with `onlyOn` method:
+
+``` php
+task('test', function () {
+    ...
+})->desc('Run tests for application.')
+  ->onlyOn('test_server');
+```
+
+Also you can specify a group on servers to run: `->onlyOn(['server1', 'server2', ...]);`
+
 ### Using input options
 
 You can define additional input options and arguments:
