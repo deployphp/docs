@@ -102,6 +102,6 @@ after('deploy', 'reload:php-fpm');
 
 > If you want to see exactly what deployer does on you server, then just run it in a more verbose mode: `$ dep deploy -vvv`.
 
-Finally: configure you server to serve your public directory inside `current`.
+Finally: configure your server to serve your public directory inside `current`.
 
 That's all!
