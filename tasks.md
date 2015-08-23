@@ -91,7 +91,7 @@ task('test', function () {
   ->onlyOn('test_server');
 ```
 
-Also you can specify a group on servers to run: `->onlyOn(['server1', 'server2', ...]);`
+Also you can specify a group on servers to run as arguments: `->onlyOn('server1', 'server2', ...);` or as an array `->onlyOn(['server1', 'server2, ...]);`
 
 ### Using input options
 
