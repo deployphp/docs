@@ -57,6 +57,12 @@ Creates writable directories.
 set('writable_dirs', ['app/cache', 'app/logs']);
 ```
 
+Use the `set` function to specify the user who should own the directories.
+
+```php
+set('http_user', 'user');
+```
+
 #### deploy:vendors
 
 Installs vendors with composer.
