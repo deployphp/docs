@@ -17,3 +17,17 @@ task('reload:php-fpm', function () {
 after('deploy', 'reload:php-fpm');
 after('rollback', 'reload:php-fpm');
 ```
+
+```yaml
+# app/config/servers.yml
+dev:
+    host:          your-host.com
+    user:          release
+    identity_file:
+        public_key: "~/.ssh/id_release.pub"
+        private_key: "~/.ssh/id_release"
+        password: "key-password"
+    stage:         dev
+    deploy_path:   "/var/www"
+    branch:        dev
+```
