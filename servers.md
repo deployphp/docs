@@ -114,7 +114,10 @@ prod:
 prod.a:
   host: a.domain.com
   user: www
-  identity_file: ~
+  identity_file:
+    public_key:  /path/to/public.key
+    private_key: /path/to/private.key
+    password:    optional-password-for-private-key-or-null
   stage: production
   deploy_path: /home/www/  
   
