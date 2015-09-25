@@ -2,16 +2,18 @@
 
 Deployer will help you deploy your applications to remote servers.
 
-To install it, first download the `deployer.phar` archive:
-
-[Download deployer.phar](http://deployer.org/deployer.phar)
-
-Now move `deployer.phar` to your bin directory and make it executable:
+#### Installation on Linux and Mac OS X
 
 ~~~
-mv deployer.phar /usr/local/bin/dep
-chmod +x /usr/local/bin/dep
+$ sudo curl -LsS http://deployer.org/deployer.phar -o /usr/local/bin/dep
+$ sudo chmod +x /usr/local/bin/dep
 ~~~
+
+#### Installation on Windows
+~~~
+c:\> php -r "readfile('http://deployer.org/deployer.phar');" > dep
+~~~
+Move the downloaded file to your projects directory and execute it as php dep
 
 You can now use Deployer via the `dep` command. You may upgrade Deployer to the
 latest version at any time, by running `dep self-update`.
