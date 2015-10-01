@@ -2,19 +2,21 @@
 
 Deployer will help you deploy your applications to remote servers.
 
-To install it, first download the `deployer.phar` archive:
+#### Installation on Linux and Mac OS X
 
-[Download deployer.phar](http://deployer.org/deployer.phar)
+~~~
+$ sudo curl -LsS http://deployer.org/deployer.phar -o /usr/local/bin/dep
+$ sudo chmod +x /usr/local/bin/dep
+~~~
 
-Now move `deployer.phar` to your bin directory and make it executable:
-
-```
-mv deployer.phar /usr/local/bin/dep
-chmod +x /usr/local/bin/dep
-```
+#### Installation on Windows
+~~~
+c:\> php -r "readfile('http://deployer.org/deployer.phar');" > dep
+~~~
+Move the downloaded file to your projects directory and execute it as php dep
 
 You can now use Deployer via the `dep` command. You may upgrade Deployer to the
-latest version at any time, by running `$ dep self-update`.
+latest version at any time, by running `dep self-update`.
 
 To deploy your application, you have to choose the right "recipe" for it.
 For example, let's see how a Symfony application can be deployed!
@@ -22,7 +24,7 @@ For example, let's see how a Symfony application can be deployed!
 Create a `deploy.php` file in your project's root directory, containing the
 following:
 
-``` php
+~~~ php
 <?php
 
 // All Deployer recipes are based on `recipe/common.php`.
@@ -41,14 +43,14 @@ server('prod', 'host', 22)
 // If you're not using a forward agent, then the server has to be able to clone
 // your project from this repository.
 set('repository', 'git@github.com:org/app.git');
-```
+~~~
 
 Now open up a terminal in your project directory and run the following command
 to deploy your application:
 
-``` sh
-$ dep deploy production
-```
+~~~
+dep deploy production
+~~~
 
 > To list all the available commands, run the `dep` command.
 
@@ -59,7 +61,7 @@ $ dep deploy production
 > ```
 > Add this line at the end of file:
 > ```
-> user_name   ALL=(ALL) NOPASSWD: /usr/bin/setfacl
+> name   ALL=(ALL) NOPASSWD: /usr/bin/setfacl
 > ```
 > When saving the file, if you don't want Deployer to take care of writable dirs, override `deploy:writable` task as you wish.
 
@@ -83,8 +85,8 @@ If something went wrong during the deployment process, or something is wrong
 with your new release, simply run the following command to roll back to the
 previous working release:
 
-``` sh
-$ dep rollback prod
+```
+dep rollback prod
 ```
 
 You may want to run some task before/after another tasks. Configuring that is
@@ -100,8 +102,8 @@ task('reload:php-fpm', function () {
 after('deploy', 'reload:php-fpm');
 ```
 
-> If you want to see exactly what deployer does on you server, then just run it in a more verbose mode: `$ dep deploy -vvv`.
+> If you want to see exactly what deployer does on you server, then just run it in a more verbose mode: `dep deploy -vvv`.
 
-Finally: configure your server to serve your public directory inside `current`.
+Finally: configure you server to serve your public directory inside `current`.
 
 That's all!
