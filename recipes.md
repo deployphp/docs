@@ -236,3 +236,23 @@ require 'recipe/zend_framework.php';
 ``` php
 require 'recipe/wordpress.php';
 ```
+
+### Drupal Recipe
+
+TODO
+
+### Magento Recipe
+
+TODO
+
+### CodeIgniter Recipe
+
+TODO
+
+### CakePHP Recipe
+
+TODO
+
+### FuelPHP Recipe
+
+TODO
