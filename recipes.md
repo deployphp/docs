@@ -227,8 +227,12 @@ set('shared_files', [
 
 ### ZendFramework Recipe
 
-TODO
+``` php
+require 'recipe/zend_framework.php';
+```
 
 ### WordPress Recipe
 
-TODO
+``` php
+require 'recipe/wordpress.php';
+```
