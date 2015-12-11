@@ -106,7 +106,7 @@ It consists of the following tasks:
 require 'recipe/symfony.php';
 ```
 
-This recipe is specifically for deploying Symfony2 projects. Default Symfony configuration of this recipe are:
+This recipe is specifically for deploying Symfony2 projects. The default configuration of this recipe is:
 
 ``` php
 // Symfony shared dirs
@@ -142,7 +142,28 @@ env('env', 'prod');
 
 ### Laravel Recipe
 
-TODO
+``` php
+require 'recipe/laravel.php';
+```
+
+This recipe is specifically for deploying Laravel 5 projects. The default configuration of this recipe is:
+
+```php
+// Laravel shared dirs
+set('shared_dirs', [
+    'storage/app',
+    'storage/framework/cache',
+    'storage/framework/sessions',
+    'storage/framework/views',
+    'storage/logs',
+]);
+
+// Laravel 5 shared file
+set('shared_files', ['.env']);
+
+// Laravel writable dirs
+set('writable_dirs', ['storage', 'vendor']);
+```
 
 ### Yii Recipe
 
