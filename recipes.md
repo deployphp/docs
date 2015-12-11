@@ -167,7 +167,63 @@ set('writable_dirs', ['storage', 'vendor']);
 
 ### Yii Recipe
 
-TODO
+#### Yii
+
+``` php
+require 'recipe/yii.php';
+```
+
+This recipe is specifically for deploying Yii projects. The default configuration of this recipe is:
+
+```php
+// Yii shared dirs
+set('shared_dirs', ['runtime']);
+
+// Yii writable dirs
+set('writable_dirs', ['runtime']);
+```
+
+#### Yii 2 Basic
+
+``` php
+require 'recipe/yii2-app-basic.php';
+```
+
+This recipe is specifically for deploying Yii 2 basic projects. The default configuration of this recipe is:
+
+```php
+// Yii 2 Basic Project Template shared dirs
+set('shared_dirs', ['runtime']);
+```
+
+#### Yii 2 Advanced
+
+``` php
+require 'recipe/yii2-app-advanced.php';
+```
+
+This recipe is specifically for deploying Yii 2 advanced projects. The default configuration of this recipe is:
+
+```php
+// Yii 2 Advanced Project Template shared dirs
+set('shared_dirs', [
+    'frontend/runtime',
+    'backend/runtime',
+    'console/runtime',
+]);
+
+// Yii 2 Advanced Project Template shared files
+set('shared_files', [
+    'common/config/main-local.php',
+    'common/config/params-local.php',
+    'frontend/config/main-local.php',
+    'frontend/config/params-local.php',
+    'backend/config/main-local.php',
+    'backend/config/params-local.php',
+    'console/config/main-local.php',
+    'console/config/params-local.php',
+]);
+```
 
 ### ZendFramework Recipe
 
