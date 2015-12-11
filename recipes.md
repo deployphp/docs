@@ -106,7 +106,7 @@ It consists of the following tasks:
 require 'recipe/symfony.php';
 ```
 
-This recipe is specifically for deploying Symfony2 projects. Default Symfony configuration of this recipe are:
+This recipe is specifically for deploying Symfony2 projects. The default configuration of this recipe is:
 
 ``` php
 // Symfony shared dirs
@@ -142,16 +142,117 @@ env('env', 'prod');
 
 ### Laravel Recipe
 
-TODO
+``` php
+require 'recipe/laravel.php';
+```
+
+This recipe is specifically for deploying Laravel 5 projects. The default configuration of this recipe is:
+
+```php
+// Laravel shared dirs
+set('shared_dirs', [
+    'storage/app',
+    'storage/framework/cache',
+    'storage/framework/sessions',
+    'storage/framework/views',
+    'storage/logs',
+]);
+
+// Laravel 5 shared file
+set('shared_files', ['.env']);
+
+// Laravel writable dirs
+set('writable_dirs', ['storage', 'vendor']);
+```
 
 ### Yii Recipe
 
-TODO
+#### Yii
+
+``` php
+require 'recipe/yii.php';
+```
+
+This recipe is specifically for deploying Yii projects. The default configuration of this recipe is:
+
+```php
+// Yii shared dirs
+set('shared_dirs', ['runtime']);
+
+// Yii writable dirs
+set('writable_dirs', ['runtime']);
+```
+
+#### Yii 2 Basic
+
+``` php
+require 'recipe/yii2-app-basic.php';
+```
+
+This recipe is specifically for deploying Yii 2 basic projects. The default configuration of this recipe is:
+
+```php
+// Yii 2 Basic Project Template shared dirs
+set('shared_dirs', ['runtime']);
+```
+
+#### Yii 2 Advanced
+
+``` php
+require 'recipe/yii2-app-advanced.php';
+```
+
+This recipe is specifically for deploying Yii 2 advanced projects. The default configuration of this recipe is:
+
+```php
+// Yii 2 Advanced Project Template shared dirs
+set('shared_dirs', [
+    'frontend/runtime',
+    'backend/runtime',
+    'console/runtime',
+]);
+
+// Yii 2 Advanced Project Template shared files
+set('shared_files', [
+    'common/config/main-local.php',
+    'common/config/params-local.php',
+    'frontend/config/main-local.php',
+    'frontend/config/params-local.php',
+    'backend/config/main-local.php',
+    'backend/config/params-local.php',
+    'console/config/main-local.php',
+    'console/config/params-local.php',
+]);
+```
 
 ### ZendFramework Recipe
 
-TODO
+``` php
+require 'recipe/zend_framework.php';
+```
 
 ### WordPress Recipe
+
+``` php
+require 'recipe/wordpress.php';
+```
+
+### Drupal Recipe
+
+TODO
+
+### Magento Recipe
+
+TODO
+
+### CodeIgniter Recipe
+
+TODO
+
+### CakePHP Recipe
+
+TODO
+
+### FuelPHP Recipe
 
 TODO
