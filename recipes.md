@@ -65,7 +65,11 @@ set('http_user', 'user');
 
 #### deploy:vendors
 
-Installs vendors with composer.
+Installs vendors with composer. If `composer` is not found, a new `composer.phar` is downloaded. To specify the path of the composer command:
+
+```php
+set('composer_command', '/bin/composer.phar');
+```
 
 #### deploy:symlink
 
