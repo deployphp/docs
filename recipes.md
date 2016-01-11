@@ -130,12 +130,9 @@ env('env_vars', 'SYMFONY_ENV=prod');
 env('env', 'prod');
 ```
 
-> Switching to the Symfony3 dir structure:
+> For Symfony 3, require the symfony3 recipe:
 > ``` php
-> set('shared_dirs', ['var/logs']);
-> set('writable_dirs', ['var/cache', 'var/logs']);
-> set('bin_dir', 'bin');
-> set('var_dir', 'var');
+> require 'recipe/symfony3.php';
 > ```
 
 > To add automatic database migration, you can add something like the following:
