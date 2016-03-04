@@ -15,10 +15,11 @@ cd(string $path)
 Sets the working path for the following `run` functions. Every task restores the working path to the base working path at the beginning of the task.
 
 ``` php
-runLocally(string $command)
+runLocally(string $command, int $timeout = 60)
 ```
 
 Runs a command on your local machine.
+Default timeout: 60 seconds
 
 ``` php
 upload(string $file, string $uploadFile)
@@ -32,6 +33,12 @@ upload('.deploy/parameters.{{env}}.yml', '{{release_path}}/app/config/parameters
 Which will be translated to something like this
 
 upload('.deploy/parameters.dev.yml', '/var/www/release/current/app/config/parameters.yml');
+
+``` php
+download(string $localFile, string $deploymentFile)
+```
+
+Download a file from your deployment machine to your machine
 
 
 ``` php
