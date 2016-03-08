@@ -61,7 +61,7 @@ task('deploy', [
     'deploy:update_code',
     'deploy:vendors',
     'deploy:symlink',
-    'deploy:cleanup'
+    'cleanup'
 ]);
 ```
 
