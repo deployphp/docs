@@ -167,6 +167,14 @@ localServer(...)
     ->stage('local');
 ~~~
 
+In external .yml definition the keyword `local: `can be used.
+
+~~~ yml
+development:
+    local: true
+    # ....
+~~~
+
 For instance, you can use it for update your local project.
 
 ## Stages
