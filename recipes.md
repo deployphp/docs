@@ -49,7 +49,7 @@ set('shared_dirs', ['app/logs']);
 set('shared_files', ['app/config/parameters.yml']);
 ```
 
-#### deploy:writable_dirs
+#### deploy:writable
 
 Creates writable directories.
 
