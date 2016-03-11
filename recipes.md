@@ -71,6 +71,21 @@ Installs vendors with composer. If `composer` is not found, a new `composer.phar
 set('composer_command', '/bin/composer.phar');
 ```
 
+#### deploy:copy_dirs
+
+Copy directories. Useful for vendors directories. Instead of forcing composer to retrieve the packages one by one from cache/internet 
+during composer install, it can simply copy them from your current release. 
+
+```php
+set('copy_dirs', ['vendor']);
+```
+
+Also, this task has to be called manually as it is not part of the deploy task, and it must be call before composer install runs.
+
+```php
+before('deploy:vendors', 'deploy:copy_dirs');
+```
+
 #### deploy:symlink
 
 Creates a symlink named `current` which points to the latest release.
