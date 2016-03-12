@@ -82,7 +82,7 @@ After the `deploy` task is be called, `deploy:done` will be executed.
 
 ### Only on
 
-You can specify on which server ro run task with `onlyOn` method:
+You can specify on which server to run task with `onlyOn` method:
 
 ``` php
 task('test', function () {
