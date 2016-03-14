@@ -97,6 +97,19 @@ Removes old releases and keeps the last 3. To change the number of kept releases
 ``` php
 set('keep_releases', 5);
 ```
+#### deploy:clean
+
+Cleaning up files and/or directories.
+
+``` php
+set('clear_paths', ['app/cache', 'app/logs']);
+```
+
+Allow using `sudo` when cleaning up files and/or directories.
+
+```php
+set('clear_use_sudo', true);
+```
 
 #### rollback
 
