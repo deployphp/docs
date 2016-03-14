@@ -2,65 +2,69 @@
 
 To install Deployer, download the `deployer.phar` archive.
 
-[Download deployer.phar](http://deployer.org/deployer.phar)
+#### Installation on Linux and Mac OS X
 
-Then move `deployer.phar` to your bin directory and make it executable.
+~~~
+$ sudo curl -LsS http://deployer.org/deployer.phar -o /usr/local/bin/dep
+$ sudo chmod +x /usr/local/bin/dep
+~~~
 
-``` sh
-$ mv deployer.phar /usr/local/bin/dep
-$ chmod +x /usr/local/bin/dep
-```
+#### Installation on Windows
+~~~
+c:\> php -r "readfile('http://deployer.org/deployer.phar');" > dep
+~~~
+Move the downloaded file to your projects directory and execute it as php dep
 
 To upgrade Deployer, run the command:
 
-``` sh
-$ dep self-update
-```
+~~~
+dep self-update
+~~~
 
 To redownload an update if already using the current version, use the `--redo (-r)` option
 
-``` sh
-$ dep self-update --redo
-```
+~~~
+dep self-update --redo
+~~~
 
 To allow pre-release updates, use the `--pre (-p)` option
 
-``` sh
-$ dep self-update --pre
-```
+~~~
+dep self-update --pre
+~~~
 
 To upgrade to the next major release, if available, use the `--upgrade (-u)` option
 
-``` sh
-$ dep self-update --upgrade
-```
+~~~
+dep self-update --upgrade
+~~~
 
 ### Via Composer
 
 You can install Deployer with composer:
 
-``` sh
-$ composer require deployer/deployer:~3.0
-```
+~~~
+composer require deployer/deployer:~3.0
+~~~
 
 Then to use Deployer you may run the following command:
 
-``` sh
-$ php vendor/bin/dep
-```
+~~~
+php vendor/bin/dep
+~~~
 
 ### Source Code
 
 If you want build Deployer from source code, clone the project from GitHub:
 
-``` sh
-$ git clone https://github.com/deployphp/deployer.git
-```
+~~~
+git clone https://github.com/deployphp/deployer.git
+~~~
 
 Then run the following command in the project directory:
 
-``` sh
-$ php ./build
-```
+~~~
+php ./build
+~~~
 
 This will build the `deployer.phar` phar archive.
