@@ -25,7 +25,7 @@ Open up a terminal in your project directory and run the following command:
 dep init
 ```
 
-This command will creatу `deploy.php` file in current directory. Open that file and change `server` credentials to your own.
+This command will create `deploy.php` file in current directory. Open that file and change `server` credentials to your own.
 And specify right `repository`. If you're not using a forward agent, then the server has to be able to clone your project from this repository. The server needs to have git installed for Deployer to work.
 
 Now to deploy your application:
