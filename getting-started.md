@@ -6,20 +6,21 @@ To install it, first download the `deployer.phar` archive:
 
 [Download deployer.phar](http://deployer.org/deployer.phar)
 
-Now move `deployer.phar` to your bin directory and make it executable:
+Move `deployer.phar` to your bin directory and make it executable:
 
-```sh
+```
 mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ```
 
-You can now use Deployer via the `dep` command. You may upgrade Deployer to the
+Now you can use Deployer via the `dep` command. Upgrade Deployer to the
 latest version at any time, by running `dep self-update`.
 
 To deploy your application, you have to choose the right "recipe" for it.
 For example, let's see how a Symfony application can be deployed.
 
 Open up a terminal in your project directory and run the following command:
+
 ``` 
 dep init
 ```
