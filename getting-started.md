@@ -8,7 +8,7 @@ To install it, first download the `deployer.phar` archive:
 
 Now move `deployer.phar` to your bin directory and make it executable:
 
-```
+```sh
 mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ```
@@ -17,37 +17,19 @@ You can now use Deployer via the `dep` command. You may upgrade Deployer to the
 latest version at any time, by running `$ dep self-update`.
 
 To deploy your application, you have to choose the right "recipe" for it.
-For example, let's see how a Symfony application can be deployed!
+For example, let's see how a Symfony application can be deployed.
 
-Create a `deploy.php` file in your project's root directory, containing the
-following:
-
-``` php
-<?php
-
-// All Deployer recipes are based on `recipe/common.php`.
-require 'recipe/symfony.php';
-
-// Define a server for deployment.
-// Let's name it "prod" and use port 22.
-server('prod', 'host', 22)
-    ->user('name')
-    ->forwardAgent() // You can use identity key, ssh config, or username/password to auth on the server.
-    ->stage('production')
-    ->env('deploy_path', '/your/project/path'); // Define the base path to deploy your project to.
-
-// Specify the repository from which to download your project's code.
-// The server needs to have git installed for this to work.
-// If you're not using a forward agent, then the server has to be able to clone
-// your project from this repository.
-set('repository', 'git@github.com:org/app.git');
+Run next command:
+```sh
+dep init
 ```
 
-Now open up a terminal in your project directory and run the following command
-to deploy your application:
+This command will creatу `deploy.php` file in current directory. Open that file and change `server` credentials to your own.
+And specify right `repository`. If you're not using a forward agent, then the server has to be able to clone your project from this repository. The server needs to have git installed for Deployer to work.
 
-``` sh
-$ dep deploy production
+Now open up a terminal in your project directory and run the following command to deploy your application:
+```sh
+dep deploy
 ```
 
 > To list all the available commands, run the `dep` command.
@@ -84,7 +66,7 @@ with your new release, simply run the following command to roll back to the
 previous working release:
 
 ``` sh
-$ dep rollback prod
+$ dep rollback
 ```
 
 You may want to run some task before/after another tasks. Configuring that is
