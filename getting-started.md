@@ -14,21 +14,21 @@ chmod +x /usr/local/bin/dep
 ```
 
 You can now use Deployer via the `dep` command. You may upgrade Deployer to the
-latest version at any time, by running `$ dep self-update`.
+latest version at any time, by running `dep self-update`.
 
 To deploy your application, you have to choose the right "recipe" for it.
 For example, let's see how a Symfony application can be deployed.
 
-Run next command:
-```sh
+Open up a terminal in your project directory and run the following command:
+``` 
 dep init
 ```
 
 This command will creatу `deploy.php` file in current directory. Open that file and change `server` credentials to your own.
 And specify right `repository`. If you're not using a forward agent, then the server has to be able to clone your project from this repository. The server needs to have git installed for Deployer to work.
 
-Now open up a terminal in your project directory and run the following command to deploy your application:
-```sh
+Now to deploy your application:
+``` 
 dep deploy
 ```
 
