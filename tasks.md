@@ -95,15 +95,17 @@ Also you can specify a group on servers to run as arguments: `->onlyOn('server1'
 
 ### Using input options
 
-You can define additional input options and arguments:
+You can define additional input options and arguments, before defining tasks:
 
 ``` php
-argument('stage', InputArgument::OPTIONAL, 'Run tasks only on this server or group of servers.');
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 
+argument('stage', InputArgument::OPTIONAL, 'Run tasks only on this server or group of servers.');
 option('tag', null, InputOption::VALUE_OPTIONAL, 'Tag to deploy.');
 ```
 
-To get the input inside a task this can be used
+To get the input inside a task this can be used:
 
 ``` php
 task('foo:bar', function() {
