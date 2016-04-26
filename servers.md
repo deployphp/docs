@@ -47,6 +47,14 @@ server(...)
     ->identityFile();
 ~~~
 
+### 2-factor authentication with an identity file and password or google-authenticator:
+
+~~~ php
+server(...)
+    ->user('name')
+    ->identityFileAndPassword();
+~~~
+
 If your keys were created with a password or if they are located outside of the `.ssh` directory, you can specify the location by providing the full path:
 
 ~~~ php
