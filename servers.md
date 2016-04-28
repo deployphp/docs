@@ -63,6 +63,14 @@ server(...)
     ->identityFile('~/.ssh/id_rsa.pub', '~/.ssh/id_rsa', 'pass phrase');
 ~~~
 
+or, for 2-factor, you can include the password as well:
+
+~~~ php
+server(...)
+    ...
+    ->identityFileAndPassword('~/.ssh/id_rsa.pub', '~/.ssh/id_rsa', 'pass phrase', 'password');
+~~~
+
 The `~` symbol  will be replaced with your home directory. 
 
 ### With a config file
