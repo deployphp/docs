@@ -47,14 +47,6 @@ server(...)
     ->identityFile();
 ~~~
 
-### 2-factor authentication with an identity file and password or google-authenticator:
-
-~~~ php
-server(...)
-    ->user('name')
-    ->identityFileAndPassword();
-~~~
-
 If your keys were created with a password or if they are located outside of the `.ssh` directory, you can specify the location by providing the full path:
 
 ~~~ php
@@ -63,7 +55,17 @@ server(...)
     ->identityFile('~/.ssh/id_rsa.pub', '~/.ssh/id_rsa', 'pass phrase');
 ~~~
 
-or, for 2-factor, you can include the password as well:
+### 2-factor authentication with an identity file and password or google-authenticator:
+
+If your server is secured with 2-factor, you can connect via your private key + the sccond factor (password or google-authenticator).  Note this the current version only supports *PhpSecLib*:
+
+~~~ php
+server(...)
+    ->user('name')
+    ->identityFileAndPassword();
+~~~
+
+As with the normal identityFile() call, if your keys were created with a password or if they are located outside of the `.ssh` directory, you can specify the location by providing the full path:
 
 ~~~ php
 server(...)
