@@ -68,3 +68,9 @@ env('current', function () {
     return run("readlink {{deploy_path}}/current")->toString();
 });
 ```
+
+You can also change the git branch beeing deployed.
+``` php
+env('branch', 'development');
+```
+
