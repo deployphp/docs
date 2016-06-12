@@ -19,7 +19,7 @@ server('prod_2', 'domain.com')
 
 This function takes 3 parameters, like this: `server(server_name, host, port)`. It returns a `Deployer\Server\Builder` object.
 
-To specify how to connect to server using SSH, there are a few ways:
+To specify how to connect to a server using SSH, there are a few ways:
 
 ### With a username and a password
 
@@ -162,7 +162,7 @@ serverList('servers.yml');
 
 ## Server list YAML file and environment variables
 
-You can set environment variables per server definition. When parsing server configuration, all keys other than list below, are treated as server environment variables and can be retrieved using `env()`:
+You can set environment variables per server definition. When parsing server configurations, all keys other than the one listed below are treated as server environment variables and can be retrieved using `env()`:
 
 ~~~ yml
   local:
@@ -178,7 +178,7 @@ You can set environment variables per server definition. When parsing server con
 
 ## Local Server
 
-Also you can define *localServer*, it is run all command locally without ssh.
+Also, you can define *localServer*, it runs all commands locally without ssh.
 
 ~~~ php
 localServer(...)
@@ -193,7 +193,7 @@ development:
     # ....
 ~~~
 
-For instance, you can use it for update your local project.
+For instance, you can use it to update your local project.
 
 ## Stages
 
@@ -210,7 +210,7 @@ server(...)
     ->env('stages', ['stage']);    
 ~~~
 
-And then you call command `dep [task] [server or stage]`, it will be executed only on specified stage server.
+And then you call command `dep [task] [server or stage]`, it will be executed only on specified stage servers.
 
 It is possible to specify a default stage that will be executed if you do not give a stage on the command line. You can do this by setting the `default_stage` parameter.
 
