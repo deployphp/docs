@@ -36,7 +36,7 @@ dep deploy
 > To list all the available commands, run the `dep` command.
 
 > Note what Deployer will try to get write permission with the `sudo` command, so this command has to be running without prompt passwords.
-> For that, connect to you server via ssh, and run the following command:
+> For that, connect to your server via ssh, and run the following command:
 > ```
 > sudo visudo
 > ```
