@@ -162,6 +162,11 @@ env('env', 'prod');
 > ``` php
 > require 'recipe/symfony3.php';
 > ```
+>
+> If you installed assetic inside Symfony 3 you can enable the dumping this with:
+> ```php
+> set('dump_assets', true);
+> ```
 
 > To add automatic database migration, you can add something like the following:
 > ``` php
