@@ -13,6 +13,7 @@ server('prod_2', 'domain.com')
     ->user('user')
     ->password('pass')
     ->env('deploy_path', '/home/www')
+    ->env('branch', 'master')
     ->env('extra_stuff', '...')
     ->stage('production');
 ~~~
