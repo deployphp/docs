@@ -2,6 +2,7 @@
 * [Installation](installation.md)
 * [Tasks](tasks.md)
 * [Servers](servers.md)
+* [Cluster](cluster.md)
 * [Environment](environment.md)
 * [Functions](functions.md)
 * [Recipes](recipes.md)
