@@ -1,66 +1,60 @@
 # Installation
 
-To install Deployer, download the `deployer.phar` archive.
+Deployer can be installed in two ways: using phar archive and using composer.
 
-[Download deployer.phar](http://deployer.org/deployer.phar)
+### Phar archive
 
-Then move `deployer.phar` to your bin directory and make it executable.
+To install Deployer via phar archive, run next commands:
 
-``` sh
-$ mv deployer.phar /usr/local/bin/dep
-$ chmod +x /usr/local/bin/dep
+```sh
+curl -LO https://deployer.org/deployer.phar
+mv deployer.phar /usr/local/bin/dep
+chmod +x /usr/local/bin/dep
 ```
 
-To upgrade Deployer, run the command:
+If you need another version of Deployer, you can find them on [download page](https://deployer.org/download).
+Later, to upgrade Deployer run the command:
 
-``` sh
-$ dep self-update
+```sh
+dep self-update
 ```
 
-To redownload an update if already using the current version, use the `--redo (-r)` option
+To upgrade to the next major release, if available, use the `--upgrade (-u)` option:
 
-``` sh
-$ dep self-update --redo
+```sh
+dep self-update --upgrade
 ```
 
-To allow pre-release updates, use the `--pre (-p)` option
+### Composer
 
-``` sh
-$ dep self-update --pre
+To install Deployer with Composer, run next command:
+
+```sh
+composer require deployer/deployer
 ```
 
-To upgrade to the next major release, if available, use the `--upgrade (-u)` option
+Then to use Deployer, run the following command:
 
-``` sh
-$ dep self-update --upgrade
+```sh
+php vendor/bin/dep
 ```
 
-### Via Composer
+> If you have installed Deployer using **both** methods, running `dep` command will prefer composer-installed version. 
 
-You can install Deployer with composer:
-
-``` sh
-$ composer require deployer/deployer:~3.0
-```
-
-Then to use Deployer you may run the following command:
-
-``` sh
-$ php vendor/bin/dep
-```
-
-### Source Code
+### Source
 
 If you want build Deployer from source code, clone the project from GitHub:
 
-``` sh
-$ git clone https://github.com/deployphp/deployer.git
+```sh
+git clone https://github.com/deployphp/deployer.git
 ```
 
 Then run the following command in the project directory:
 
-``` sh
-$ php ./build
+```sh
+php ./build
 ```
 
 This will build the `deployer.phar` phar archive.
+
+Read [getting started](getting-started.md) next.

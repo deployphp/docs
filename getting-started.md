@@ -1,79 +1,128 @@
 # Getting Started
 
-Deployer will help you deploy your applications to remote servers.
+First, let's [install Deployer](installation.md). Run next commands in terminal:
 
-To install it, first download the `deployer.phar` archive:
-
-[Download deployer.phar](http://deployer.org/deployer.phar)
-
-Move `deployer.phar` to your bin directory and make it executable:
-
-```
+```sh
+curl -LO https://deployer.org/deployer.phar
 mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ```
 
-Now you can use Deployer via the `dep` command. Upgrade Deployer to the
-latest version at any time, by running `dep self-update`.
-
-To deploy your application, you have to choose the right "recipe" for it.
-For example, let's see how a Symfony application can be deployed.
-
+Now you can use Deployer via the `dep` command. 
 Open up a terminal in your project directory and run the following command:
 
-``` 
+```sh
 dep init
 ```
 
-This command will create `deploy.php` file in current directory. Open that file and change `server` credentials to your own.
-And specify right `repository`. If you're not using a forward agent, then the server has to be able to clone your project from this repository. The server needs to have git installed for Deployer to work.
+This command will create `deploy.php` file in current directory. It is called *recipe* and contains configuration and tasks for deployment.
+By default all recipes extends [common](https://github.com/deployphp/deployer/blob/master/recipe/common.php) recipe. 
 
-Now to deploy your application:
-``` 
+
+Define your task really simple:
+ 
+```php
+task('test', function () {
+    writeln('Hello world');
+});
+```
+
+To run that task, run next command:
+
+```sh
+dep test
+```
+
+And you get next output:
+
+```text
+➤ Executing task test
+Hello world
+✔ Ok
+```
+
+Now lets create some task which will run commands on remote server. For that we must configure server. 
+Your created `deploy.php` file should contain `server` declaration line this:
+ 
+```php
+server('production', 'domain.com')
+    ->user('username')
+    ->identityFile()
+    ->set('deploy_path', '/var/www/domain.com');
+```
+
+You can find more about servers configuration [here](servers.md). Now let's define task which will output `pwd` command from remote server:
+ 
+```php
+task('pwd', function () {
+    $result = run('pwd');
+    writeln("Current dir: $result");
+});
+```
+
+Run it `dep pwd`, and you will get this:
+
+```text
+➤ Executing task pwd
+Current dir: /var/www/domain.com
+✔ Ok
+```
+
+Now lets prepare for our first deploy. You need to configure, such params as `repository`, `shared_files` and others:
+   
+```php
+set('repository', 'git@domain.com:username/repository.git');
+set('shared_files', [...]);
+```
+
+You can get params value in tasks using `get` function. 
+Also you can override each config for each server:
+
+```php
+server('production', 'domain.com')
+    ...
+    ->set('shared_files', [...]);
+```
+
+More about configuration can be found [here](configuration.md).
+
+
+Now let's deploy our application:
+ 
+```sh
 dep deploy
 ```
 
-> To list all the available commands, run the `dep` command.
+To see what exactly happening you can increase verbosity of output with `--verbose` option: 
 
-> Note what Deployer will try to get write permission with the `sudo` command, so this command has to be running without prompt passwords.
-> For that, connect to your server via ssh, and run the following command:
-> ```
-> sudo visudo
-> ```
-> Add this line at the end of file:
-> ```
-> user_name   ALL=(ALL) NOPASSWD: /usr/bin/setfacl
-> ```
-> When saving the file, if you don't want Deployer to take care of writable dirs, override `deploy:writable` task as you wish.
+* `-v`  for normal output,
+* `-vv`  for more verbose output,
+* `-vvv`  for debug.
+ 
+On first Deployer will create the following directories on the server:
 
-Deployer will create the following directory structure on the `prod` server:
+* `releases`  contains releases dirs,
+* `shared` contains shared files and dirs,
+* `current` symlink to current release.
 
-```
-/your/project/path
-|--releases
-|  |--20150513120631
-|--shared
-|  |--...
-|--current -> /your/project/path/releases/20150513120631
+Configure your server to serve your public directory from `current`.
+
+By default deployer keeps last 5 releases, but you can increase this number by modifying parameter:
+ 
+```php
+set('keep_releases', 10);
 ```
 
-Every deployment will create a new directory in `releases`. When the deployment
-finished a symlink called `current` will be pointed to the new release. By
-default Deployer keeps the last 3 releases, but you can increase this number by
-modifying the `keep_releases` parameter: `set('keep_releases', 3)`.
+If something went wrong during the deployment process, or something is wrong with your new release, 
+simply run the following command to rollback to the previous working release:
 
-If something went wrong during the deployment process, or something is wrong
-with your new release, simply run the following command to roll back to the
-previous working release:
-
-``` sh
-$ dep rollback
+```sh
+dep rollback
 ```
 
-You may want to run some task before/after another tasks. Configuring that is
-really simple!
+You may want to run some task before/after another tasks. Configuring that is really simple!
 
-Let's reload php-fpm after the Symfony `deploy` task:
+Let's reload php-fpm after `deploy` task finished:
 
 ```php
 task('reload:php-fpm', function () {
@@ -83,8 +132,4 @@ task('reload:php-fpm', function () {
 after('deploy', 'reload:php-fpm');
 ```
 
-> If you want to see exactly what deployer does on you server, then just run it in a more verbose mode: `$ dep deploy -vvv`.
-
-Finally: configure your server to serve your public directory inside `current`.
-
-That's all!
+Read more about [configuring](configuration.md) deploy. 

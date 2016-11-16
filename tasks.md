@@ -1,61 +1,53 @@
 # Tasks
 
-You can define your own tasks in the `deploy.php` file.
-When you run the `dep` command, Deployer will scan the current directory for a `deploy.php` file and use it.
+Define you own tasks, use the `task` function. Also you can setup description for task with `desc` function:
 
-To define you own tasks, use the `task` function:
-
-``` php
+```php
+desc('My task');
 task('my_task', function () {
-    // Your tasks code...
+    run(...);
 });
 ```
 
 To run your tasks:
 
-``` sh
-$ dep my_task
+```sh
+dep my_task
 ```
 
 To list all available commands:
 
-``` sh
-$ dep list
+```sh
+dep list
 ```
 
-You can give your tasks a description with the `desc` method:
+To run a task only on a specified server or stage:
 
-``` php
-task('my_task', function () {
-    // Your tasks code...
-})->desc('Doing my stuff');
+```sh
+dep deploy main
 ```
 
-When your task will be running, you will see the description in the output:
+If you task contains only `run` calls or just one bash command, you can simplify task definition:
 
-``` sh
-$ dep my_task
-✔ Executing task my_task
+```php
+run('build', 'npm build');
 ```
 
-To get help on a task:
-
-``` sh
-$ dep help deploy
+Or you can use multi line script:
+ 
+```php
+run('build', '
+    gulp build;
+    webpack -p;
+    echo "Build done";
+');
 ```
 
-To run a task only on a specified server:
-
-``` sh
-$ dep deploy main
-```
-
-
-### Group tasks
+### Task grouping
 
 You can combine tasks in groups:
 
-``` php
+```php
 task('deploy', [
     'deploy:prepare',
     'deploy:update_code',
@@ -64,7 +56,6 @@ task('deploy', [
     'cleanup'
 ]);
 ```
-
 
 ### Before and after
 
@@ -85,13 +76,33 @@ After the `deploy` task is be called, `deploy:done` will be executed.
 You can specify on which server to run task with `onlyOn` method:
 
 ``` php
+desc('Run tests for application.');
 task('test', function () {
     ...
-})->desc('Run tests for application.')
-  ->onlyOn('test_server');
+})->onlyOn('test_server');
 ```
 
-Also you can specify a group on servers to run as arguments: `->onlyOn('server1', 'server2', ...);` or as an array `->onlyOn(['server1', 'server2, ...]);`
+Also you can specify a group on servers to run as arguments: `onlyOn('server1', 'server2', ...)` or as an array `onlyOn(['server1', 'server2, ...])`.
+
+To run task only on specified stages use `onlyOnStage`:
+
+```php
+task('notify', function () {
+    ...
+})->onlyOnStage('prod');
+```
+
+### Once
+
+Mark task `once` to run it locally and only one time, independent of servers count.
+
+```php
+task('notify', function () {
+    ...
+})->once();
+```
+
+> Note what calling `run` inside that task will have same effect as calling `runLocally`. 
 
 ### Using input options
 
@@ -122,3 +133,5 @@ task('foo:bar', function() {
     }
 }
 ```
+
+Next: [servers configuration](servers.md).

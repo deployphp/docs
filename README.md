@@ -1,9 +1,8 @@
+# Deployer Documentation
+
 * [Getting started](getting-started.md)
 * [Installation](installation.md)
+* [Configuration](configuration.md)
 * [Tasks](tasks.md)
 * [Servers](servers.md)
-* [Environment](environment.md)
 * [Functions](functions.md)
-* [Recipes](recipes.md)
-* [Debugging](debugging.md)
-* [Examples](examples.md)

@@ -6,15 +6,15 @@ You can define servers with the `server` function. Here is an example of a serve
 server('prod_1', 'domain.com')
     ->user('user')
     ->password('pass')
-    ->env('deploy_path', '/home/www')
+    ->set('deploy_path', '/home/www')
     ->stage('production');
     
 server('prod_2', 'domain.com')
     ->user('user')
     ->password('pass')
-    ->env('deploy_path', '/home/www')
-    ->env('branch', 'master')
-    ->env('extra_stuff', '...')
+    ->set('deploy_path', '/home/www')
+    ->set('branch', 'master')
+    ->set('extra_stuff', '...')
     ->stage('production');
 ~~~
 
