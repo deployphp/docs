@@ -107,6 +107,9 @@ On first Deployer will create the following directories on the server:
 
 Configure your server to serve your public directory from `current`.
 
+> Note what deployer use [ACL](https://en.wikipedia.org/wiki/Access_control_list) by default for setting up permissions.
+> You can change this behavior `writable_mode` config.    
+
 By default deployer keeps last 5 releases, but you can increase this number by modifying parameter:
  
 ```php

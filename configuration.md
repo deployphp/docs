@@ -101,12 +101,18 @@ List of dirs which must be writable for web server.
 
 Writable mode
 
-* `chgrp` (*default*) use unix `chgrp` command,
-* `acl` use `setfacl` for changing ACL of dirs.
+* `acl` (*default*) use `setfacl` for changing ACL of dirs.
+* `chmod` use unix `chmod` command,
+* `chown` use unix `chown` command,
+* `chgrp` use unix `chgrp` command,
 
 ### writable_use_sudo
 
 Use or not `sudo` with writable command. Default to `false`.
+
+### writable_chmod_mode
+
+Mode for using then `writable_mode` in `chmod`. Default: `0755`.
 
 ### http_user
 
