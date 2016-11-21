@@ -30,13 +30,13 @@ dep deploy main
 If you task contains only `run` calls or just one bash command, you can simplify task definition:
 
 ```php
-run('build', 'npm build');
+task('build', 'npm build');
 ```
 
 Or you can use multi line script:
  
 ```php
-run('build', '
+task('build', '
     gulp build;
     webpack -p;
     echo "Build done";
