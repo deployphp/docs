@@ -58,7 +58,7 @@ server(...)
 
 ### 2-factor authentication with an identity file and password or google-authenticator:
 
-If your server is secured with 2-factor, you can connect via your private key + the sccond factor (password or google-authenticator).  Note this the current version only supports *PhpSecLib*:
+If your server is secured with 2-factor, you can connect via your private key + the second factor (password or google-authenticator).  Note this the current version only supports *PhpSecLib*:
 
 ~~~ php
 server(...)
