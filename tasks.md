@@ -84,7 +84,7 @@ task('test', function () {
 
 Also you can specify a group of servers to run as arguments: `onlyOn('server1', 'server2', ...)` or as an array `onlyOn(['server1', 'server2', ...])`.
 
-To run task only on specified stages use `onlyOnStage`:
+To run task only on specified stages use `onlyForStage`:
 
 ```php
 task('notify', function () {
