@@ -82,15 +82,17 @@ task('test', function () {
 })->onlyOn('test_server');
 ```
 
-Also you can specify a group on servers to run as arguments: `onlyOn('server1', 'server2', ...)` or as an array `onlyOn(['server1', 'server2, ...])`.
+Also you can specify a group of servers to run as arguments: `onlyOn('server1', 'server2', ...)` or as an array `onlyOn(['server1', 'server2', ...])`.
 
 To run task only on specified stages use `onlyOnStage`:
 
 ```php
 task('notify', function () {
     ...
-})->onlyOnStage('prod');
+})->onlyForStage('prod');
 ```
+
+Also you can specify a group of stages to run as arguments: `onlyForStage('stage1', 'stage2', ...)` or as an array `onlyForStage(['stage1', 'stage2', ...])`.
 
 ### Once
 
