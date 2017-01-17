@@ -136,4 +136,81 @@ task('foo:bar', function() {
 }
 ```
 
+### Parallel task execution
+
+Then deploying to multiple server, Deployer will run by one task on each server:
+
+<svg width="600" height="305" viewBox="990 42 600 305" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" fill-rule="evenodd">
+    <path d="M996.726 67.258h141.256v275.34H996.726V67.26zM990 63h600v283.857H990V63zm154.71 4.258h141.254v275.34H1144.71V67.26zm147.98 0h141.256v275.34H1292.69V67.26zm148.655 0H1582.6v275.34h-141.255V67.26z" fill="#D8D8D8"/>
+    <g transform="translate(1000.762 73.09)">
+      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
+      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
+        <tspan x="41.031" y="22.363">Task 1</tspan>
+      </text>
+    </g>
+    <g transform="translate(1148.744 104.704)">
+      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
+      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
+        <tspan x="41.031" y="22.363">Task 1</tspan>
+      </text>
+    </g>
+    <g transform="translate(1296.726 138.336)">
+      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
+      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
+        <tspan x="41.031" y="22.363">Task 1</tspan>
+      </text>
+    </g>
+    <g transform="translate(1444.71 169.95)">
+      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
+      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
+        <tspan x="41.031" y="22.363">Task 1</tspan>
+      </text>
+    </g>
+    <g>
+      <g transform="translate(1000.09 209.637)">
+        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
+        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
+          <tspan x="41.031" y="22.363">Task 2</tspan>
+        </text>
+      </g>
+      <g transform="translate(1148.072 241.25)">
+        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
+        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
+          <tspan x="41.031" y="22.363">Task 2</tspan>
+        </text>
+      </g>
+      <g transform="translate(1296.054 274.883)">
+        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
+        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
+          <tspan x="41.031" y="22.363">Task 2</tspan>
+        </text>
+      </g>
+      <g transform="translate(1444.036 306.498)">
+        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
+        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
+          <tspan x="41.031" y="22.363">Task 2</tspan>
+        </text>
+      </g>
+    </g>
+    <path d="M994.73 205.292h588.942" stroke="#979797"/>
+    <g font-size="18" font-family="HelveticaNeue-Light, Helvetica Neue" fill="#000" font-weight="300">
+      <text transform="translate(1031 42)">
+        <tspan x="0" y="17">Server 1</tspan>
+      </text>
+      <text transform="translate(1031 42)">
+        <tspan x="146" y="17">Server 2</tspan>
+      </text>
+      <text transform="translate(1031 42)">
+        <tspan x="304" y="17">Server 3</tspan>
+      </text>
+      <text transform="translate(1031 42)">
+        <tspan x="450" y="17">Server 4</tspan>
+      </text>
+    </g>
+  </g>
+</svg>
+
+To speedup deployment add `--parallel` or `-p` option with will run tasks in parallel on each server. If one of server executing task longer then another, Deployer will wait until all servers finish tasks.
+
 Next: [servers configuration](servers.md).
