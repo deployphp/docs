@@ -30,8 +30,16 @@ dep self-update --upgrade
 To install Deployer with Composer, run next command:
 
 ```sh
-composer require deployer/deployer
+composer require deployer/deployer --dev
 ```
+
+You can also install it globally:
+
+``` sh
+composer global require deployer/deployer
+```
+
+More info: https://getcomposer.org/doc/03-cli.md#global
 
 Then to use Deployer, run the following command:
 
