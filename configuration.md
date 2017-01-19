@@ -50,6 +50,14 @@ There to deploy application on remote server.
 * `ext-ssh2` use php [ssh2](http://php.net/manual/en/book.ssh2.php) extension,
 * `native` use native ssh client.
 
+### ssh_multiplexing
+
+Use ssh multiplexing for speedup native ssh client.
+
+```php
+set('ssh_multiplexing', true);
+```
+
 ### default_stage
 
 If server declaration have stages, this option allow you to select default stage to deploy with `dep deploy`.
