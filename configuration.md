@@ -52,7 +52,7 @@ There to deploy application on remote server.
 
 ### ssh_multiplexing
 
-Use ssh multiplexing for speedup native ssh client.
+Use [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) for speedup native ssh client.
 
 ```php
 set('ssh_multiplexing', true);
