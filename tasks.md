@@ -138,7 +138,7 @@ task('foo:bar', function() {
 
 ### Parallel task execution
 
-Then deploying to multiple server, Deployer will run by one task on each server:
+When deploying to multiple server, Deployer will run by one task on each server:
 
 <svg width="600" height="305" viewBox="990 42 600 305" xmlns="http://www.w3.org/2000/svg">
   <g fill="none" fill-rule="evenodd">
