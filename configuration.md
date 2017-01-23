@@ -46,7 +46,7 @@ There to deploy application on remote server.
 
 ### ssh_type
 
-* `phpdeclib` (*default*) use [phpseclib](https://github.com/phpseclib/phpseclib) as ssh client,
+* `phpseclib` (*default*) use [phpseclib](https://github.com/phpseclib/phpseclib) as ssh client,
 * `ext-ssh2` use php [ssh2](http://php.net/manual/en/book.ssh2.php) extension,
 * `native` use native ssh client.
 
