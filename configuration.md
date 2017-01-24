@@ -124,7 +124,7 @@ Mode for using then `writable_mode` in `chmod`. Default: `0755`.
 
 ### writable_chmod_recursive
 
-Whether to set `chmod` on dirs recursively or not. Default: `false`.
+Whether to set `chmod` on dirs recursively or not. Default: `true`.
 
 ### http_user
 
