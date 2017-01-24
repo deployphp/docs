@@ -122,6 +122,10 @@ Use or not `sudo` with writable command. Default to `false`.
 
 Mode for using then `writable_mode` in `chmod`. Default: `0755`.
 
+### writable_chmod_recursive
+
+Whether to set `chmod` on dirs recursively or not. Default: `false`.
+
 ### http_user
 
 User of web server. If this parameter does not configured, deployer try to detect it from process list. 
