@@ -42,7 +42,7 @@ Hello world
 ```
 
 Now lets create some task which will run commands on remote server. For that we must configure server. 
-Your created `deploy.php` file should contain `server` declaration line this:
+Your created `deploy.php` file should contain `server` declaration like this:
  
 ```php
 server('production', 'domain.com')
