@@ -161,21 +161,20 @@ And then in `deploy.php`:
 serverList('servers.yml');
 ~~~
 
-## Server list YAML file and environment variables
+## Server list YAML file and server configuration
 
-You can set environment variables per server definition. When parsing server configurations, all keys other than the one listed below are treated as server environment variables and can be retrieved using `env()`:
+You can set config variables per server definition. When parsing server configurations, all keys other than the one listed below are treated as server config variables and can be retrieved using `get('key')` or `{{ key }}`:
 
-~~~ yml
-  local:
-  host: 
-  port:
-  identity_file: 
-  forward_agent:
-  user:
-  password:
-  stage:
-  pem_file:
-~~~
+* `local`
+* `host:`
+* `port`
+* `identity_file:`
+* `forward_agent`
+* `user`
+* `password`
+* `stage`
+* `pem_file`
+
 
 ## Local Server
 
