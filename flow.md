@@ -27,4 +27,18 @@ For example if you want to run some task before symlink new release:
 before('deploy:symlink', 'deploy:build');
 ```
 
+Or to do some notifications after success deploy:
 
+```php
+after('success', 'notify');
+```
+
+In next section i will give short overview of each task. 
+
+### deploy:prepare
+
+Preeparation for deployment. Checks if `deploy_path` exists, otherwise create it. Also checks for existing of next paths:
+
+* `releases` – in this dir will be stored releases.
+* `shared` – shread files across all releases.
+* `.dep` – metadata used by Deployer.
