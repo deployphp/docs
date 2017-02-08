@@ -18,7 +18,7 @@ server('prod_2', 'domain.com')
     ->stage('production');
 ~~~
 
-This function takes 3 parameters, like this: `server(server_name, host, port)`. It returns a `Deployer\Server\Builder` object.
+This function takes 2 parameters, like this: `server(server_name, host)` (Port can be passed as 3rd parameter). It returns a `Deployer\Server\Builder` object.
 
 To specify how to connect to a server using SSH, there are a few ways:
 
@@ -166,9 +166,9 @@ serverList('servers.yml');
 You can set config variables per server definition. When parsing server configurations, all keys other than the one listed below are treated as server config variables and can be retrieved using `get('key')` or `{{ key }}`:
 
 * `local`
-* `host:`
+* `host`
 * `port`
-* `identity_file:`
+* `identity_file`
 * `forward_agent`
 * `user`
 * `password`
