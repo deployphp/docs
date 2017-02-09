@@ -46,3 +46,21 @@ Preeparation for deployment. Checks if `deploy_path` exists, otherwise create it
 ### deploy:lock
 
 Locks deployment. So only one concurent deployment can running. To lock deployment, task check of existing `.dep/deploy.lock` file. In deploy process was canceld by Ctrl+C, run `dep deploy:unlock` t odelete this file. In case if deployment was filed `deploy:unlock` task will be triggered automatically. 
+
+### deploy:release
+
+Create new release folder based on `release_name` config. Also reading `.dep/releases` to get list of releases what was created before.
+
+### deploy:update_code
+
+Upload new version of code using git. If using git version 2.0 and `git_cache` config is turned on, this task will be using files from previuos release, so only changed files will be downloaded.
+
+### deploy:shared
+
+Creates shared files and dirs from `shared` dir to `release_path`. You can specify shared dirs and files in `shared_dirs` and `shared_files` config. Process splitted into a few steps:
+
+* Copy dir from `release_path` to `shared` if doesn't exists,
+* delete dir from `release_path`,
+* symlink dir from `shared` to `release_path`.
+
+Same steps for shared files. If your system support relative symlinks them will be used, otherwise absolutle symlinks wil be used.
