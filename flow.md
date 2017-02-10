@@ -105,3 +105,15 @@ To use sudo with writable add this:
 ```php
 set('writable_use_sudo', true);
 ```
+
+### deploy:vendors
+
+Install composer dependencies. You can configure composer options with `composer_options` option. 
+
+### deploy:clear_paths
+
+Deletes dirs specified in `clear_paths`. Can be runned with sudo using `clear_use_sudo` option.
+
+### deploy:symlink
+
+Switch `current` symlink to `release_path`. If target system supports atomic switching for symlinks it will used.
