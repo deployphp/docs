@@ -74,3 +74,34 @@ Creates shared files and dirs from `shared` dir to `release_path`. You can speci
 * symlink dir from `shared` to `release_path`.
 
 Same steps for shared files. If your system support relative symlinks them will be used, otherwise absolutle symlinks wil be used.
+
+### deploy:writable
+
+Makes dirs from `writable_dirs` config writable. By default using `acl` mode (using setfacl command). This task will try to guess http_user name, or you can configure it be your self:
+
+```php
+set('http_user', 'www-data');
+
+// Or only for specified server:
+server(...)
+    ->set('http_user', 'www-data');
+```
+
+Also this task support other writable modes:
+
+* chown
+* chgrp
+* chmod
+* acl
+
+To use one of them add this:
+
+```php
+set('writable_mode', 'chmod');
+```
+
+To use sudo with writable add this:
+
+```php
+set('writable_use_sudo', true);
+```
