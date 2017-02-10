@@ -117,3 +117,19 @@ Deletes dirs specified in `clear_paths`. Can be runned with sudo using `clear_us
 ### deploy:symlink
 
 Switch `current` symlink to `release_path`. If target system supports atomic switching for symlinks it will used.
+
+### deploy:unlock
+
+Deletes `.dep/deploy.lock` file. You can run this task directly to delete lock file:
+
+```sh
+dep deploy:unlock staging
+```
+
+### cleanup
+
+Cleaning up old releases using `keep_releases` option. `-1` treated as unlimited releases.
+
+### success
+
+Prints success message.
