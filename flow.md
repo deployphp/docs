@@ -49,11 +49,21 @@ Locks deployment. So only one concurent deployment can running. To lock deployme
 
 ### deploy:release
 
-Create new release folder based on `release_name` config. Also reading `.dep/releases` to get list of releases what was created before.
+Create new release folder based on `release_name` config. Also reading `.dep/releases` to get list of releases what was created before. 
+
+Also if in `deploy_path` was previous release symlink, it will be deleted.
 
 ### deploy:update_code
 
 Upload new version of code using git. If using git version 2.0 and `git_cache` config is turned on, this task will be using files from previuos release, so only changed files will be downloaded.
+
+Override this task in `deploy.php` to create your own code upload strategy:
+
+```php
+task('deploy:update_code', function () {
+    upload('.', '{{release_path}}');
+});
+```
 
 ### deploy:shared
 
