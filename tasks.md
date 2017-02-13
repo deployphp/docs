@@ -106,6 +106,17 @@ task('notify', function () {
 
 > Note what calling `run` inside that task will have same effect as calling `runLocally`. 
 
+### Reconfigure
+
+You can reconfigure tasks, e.g. provided by 3rd part recipes by retrieving them by name:
+
+```php
+task('notify')->onlyOn([
+  'firstserver',
+  'thirdserver',
+]);
+```
+
 ### Using input options
 
 You can define additional input options and arguments, before defining tasks:
