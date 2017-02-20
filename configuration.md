@@ -81,6 +81,15 @@ Git repository of application.
 
 Branch to deploy.
 
+If you want to deploy a specific tag or a revision, you can use `--tag` and `--revision` options while running `dep deploy`. F.e.
+
+```bash
+dep deploy --tag="v0.1"
+dep deploy --revision="5daefb59edbaa75"
+```
+
+Note that `tag` has higher priority than `branch` and lower than `revision`.
+
 ### shared_dirs
 
 List of shared dirs.
