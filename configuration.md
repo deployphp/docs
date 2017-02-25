@@ -75,7 +75,13 @@ Number of releases to keep. `-1` for unlimited releases.
 
 ### repository
 
-Git repository of application. 
+Git repository of application.
+
+To use a private repository it needs to generate a SSH-key on your server and add to the repository
+as a Deploy Key (a.k.a. Access Key). This key allows your server to pull out the code.
+
+Note that at the first time server can ask to add host in `known_hosts` file. The easiest way to do it is
+running `git clone <repo>` on your server and saying `yes`.
 
 ### branch
 
