@@ -61,6 +61,12 @@ ask(string $message, mixed $default)
 Ask the user for input. You need to specify a default value which will be used in quiet mode.
 
 ```php
+askChoice(string $message, array $availableChoices, mixed $default, bool $multiselect)
+```
+
+Ask the user to select from multiple key/value options and return an array. Multiselect enables selection of multiple comma separated choices. Default value will be used in quiet mode otherwise the first available choice will be accepted.
+
+```php
 askConfirmation(string $message[, bool $default = false])
 ```
 
