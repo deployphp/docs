@@ -45,7 +45,7 @@ Preeparation for deployment. Checks if `deploy_path` exists, otherwise create it
 
 ### deploy:lock
 
-Locks deployment. So only one concurent deployment can running. To lock deployment, task check of existing `.dep/deploy.lock` file. In deploy process was canceld by Ctrl+C, run `dep deploy:unlock` t odelete this file. In case if deployment was filed `deploy:unlock` task will be triggered automatically. 
+Locks deployment. So only one concurent deployment can running. To lock deployment, task check of existing `.dep/deploy.lock` file. In deploy process was canceld by Ctrl+C, run `dep deploy:unlock` to delete this file. In case if deployment was filed `deploy:unlock` task will be triggered automatically. 
 
 ### deploy:release
 
