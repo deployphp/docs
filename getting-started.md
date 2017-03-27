@@ -41,17 +41,16 @@ Hello world
 ✔ Ok
 ```
 
-Now lets create some task which will run commands on remote server. For that we must configure server. 
-Your created `deploy.php` file should contain `server` declaration like this:
+Now lets create some task which will run commands on remote host. For that we must configure deployer. 
+Your created `deploy.php` file should contain `host` declaration like this:
  
 ```php
-server('production', 'domain.com')
-    ->user('username')
-    ->identityFile()
+host('domain.com')
+    ->stage('production')    
     ->set('deploy_path', '/var/www/domain.com');
 ```
 
-You can find more about servers configuration [here](servers.md). Now let's define task which will output `pwd` command from remote server:
+You can find more about hosts configuration [here](hosts.md). Now let's define task which will output `pwd` command from remote host:
  
 ```php
 task('pwd', function () {
@@ -76,10 +75,10 @@ set('shared_files', [...]);
 ```
 
 You can get params value in tasks using `get` function. 
-Also you can override each config for each server:
+Also you can override each config for each host:
 
 ```php
-server('production', 'domain.com')
+host('domain.com')
     ...
     ->set('shared_files', [...]);
 ```
@@ -99,13 +98,13 @@ To see what exactly happening you can increase verbosity of output with `--verbo
 * `-vv`  for more verbose output,
 * `-vvv`  for debug.
  
-On first Deployer will create the following directories on the server:
+On first Deployer will create the following directories on the host:
 
 * `releases`  contains releases dirs,
 * `shared` contains shared files and dirs,
 * `current` symlink to current release.
 
-Configure your server to serve your public directory from `current`.
+Configure your hosts to serve your public directory from `current`.
 
 > Note that deployer uses [ACL](https://en.wikipedia.org/wiki/Access_control_list) by default for setting up permissions.
 > You can change this behavior with `writable_mode` config.    
