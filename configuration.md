@@ -10,22 +10,22 @@ task('deploy', function () {
 });
 ```
 
-Each param can be overridden for each server:
+Each param can be overridden for each host:
   
 ```php
-server(...)
+host(...)
     ->set('param', 'new value');
 ```
 
-Configuration parameters also can be specified as callback function, which will be executed on remote server on first `get` call:
+Configuration parameters also can be specified as callback function, which will be executed on remote host on first `get` call:
 
 ```php
-set('param', function () {
-    return run(...)->toString();
+set('current_path', function () {
+    return run('pwd');
 });
 ```
 
-You can use params values inside `run` calls with `{{ }}`, instead of doing this:
+You can use param's values inside `run` calls with `{{ }}`, instead of doing this:
 
 ```php
 run('cd ' . get('release_path') . ' && command');
@@ -38,17 +38,15 @@ run('cd {{release_path}} && command');
 ```
 
 Common recipe comes with a few predefined config params listed below. 
-To get list of available params run `dep config:dump`.
+To get list of available params run:
+
+~~~sh
+dep config:dump
+~~~
 
 ### deploy_path
 
-There to deploy application on remote server.
-
-### ssh_type
-
-* `phpseclib` (*default*) use [phpseclib](https://github.com/phpseclib/phpseclib) as ssh client,
-* `ext-ssh2` use php [ssh2](http://php.net/manual/en/book.ssh2.php) extension,
-* `native` use native ssh client.
+There to deploy application on remote host.
 
 ### ssh_multiplexing
 
@@ -60,12 +58,12 @@ set('ssh_multiplexing', true);
 
 ### default_stage
 
-If server declaration have stages, this option allow you to select default stage to deploy with `dep deploy`.
+If hosts declaration have stages, this option allow you to select default stage to deploy with `dep deploy`.
 
 ```php
 set('default_stage', 'prod');
 
-server(...)
+host(...)
     ->stage('prod');
 ```
 
@@ -77,11 +75,15 @@ Number of releases to keep. `-1` for unlimited releases.
 
 Git repository of application.
 
-To use a private repository it needs to generate a SSH-key on your server and add to the repository
-as a Deploy Key (a.k.a. Access Key). This key allows your server to pull out the code.
+To use a private repository it needs to generate a SSH-key on your host and add to the repository
+as a Deploy Key (a.k.a. Access Key). This key allows your host to pull out the code. Or use can use agent forwarding. 
 
-Note that at the first time server can ask to add host in `known_hosts` file. The easiest way to do it is
-running `git clone <repo>` on your server and saying `yes`.
+Note that at the first time host can ask to add host in `known_hosts` file. The easiest way to do it is
+running `git clone <repo>` on your host and saying `yes`.
+
+### git_tty
+
+Allocate TTY for `git clone` command. This allow you to enter passphrase for keys.
 
 ### branch
 
@@ -153,9 +155,17 @@ List of paths which need to be deleted in release after updating code.
 
 Use or ro not `sudo` with clear_paths. Default to `false`.
 
+### cleanup_use_sudo
+
+Use or ro not `sudo` with `cleanup` task. Default to `false`.
+
 ### use_relative_symlink
 
 Use or not relative symlinks. By default deployer will detect if system supports relative symlinks and use it.
+
+### use_atomic_symlink
+
+Use or not atomic symlinks. By default deployer will detect if system supports atomic symlinks and use it.
 
 ### composer_action
 

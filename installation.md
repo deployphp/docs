@@ -60,7 +60,7 @@ git clone https://github.com/deployphp/deployer.git
 Then run the following command in the project directory:
 
 ```sh
-php ./build
+php bin/build
 ```
 
 This will build the `deployer.phar` phar archive.

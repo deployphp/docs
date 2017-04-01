@@ -4,6 +4,12 @@
 * [Installation](installation.md)
 * [Configuration](configuration.md)
 * [Tasks](tasks.md)
-* [Servers](servers.md)
+* [Hosts](hosts.md)
 * [Flow](flow.md)
-* [Functions](functions.md)
+* [API Reference](api.md)
+
+#### Advanced
+
+* [Strategy](advanced/deploy-strategies.md)
+* [Deploy and Git](advanced/deploy-and-git.md)
+* [Parallel IO](advanced/parallel-io.md)

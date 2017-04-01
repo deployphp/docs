@@ -21,11 +21,20 @@ To list all available commands:
 dep list
 ```
 
-To run a task only on a specified server or stage:
+To run a task only on a specified host or stage:
 
 ```sh
 dep deploy main
 ```
+
+You can specify host via `--hosts` option (comma separated for a few) and roles via `--roles` option:
+
+```sh
+dep deploy --hosts domain.com
+dep deploy --roles app
+```
+
+### Simple tasks
 
 If you task contains only `run` calls or just one bash command, you can simplify task definition:
 
@@ -71,50 +80,65 @@ after('deploy', 'deploy:done');
 
 After the `deploy` task is be called, `deploy:done` will be executed.
 
-### Only on
+### Filtering
 
-You can specify on which server to run task with `onlyOn` method:
+You can specify on which hosts/stages/roles to run a task.
+
+### By stage
+
+Filter hosts by stage:
 
 ``` php
-desc('Run tests for application.');
+desc('Run tests for application');
 task('test', function () {
     ...
-})->onlyOn('test_server');
+})->onStage('test');
 ```
 
-Also you can specify a group of servers to run as arguments: `onlyOn('server1', 'server2', ...)` or as an array `onlyOn(['server1', 'server2', ...])`.
+### By roles
 
-To run task only on specified stages use `onlyForStage`:
+Filter tasks by roles:
+
+``` php
+desc('Migrate database');
+task('migrate', function () {
+    ...
+})->onRoles('db');
+```
+
+Also you can specify a few roles: `onRoles('app', 'db', ...)`.
+
+### By hosts
+
+Filter tasks by roles:
+
+``` php
+desc('Migrate database');
+task('migrate', function () {
+    ...
+})->onHosts('db.domain.com');
+```
+
+Also you can specify a few hosts: `onHosts('db.domain.com', ...)`.
+
+### Local tasks
+
+Mark task `local` to run it locally and only one time, independent of hosts count.
 
 ```php
-task('notify', function () {
+task('build', function () {
     ...
-})->onlyForStage('prod');
+})->local();
 ```
 
-Also you can specify a group of stages to run as arguments: `onlyForStage('stage1', 'stage2', ...)` or as an array `onlyForStage(['stage1', 'stage2', ...])`.
-
-### Once
-
-Mark task `once` to run it locally and only one time, independent of servers count.
-
-```php
-task('notify', function () {
-    ...
-})->once();
-```
-
-> Note what calling `run` inside that task will have same effect as calling `runLocally`. 
+> Note what calling `run` inside local task will have same effect as calling `runLocally`. 
 
 ### Reconfigure
 
 You can reconfigure tasks, e.g. provided by 3rd part recipes by retrieving them by name:
 
 ```php
-task('notify')->onlyOn([
-  'firstserver',
-  'thirdserver',
-]);
+task('notify')->onStage('production');
 ```
 
 ### Using input options
@@ -125,7 +149,7 @@ You can define additional input options and arguments, before defining tasks:
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-argument('stage', InputArgument::OPTIONAL, 'Run tasks only on this server or group of servers.');
+argument('stage', InputArgument::OPTIONAL, 'Run tasks only on this host or stage.');
 option('tag', null, InputOption::VALUE_OPTIONAL, 'Tag to deploy.');
 ```
 
@@ -149,150 +173,20 @@ task('foo:bar', function() {
 
 ### Parallel task execution
 
-When deploying to multiple server, Deployer will run by one task on each server:
+When deploying to multiple hosts, Deployer will run by one task on each host:
 
-<svg width="600" height="305" viewBox="990 42 600 305" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" fill-rule="evenodd">
-    <path d="M996.726 67.258h141.256v275.34H996.726V67.26zM990 63h600v283.857H990V63zm154.71 4.258h141.254v275.34H1144.71V67.26zm147.98 0h141.256v275.34H1292.69V67.26zm148.655 0H1582.6v275.34h-141.255V67.26z" fill="#D8D8D8"/>
-    <g transform="translate(1000.762 73.09)">
-      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-        <tspan x="41.031" y="22.363">Task 1</tspan>
-      </text>
-    </g>
-    <g transform="translate(1148.744 104.704)">
-      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-        <tspan x="41.031" y="22.363">Task 1</tspan>
-      </text>
-    </g>
-    <g transform="translate(1296.726 138.336)">
-      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-        <tspan x="41.031" y="22.363">Task 1</tspan>
-      </text>
-    </g>
-    <g transform="translate(1444.71 169.95)">
-      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-        <tspan x="41.031" y="22.363">Task 1</tspan>
-      </text>
-    </g>
-    <g>
-      <g transform="translate(1000.09 209.637)">
-        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-          <tspan x="41.031" y="22.363">Task 2</tspan>
-        </text>
-      </g>
-      <g transform="translate(1148.072 241.25)">
-        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-          <tspan x="41.031" y="22.363">Task 2</tspan>
-        </text>
-      </g>
-      <g transform="translate(1296.054 274.883)">
-        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-          <tspan x="41.031" y="22.363">Task 2</tspan>
-        </text>
-      </g>
-      <g transform="translate(1444.036 306.498)">
-        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-          <tspan x="41.031" y="22.363">Task 2</tspan>
-        </text>
-      </g>
-    </g>
-    <path d="M994.73 205.292h588.942" stroke="#979797"/>
-    <g font-size="18" font-family="HelveticaNeue-Light, Helvetica Neue" fill="#000" font-weight="300">
-      <text transform="translate(1031 42)">
-        <tspan x="0" y="17">Server 1</tspan>
-      </text>
-      <text transform="translate(1031 42)">
-        <tspan x="146" y="17">Server 2</tspan>
-      </text>
-      <text transform="translate(1031 42)">
-        <tspan x="304" y="17">Server 3</tspan>
-      </text>
-      <text transform="translate(1031 42)">
-        <tspan x="450" y="17">Server 4</tspan>
-      </text>
-    </g>
-  </g>
-</svg>
+<svg width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(456 309)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(306 271)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(156 233)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(6 195)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="43" y="24">task 2</tspan></text></g><g transform="translate(456 157)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(306 119)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(156 81)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(6 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><path d="M3 35h594.5" stroke="#EBEBEB" stroke-linecap="square" stroke-dasharray="3,5"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="497" y="25">Host 4</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="347" y="25">Host 3</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="197" y="25">Host 2</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="47" y="25">Host 1</tspan></text></g></svg>
 
-To speedup deployment add `--parallel` or `-p` option with will run tasks in parallel on each server. If one of server executing task longer then another, Deployer will wait until all servers finish tasks.
+To speedup deployment add `--parallel` or `-p` option with will run tasks in parallel on each host. If one of host executing task longer then another, Deployer will wait until all host finish tasks.
 
-<svg width="600" height="305" viewBox="990 418 600 305" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" fill-rule="evenodd">
-    <path d="M996.726 443.258h141.256v275.34H996.726V443.26zM990 439h600v283.857H990V439zm154.71 4.258h141.254v275.34H1144.71V443.26zm147.98 0h141.256v275.34H1292.69V443.26zm148.655 0H1582.6v275.34h-141.255V443.26z" fill="#D8D8D8"/>
-    <g transform="translate(1000.762 449.09)">
-      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-        <tspan x="41.031" y="22.363">Task 1</tspan>
-      </text>
-    </g>
-    <g transform="translate(1148.762 449.09)">
-      <rect fill="#B8E986" width="134.529" height="40.923" rx="8"/>
-      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-        <tspan x="41.031" y="24.093">Task 1</tspan>
-      </text>
-    </g>
-    <g transform="translate(1296.762 449.09)">
-      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-        <tspan x="41.031" y="22.363">Task 1</tspan>
-      </text>
-    </g>
-    <g transform="translate(1444.762 449.09)">
-      <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-      <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-        <tspan x="41.031" y="22.363">Task 1</tspan>
-      </text>
-    </g>
-    <g>
-      <g transform="translate(999.09 498.637)">
-        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-          <tspan x="41.031" y="22.363">Task 2</tspan>
-        </text>
-      </g>
-      <g transform="translate(1149.09 498.637)">
-        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-          <tspan x="41.031" y="22.363">Task 2</tspan>
-        </text>
-      </g>
-      <g transform="translate(1296.09 498.637)">
-        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-          <tspan x="41.031" y="22.363">Task 2</tspan>
-        </text>
-      </g>
-      <g transform="translate(1446.09 498.637)">
-        <rect fill="#B8E986" width="134.529" height="30.942" rx="8"/>
-        <text font-family="HelveticaNeue-Light, Helvetica Neue" font-size="18" font-weight="300" fill="#000">
-          <tspan x="41.031" y="22.363">Task 2</tspan>
-        </text>
-      </g>
-    </g>
-    <path d="M994.73 494.292h588.942" stroke="#979797"/>
-    <g font-size="18" font-family="HelveticaNeue-Light, Helvetica Neue" fill="#000" font-weight="300">
-      <text transform="translate(1031 418)">
-        <tspan x="0" y="17">Server 1</tspan>
-      </text>
-      <text transform="translate(1031 418)">
-        <tspan x="146" y="17">Server 2</tspan>
-      </text>
-      <text transform="translate(1031 418)">
-        <tspan x="304" y="17">Server 3</tspan>
-      </text>
-      <text transform="translate(1031 418)">
-        <tspan x="450" y="17">Server 4</tspan>
-      </text>
-    </g>
-  </g>
-</svg>
+<svg width="600" height="153" viewBox="0 0 600 153" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(456 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(306 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(156 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(6 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="43" y="24">task 2</tspan></text></g><g transform="translate(456 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(306 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(156 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(6 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><path d="M3 35h594.5" stroke="#EBEBEB" stroke-linecap="square" stroke-dasharray="3,5"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="497" y="25">Host 4</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="347" y="25">Host 3</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="197" y="25">Host 2</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="47" y="25">Host 1</tspan></text></g></svg>
 
-Next: [servers configuration](servers.md).
+Limit the number of concurrent tasks by specify a number. By default, up to 10 tasks will be processed concurrently.
+  
+```sh
+dep deploy --parallel 2
+```
+
+<svg width="600" height="210" viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(456 157)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(306 157)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(156 119)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(6 119)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="43" y="24">task 2</tspan></text></g><g transform="translate(456 81)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(306 81)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(156 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(6 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><path d="M3 35h594.5" stroke="#EBEBEB" stroke-linecap="square" stroke-dasharray="3,5"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="497" y="25">Host 4</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="347" y="25">Host 3</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="197" y="25">Host 2</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="47" y="25">Host 1</tspan></text></g></svg>
+
+Next: [hosts](hosts.md).

@@ -3,7 +3,7 @@
 If your recipe based on *common* recipe or one of frameworks recipe shiped with Deployer, then you are using one of our default flows.
 Each flow described as group task of other tasks in `deploy` name space. Common deploy flow may look like this:
 
-```php
+~~~php
 task('deploy', [
     'deploy:prepare',
     'deploy:lock',
@@ -18,20 +18,20 @@ task('deploy', [
     'cleanup',
     'success'
 ]);
-```
+~~~
 
 Frameworks recipes may diff in flow, but basic structure is same. You can create your own flow by overriding `deploy` task, but better slution is to using cache. 
 For example if you want to run some task before symlink new release:
 
-```php
+~~~php
 before('deploy:symlink', 'deploy:build');
-```
+~~~
 
 Or to do some notifications after success deploy:
 
-```php
+~~~php
 after('success', 'notify');
-```
+~~~
 
 In next section i will give short overview of each task. 
 
@@ -59,11 +59,11 @@ Upload new version of code using git. If using git version 2.0 and `git_cache` c
 
 Override this task in `deploy.php` to create your own code upload strategy:
 
-```php
+~~~php
 task('deploy:update_code', function () {
     upload('.', '{{release_path}}');
 });
-```
+~~~
 
 ### deploy:shared
 
@@ -79,13 +79,13 @@ Same steps for shared files. If your system support relative symlinks them will 
 
 Makes dirs from `writable_dirs` config writable. By default using `acl` mode (using setfacl command). This task will try to guess http_user name, or you can configure it be your self:
 
-```php
+~~~php
 set('http_user', 'www-data');
 
-// Or only for specified server:
-server(...)
+// Or only for specified host:
+host(...)
     ->set('http_user', 'www-data');
-```
+~~~
 
 Also this task support other writable modes:
 
@@ -96,15 +96,15 @@ Also this task support other writable modes:
 
 To use one of them add this:
 
-```php
+~~~php
 set('writable_mode', 'chmod');
-```
+~~~
 
 To use sudo with writable add this:
 
-```php
+~~~php
 set('writable_use_sudo', true);
-```
+~~~
 
 ### deploy:vendors
 
@@ -122,9 +122,9 @@ Switch `current` symlink to `release_path`. If target system supports atomic swi
 
 Deletes `.dep/deploy.lock` file. You can run this task directly to delete lock file:
 
-```sh
+~~~sh
 dep deploy:unlock staging
-```
+~~~
 
 ### cleanup
 
