@@ -202,4 +202,6 @@ host('domain.com')
 
 Deployer uses `sudo` privilege escalation method by default.
 
+> **Note** what currently become doesn't work with `tty` run option.
+
 Next: [deployment flow](flow.md).
