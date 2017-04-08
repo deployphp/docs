@@ -48,6 +48,32 @@ dep config:dump
 
 There to deploy application on remote host.
 
+### release_path
+
+Full path to current release directory. Current dir path in non-deploy contexts.
+Use it as working path for your build:
+
+~~~php
+task('build', function () {
+    cd('{{release_path}}');
+    // ...
+});
+~~~
+
+### previous_release
+
+Points to previous release if it exists. Otherwise variable doesn't exists.
+
+~~~php
+task('npm', function () {
+    if (has('previous_release')) {
+        run('cp -R {{previous_release}}/node_modules {{release_path}}/node_modules');
+    }
+    
+    run('cd {{release_path}} && npm install');
+});
+~~~
+
 ### ssh_multiplexing
 
 Use [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) for speedup native ssh client.
