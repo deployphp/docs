@@ -21,7 +21,7 @@ And call this task before `deploy` task:
 before('deploy', 'what_branch');
 ~~~
 
-Now it should work as expected and user will be asked for brunch only once.
+Now it should work as expected and user will be asked for branch only once.
 
 ~~~sh
 $ dep deploy -p
