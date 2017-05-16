@@ -50,6 +50,8 @@ host('domain.com')
     ->set('deploy_path', '/var/www/domain.com');
 ```
 
+> Also it's possible to declare hosts in separate yaml file. Find out more about [inventory](hosts.md#inventory-file).
+
 You can find more about host configuration [here](hosts.md). Now let's define a task which will output a 
 `pwd` command from the remote host:
  
@@ -129,10 +131,18 @@ Let's reload php-fpm after `deploy` finishes:
 
 ```php
 task('reload:php-fpm', function () {
-    run('sudo /usr/sbin/service php5-fpm reload');
+    run('sudo /usr/sbin/service php7-fpm reload');
 });
 
 after('deploy', 'reload:php-fpm');
 ```
+
+If you need connect to host, Deployer has shortcut for faster access:
+
+~~~sh
+dep ssh
+~~~
+
+This command will connect to selected host and cd to `current_path`.
 
 Read more about [configuring](configuration.md) deploy. 
