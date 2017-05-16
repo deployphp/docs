@@ -42,6 +42,8 @@ If you task contains only `run` calls or just one bash command, you can simplify
 task('build', 'npm build');
 ```
 
+> By default all simple tasks cd to _release_path_, so you don't need to.
+
 Or you can use multi line script:
  
 ```php
