@@ -40,8 +40,8 @@ host('domain.com')
     ->identityFile('~/.ssh/id_rsa')
     ->forwardAgent(true)
     ->multiplexing(true)
-    ->options(['UserKnownHostsFile=/dev/null'])
-    ->addOption('StrictHostKeyChecking=no');
+    ->addSshOption('UserKnownHostsFile', '/dev/null')
+    ->addSshOption('StrictHostKeyChecking', 'no');
 ~~~
 
 > **Best practice** is to leave connecting information for hosts in `~/.ssh/config` file.
