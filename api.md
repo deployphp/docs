@@ -20,7 +20,7 @@ Load list of hosts from file.
 
 ### desc
 
-* `desk(string $description)`
+* `desc(string $description)`
 
 Set task description.
 
