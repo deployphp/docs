@@ -1,7 +1,7 @@
 # Flow
 
-If your recipe based on *common* recipe or one of frameworks recipe shiped with Deployer, then you are using one of our default flows.
-Each flow described as group task of other tasks in `deploy` name space. Common deploy flow may look like this:
+If your recipe based on *common* recipe or one of the framework recipes shipped with Deployer, then you are using one of our default flows.
+Each flow is described as a group of other tasks in the `deploy` name space. A common deploy flow may look like this:
 
 ~~~php
 task('deploy', [
@@ -20,24 +20,24 @@ task('deploy', [
 ]);
 ~~~
 
-Frameworks recipes may diff in flow, but basic structure is same. You can create your own flow by overriding `deploy` task, but better slution is to using cache. 
-For example if you want to run some task before symlink new release:
+Framework recipes may differ in flow, but the basic structure is the same. You can create your own flow by overriding the `deploy` task, but better solution is to using the cache. 
+For example, if you want to run some task before you symlink the new release:
 
 ~~~php
 before('deploy:symlink', 'deploy:build');
 ~~~
 
-Or to do some notifications after success deploy:
+Or, to send some notifications after a successful deployment:
 
 ~~~php
 after('success', 'notify');
 ~~~
 
-In next section i will give short overview of each task. 
+The next section provides a short overview of each task. 
 
 ### deploy:prepare
 
-Preeparation for deployment. Checks if `deploy_path` exists, otherwise create it. Also checks for existing of next paths:
+Preeparation for deployment. Checks if `deploy_path` exists, otherwise create it. Also checks for the existence of next paths:
 
 * `releases` – in this dir will be stored releases.
 * `shared` – shread files across all releases.
@@ -45,19 +45,19 @@ Preeparation for deployment. Checks if `deploy_path` exists, otherwise create it
 
 ### deploy:lock
 
-Locks deployment. So only one concurent deployment can running. To lock deployment, task check of existing `.dep/deploy.lock` file. In deploy process was canceld by Ctrl+C, run `dep deploy:unlock` to delete this file. In case if deployment was filed `deploy:unlock` task will be triggered automatically. 
+Locks deployment so only one concurrent deployment can be running. To lock deployment, this task checks for the existence of the  `.dep/deploy.lock` file. If the deploy process was cancelled by Ctrl+C, run `dep deploy:unlock` to delete this file. In the event that deployment fails, the `deploy:unlock` task will be triggered automatically. 
 
 ### deploy:release
 
-Create new release folder based on `release_name` config. Also reading `.dep/releases` to get list of releases what was created before. 
+Create a new release folder based on the `release_name` config. Also reads `.dep/releases` to get list of releases that were created before. 
 
-Also if in `deploy_path` was previous release symlink, it will be deleted.
+Also, if in `deploy_path` was previous release symlink, it will be deleted.
 
 ### deploy:update_code
 
-Upload new version of code using git. If using git version 2.0 and `git_cache` config is turned on, this task will be using files from previuos release, so only changed files will be downloaded.
+Download a new version of code using git. If using git version 2.0 and `git_cache` config is turned on, this task will use files from the previous release, so only changed files will be downloaded.
 
-Override this task in `deploy.php` to create your own code upload strategy:
+Override this task in `deploy.php` to create your own code transfer strategy:
 
 ~~~php
 task('deploy:update_code', function () {
@@ -67,17 +67,17 @@ task('deploy:update_code', function () {
 
 ### deploy:shared
 
-Creates shared files and dirs from `shared` dir to `release_path`. You can specify shared dirs and files in `shared_dirs` and `shared_files` config. Process splitted into a few steps:
+Creates shared files and directories from `shared` directory to `release_path`. You can specify shared directories and files in `shared_dirs` and `shared_files` config. The process is split into a few steps:
 
 * Copy dir from `release_path` to `shared` if doesn't exists,
 * delete dir from `release_path`,
 * symlink dir from `shared` to `release_path`.
 
-Same steps for shared files. If your system support relative symlinks them will be used, otherwise absolutle symlinks wil be used.
+The same steps are followed for shared files. If your system supports relative symlinks then they will be used, otherwise absolute symlinks wil be used.
 
 ### deploy:writable
 
-Makes dirs from `writable_dirs` config writable. By default using `acl` mode (using setfacl command). This task will try to guess http_user name, or you can configure it be your self:
+Makes the directories listed in `writable_dirs` writable using `acl` mode (using setfacl command) by default. This task will try to guess http_user name, or you can configure it yourself:
 
 ~~~php
 set('http_user', 'www-data');
@@ -108,11 +108,11 @@ set('writable_use_sudo', true);
 
 ### deploy:vendors
 
-Install composer dependencies. You can configure composer options with `composer_options` option. 
+Install composer dependencies. You can configure composer options with the `composer_options` option. 
 
 ### deploy:clear_paths
 
-Deletes dirs specified in `clear_paths`. Can be runned with sudo using `clear_use_sudo` option.
+Deletes dirs specified in `clear_paths`. This task can be run with sudo using the `clear_use_sudo` option.
 
 ### deploy:symlink
 
@@ -120,7 +120,7 @@ Switch `current` symlink to `release_path`. If target system supports atomic swi
 
 ### deploy:unlock
 
-Deletes `.dep/deploy.lock` file. You can run this task directly to delete lock file:
+Deletes `.dep/deploy.lock` file. You can run this task directly to delete the lock file:
 
 ~~~sh
 dep deploy:unlock staging
@@ -128,8 +128,8 @@ dep deploy:unlock staging
 
 ### cleanup
 
-Cleaning up old releases using `keep_releases` option. `-1` treated as unlimited releases.
+Clean up old releases using `keep_releases` option. `-1` treated as unlimited releases.
 
 ### success
 
-Prints success message.
+Prints a success message.
