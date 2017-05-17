@@ -179,11 +179,11 @@ List of paths which need to be deleted in release after updating code.
 
 ### clear_use_sudo
 
-Use or ro not `sudo` with clear_paths. Default to `false`.
+Use or not `sudo` with clear_paths. Default to `false`.
 
 ### cleanup_use_sudo
 
-Use or ro not `sudo` with `cleanup` task. Default to `false`.
+Use or not `sudo` with `cleanup` task. Default to `false`.
 
 ### use_relative_symlink
 
