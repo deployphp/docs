@@ -16,8 +16,9 @@ dep init
 ```
 
 This command will create the `deploy.php` file in the current directory. It is called *recipe* and contains configuration and tasks for deployment.
-By default all recipes extend the [common](https://github.com/deployphp/deployer/blob/master/recipe/common.php) recipe. 
+By default all recipes extend the [common](https://github.com/deployphp/deployer/blob/master/recipe/common.php) recipe. Place your _deploy.php_ file in root of your project and type `dep` or `dep list` command you will see list of all available tasks.
 
+> You can call `dep` command in any subdirectory of your project.
 
 Defining your task is really simple:
  

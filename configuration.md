@@ -2,40 +2,40 @@
 
 To setup configuration param use `set` function, and to get it inside task use `get` function.
 
-```php
+~~~php
 set('param', 'value');
 
 task('deploy', function () {
     $param = get('param');
 });
-```
+~~~
 
 Each param can be overridden for each host:
   
-```php
+~~~php
 host(...)
     ->set('param', 'new value');
-```
+~~~
 
 Configuration parameters also can be specified as callback function, which will be executed on remote host on first `get` call:
 
-```php
+~~~php
 set('current_path', function () {
     return run('pwd');
 });
-```
+~~~
 
 You can use param's values inside `run` calls with `{{ }}`, instead of doing this:
 
-```php
+~~~php
 run('cd ' . get('release_path') . ' && command');
-```
+~~~
 
 You can do it:
 
-```php
+~~~php
 run('cd {{release_path}} && command');
-```
+~~~
 
 Common recipe comes with a few predefined config params listed below. 
 To get list of available params run:
@@ -44,9 +44,21 @@ To get list of available params run:
 dep config:dump
 ~~~
 
+Below is a list of common variables.
+
 ### deploy_path
 
-There to deploy application on remote host.
+There to deploy application on remote host. You should define this variable for all of your hosts.
+For example, if you want to deploy your app to home directory:
+
+~~~php
+host(...)
+    ->set('deploy_path', '~/project');
+~~~
+
+### hostname
+
+Current hostname. Automatically sets by `host` function.
 
 ### release_path
 
@@ -59,6 +71,11 @@ task('build', function () {
     // ...
 });
 ~~~
+
+> By default, working path is `release_path` for simple task:
+> ~~~php
+> task('build', 'webpack -p');
+> ~~~
 
 ### previous_release
 
@@ -78,24 +95,24 @@ task('npm', function () {
 
 Use [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) for speedup native ssh client.
 
-```php
+~~~php
 set('ssh_multiplexing', true);
-```
+~~~
 
 ### default_stage
 
 If hosts declaration have stages, this option allow you to select default stage to deploy with `dep deploy`.
 
-```php
+~~~php
 set('default_stage', 'prod');
 
 host(...)
     ->stage('prod');
-```
+~~~
 
 ### keep_releases
 
-Number of releases to keep. `-1` for unlimited releases.
+Number of releases to keep. `-1` for unlimited releases. Default to `5`.
 
 ### repository
 
@@ -109,7 +126,11 @@ running `git clone <repo>` on your host and saying `yes`.
 
 ### git_tty
 
-Allocate TTY for `git clone` command. This allow you to enter passphrase for keys.
+Allocate TTY for `git clone` command. `false` by default. This allow you to enter passphrase for keys or add host to `known_hosts`.
+
+~~~php
+set('git_tty', true);
+~~~
 
 ### branch
 
@@ -117,10 +138,10 @@ Branch to deploy.
 
 If you want to deploy a specific tag or a revision, you can use `--tag` and `--revision` options while running `dep deploy`. F.e.
 
-```bash
+~~~bash
 dep deploy --tag="v0.1"
 dep deploy --revision="5daefb59edbaa75"
-```
+~~~
 
 Note that `tag` has higher priority than `branch` and lower than `revision`.
 
@@ -128,13 +149,13 @@ Note that `tag` has higher priority than `branch` and lower than `revision`.
 
 List of shared dirs.
 
-```php
+~~~php
 set('shared_dirs', [
     'logs',
     'var',
     ...
 ]);
-```
+~~~
 
 ### shared_files
 
