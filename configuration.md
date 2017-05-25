@@ -210,9 +210,13 @@ Use or not `sudo` with `cleanup` task. Default to `false`.
 
 Use or not relative symlinks. By default deployer will detect if system supports relative symlinks and use it.
 
+> Relative symlink used by default, if your system supports it.
+
 ### use_atomic_symlink
 
 Use or not atomic symlinks. By default deployer will detect if system supports atomic symlinks and use it.
+
+> Atomic symlinking used by default, if your system supports it.
 
 ### composer_action
 
