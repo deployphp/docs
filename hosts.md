@@ -146,9 +146,9 @@ domain.com:
   identityFile: ~/.ssh/id_rsa
   forwardAgent: true
   multiplexing: true
-  options:
-    - UserKnownHostsFile=/dev/null
-    - StrictHostKeyChecking=no
+  sshOptions:
+    UserKnownHostsFile: /dev/null
+    StrictHostKeyChecking: no
   stage: production
   roles:
     - app
