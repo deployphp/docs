@@ -6,6 +6,7 @@
 * [Tasks](tasks.md)
 * [Hosts](hosts.md)
 * [Flow](flow.md)
+* [CLI Usage](cli.md)
 * [API Reference](api.md)
 
 #### Advanced
