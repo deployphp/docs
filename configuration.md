@@ -38,11 +38,26 @@ run('cd {{release_path}} && command');
 ~~~
 
 Common recipe comes with a few predefined config params listed below. 
+
 To get list of available params run:
 
 ~~~sh
 dep config:dump
 ~~~
+
+Show current deployed release:
+
+~~~bash
+dep config:current
+~~~
+
+Show inventory:
+
+~~~bash
+dep config:hosts
+~~~
+
+
 
 Below is a list of common variables.
 
