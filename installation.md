@@ -65,4 +65,15 @@ php bin/build
 
 This will build the `deployer.phar` phar archive.
 
+### Autocomplete
+
+Deployer comes with autocomplete script for bash/zsh/fish, so you don't need to remember all tasks and options.
+To install run following command:
+
+~~~bash
+dep autocomplete
+~~~
+
+And follow instructions. 
+
 Read [getting started](getting-started.md) next.
