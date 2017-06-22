@@ -25,6 +25,7 @@ Available commands:
   help         Displays help for a command
   init         Initialize deployer system in your project
   list         Lists commands
+  run          Run any arbitrary command on hosts
   self-update  Updates deployer.phar to the latest version
   ssh          Connect to host through ssh
 ~~~
@@ -54,6 +55,7 @@ Options:
       --log=LOG              Log to file
       --roles=ROLES          Roles to deploy
       --hosts=HOSTS          Host to deploy, comma separated, supports ranges [:]
+  -o, --option=OPTION        Sets configuration option (multiple values allowed)
   -h, --help                 Display this help message
   -q, --quiet                Do not output any message
   -V, --version              Display this application version
@@ -65,7 +67,62 @@ Options:
       --revision[=REVISION]  Revision to deploy
       --branch[=BRANCH]      Branch to deploy
   -v|vv|vvv, --verbose       Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
-
+ 
 Help:
   Deploy your project
-~~~  
+~~~
+
+### Overriding configuration options
+
+For example, if your _deploy.php_ file contains this configuration:
+
+~~~php
+set('ssh_multiplexing', false);
+~~~
+
+And you want to enable multiplexing without modifying file, you can pass `-o` option to `dep` command:
+
+~~~bash
+dep deploy -o ssh_multiplexing=true
+~~~
+
+To override multiple config options, pass a few `-o` args:
+
+~~~bash
+dep deploy -o ssh_multiplexing=true -o branch=master
+~~~
+
+### Running arbitrary commands
+ 
+Deployer comes with command to run any valid command of you server without modifying _deploy.php_
+ 
+~~~bash
+dep run 'ls -la'
+~~~
+
+To specify hosts this command have corresponding options:
+
+~~~
+  --stage=STAGE    Stage to deploy
+  --roles=ROLES    Roles to deploy
+  --hosts=HOSTS    Host to deploy, comma separated, supports ranges [:]
+~~~
+
+### Getting help
+
+You can get more info about any commands by help command:
+
+~~~
+dep help [command]
+~~~
+
+### Autocomplete
+
+Deployer comes with autocomplete script for bash/zsh/fish, so you don't need to remember all tasks and options.
+To install run following command:
+
+~~~bash
+dep autocomplete
+~~~
+
+And follow instructions.
