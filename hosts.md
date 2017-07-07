@@ -141,6 +141,27 @@ For Deployer those hosts are different ones, and after deploy to both on server 
         └── ...
 ~~~
 
+### One host for a few stage
+
+It's often you have only one server for prod and beta stages. You can easily configure it:
+
+~~~php
+host('production')
+    ->hostname('domain.com')
+    ->set('deploy_path', '~/domain.com');
+    
+host('beta')
+    ->hostname('domain.com')
+    ->set('deploy_path', '~/beta.domain.com');    
+~~~
+
+Now you can deploy with this commands:
+
+~~~sh
+dep deploy production
+dep deploy beta
+~~~
+
 ### Inventory file
 
 Include hosts defined in inventory files `hosts.yml` by `inventory` function:
