@@ -125,6 +125,47 @@ host(...)
     ->stage('prod');
 ~~~
 
+You can also set callable as argument if you need some more complex ways to determine default stage.
+
+Having callable in set() allows to not set the value at once when declared but later when used. There is no difference 
+when we assign simple string but when we assign value of function then this function must be called at once if not used 
+as callable. With callable it can be called when used so function which determine variable can be overwritten by user 
+with its own function. This is the great power of having callable in set() instead of direct function calls.
+
+**Example 1: Direct function assign in set()**
+
+Lets assume that we must include some third party recipe that is setting 'default_stage' like that:
+~~~php
+set('default_stage', \ThirdPartyVendor\getDefaultStage());
+~~~
+
+And we want to overwrite this in our deploy.php with own value:
+~~~php
+set('default_stage', \MyVendor\getDefaultStage());
+~~~
+
+Third party recipe should avoid direct function call because it will be called always even if overwrite it with 
+our own set('default_stage', \MyVendor\getDefaultStage()). Look for next example how third party recipe should use
+callable in that case.
+
+**Example 2: Callable assign in set()**
+
+Lets assume that we must include some third party recipe that is setting 'default_stage' like that:
+~~~php
+set('default_stage', function() {
+    return \ThirdPartyVendor\getDefaultStage();
+});
+~~~
+
+And we want to overwrite this in our deploy.php:
+~~~php
+set('default_stage', function() {
+    return \MyVendor\getDefaultStage();
+});
+~~~
+
+Result is that only \MyVendor\getDefaultStage() is run.
+
 ### keep_releases
 
 Number of releases to keep. `-1` for unlimited releases. Default to `5`.
