@@ -47,6 +47,20 @@ host('domain.com')
 > **Best practice** is to leave connecting information for hosts in `~/.ssh/config` file.
 > That way your allow different users connect in different way.
 
+### Overriding config per host
+
+For example, if you have some global configuration you can override it per host:
+
+~~~php
+set('branch', 'master');
+
+host('prod')
+    ...
+    ->set('branch', 'production');
+~~~
+
+You can branch production will be only on `prod` host, on other – master.
+
 ### Gathering host info
 
 Inside task, you can get host config with `get` function and host object with `host` function.
@@ -56,7 +70,7 @@ task('...', function () {
     $deployPath = get('deploy_path');
     
     $host = host('domain.com');
-    $hostname = $host->getHostname();
+    $port = $host->getPort();
 });
 ~~~
 
