@@ -143,6 +143,17 @@ You can reconfigure tasks, e.g. provided by 3rd part recipes by retrieving them 
 task('notify')->onStage('production');
 ```
 
+### Overriding tasks
+
+Some time you may want to have diverent bahavior of some task from common recipes. Simple override it:
+
+```php
+task('deploy:update_code', function () {
+    // Your custom update code
+    upload(...);
+});
+```
+
 ### Using input options
 
 You can define additional input options and arguments, before defining tasks:
