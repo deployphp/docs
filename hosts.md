@@ -49,7 +49,7 @@ host('domain.com')
 
 ### Overriding config per host
 
-For example, if you have some a global configuration you can override it per host:
+For example, if you have some global configuration you can override it per host:
 
 ~~~php
 set('branch', 'master');
@@ -59,7 +59,7 @@ host('prod')
     ->set('branch', 'production');
 ~~~
 
-You can branch production will be only on `prod` host, on other – master.
+Now on _prod_ host branch setted to `production`, on other to `master`.
 
 ### Gathering host info
 
