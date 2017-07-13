@@ -111,7 +111,7 @@ Deployer will create the following directories on the host:
 Configure your hosts to serve your public directory from `current`.
 
 > Note that deployer uses [ACL](https://en.wikipedia.org/wiki/Access_control_list) by default for setting up permissions.
-> You can change this behaviour with `writable_mode` config.    
+> You can change this behavior with `writable_mode` config.    
 
 By default deployer keeps the last 5 releases, but you can increase this number by modifying the associated parameter:
  
