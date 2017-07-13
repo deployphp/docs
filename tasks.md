@@ -1,6 +1,6 @@
 # Tasks
 
-Define you own tasks, use the `task` function. Also you can setup description for task with `desc` function:
+Define your own tasks, by useing the `task` function. Also you can setup a description for a task with `desc` function:
 
 ```php
 desc('My task');
@@ -9,7 +9,7 @@ task('my_task', function () {
 });
 ```
 
-To run your tasks:
+To run your task:
 
 ```sh
 dep my_task
@@ -27,7 +27,7 @@ To run a task only on a specified host or stage:
 dep deploy main
 ```
 
-You can specify host via `--hosts` option (comma separated for a few) and roles via `--roles` option:
+You can specify hosts via `--hosts` option (comma separated for a few) and roles via `--roles` option:
 
 ```sh
 dep deploy --hosts domain.com
@@ -36,7 +36,7 @@ dep deploy --roles app
 
 ### Simple tasks
 
-If you task contains only `run` calls or just one bash command, you can simplify task definition:
+If your task only contains `run` calls or just one bash command, you can simplify the task definition:
 
 ```php
 task('build', 'npm build');
@@ -44,7 +44,7 @@ task('build', 'npm build');
 
 > By default all simple tasks cd to `release_path`, so you don't need to.
 
-Or you can use multi line script:
+Or you can use the multi line script:
  
 ```php
 task('build', '
@@ -84,7 +84,7 @@ After the `deploy` task is be called, `deploy:done` will be executed.
 
 ### Filtering
 
-You can specify on which hosts/stages/roles to run a task.
+You can specify on which hosts/stages/roles you want to run a task.
 
 ### By stage
 
@@ -112,7 +112,7 @@ Also you can specify a few roles: `onRoles('app', 'db', ...)`.
 
 ### By hosts
 
-Filter tasks by roles:
+Filter tasks by hosts:
 
 ``` php
 desc('Migrate database');
@@ -125,7 +125,7 @@ Also you can specify a few hosts: `onHosts('db.domain.com', ...)`.
 
 ### Local tasks
 
-Mark task `local` to run it locally and only one time, independent of hosts count.
+Mark task with `local` to run it locally and only once, independent from hosts count.
 
 ```php
 task('build', function () {
@@ -133,7 +133,7 @@ task('build', function () {
 })->local();
 ```
 
-> Note what calling `run` inside local task will have same effect as calling `runLocally`. 
+> Note that calling `run` inside a local task will have the same effect as calling `runLocally`. 
 
 ### Reconfigure
 
@@ -145,7 +145,7 @@ task('notify')->onStage('production');
 
 ### Overriding tasks
 
-Some time you may want to have diverent bahavior of some task from common recipes. Simple override it:
+Some times you may want to have a different behaviour of some task from common recipes. Simply override it:
 
 ```php
 task('deploy:update_code', function () {
@@ -186,15 +186,15 @@ task('foo:bar', function() {
 
 ### Parallel task execution
 
-When deploying to multiple hosts, Deployer will run by one task on each host:
+When deploying to multiple hosts, deployer will run one task on each host:
 
 <svg width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(456 309)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(306 271)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(156 233)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(6 195)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="43" y="24">task 2</tspan></text></g><g transform="translate(456 157)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(306 119)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(156 81)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(6 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><path d="M3 35h594.5" stroke="#EBEBEB" stroke-linecap="square" stroke-dasharray="3,5"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="497" y="25">Host 4</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="347" y="25">Host 3</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="197" y="25">Host 2</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="47" y="25">Host 1</tspan></text></g></svg>
 
-To speedup deployment add `--parallel` or `-p` option with will run tasks in parallel on each host. If one of host executing task longer then another, Deployer will wait until all host finish tasks.
+To speedup deployment add `--parallel` or `-p` option which will run tasks in parallel on each host besides hosts. If one of host tasks longer then another, deployer will wait until all hosts have finished tasks there.
 
 <svg width="600" height="153" viewBox="0 0 600 153" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(456 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(306 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(156 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(6 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="43" y="24">task 2</tspan></text></g><g transform="translate(456 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(306 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(156 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(6 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><path d="M3 35h594.5" stroke="#EBEBEB" stroke-linecap="square" stroke-dasharray="3,5"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="497" y="25">Host 4</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="347" y="25">Host 3</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="197" y="25">Host 2</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="47" y="25">Host 1</tspan></text></g></svg>
 
-Limit the number of concurrent tasks by specify a number. By default, up to 10 tasks will be processed concurrently.
+Limit the number of concurrent tasks by specifing a number. By default, up to 10 tasks will be processed concurrently.
   
 ```sh
 dep deploy --parallel --limit 2
