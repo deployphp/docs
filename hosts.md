@@ -122,7 +122,7 @@ localhost()
 
 ### Host aliases
 
-If you want to deploy an app to one host, but for example in different directories, you can describe to hosts aliases:
+If you want to deploy an app to one host, but for example in different directories, you can describe two host aliases:
 
 ~~~php
 host('domain.com/green', 'domain.com/blue')
