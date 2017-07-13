@@ -4,7 +4,7 @@ Deployer can be installed in two ways: using phar archive and using composer.
 
 ### Phar archive
 
-To install Deployer via phar archive, run next commands:
+To install Deployer via phar archive, run the following commands:
 
 ```sh
 curl -LO https://deployer.org/deployer.phar
@@ -12,8 +12,8 @@ mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ```
 
-If you need another version of Deployer, you can find them on [download page](https://deployer.org/download).
-Later, to upgrade Deployer run the command:
+If you need another version of Deployer, you can find it on the [download page](https://deployer.org/download).
+Later, to upgrade Deployer, run the command:
 
 ```sh
 dep self-update
@@ -27,7 +27,7 @@ dep self-update --upgrade
 
 ### Composer
 
-To install Deployer with Composer, run next command:
+To install Deployer with Composer, run the command:
 
 ```sh
 composer require deployer/deployer --dev
@@ -47,11 +47,11 @@ Then to use Deployer, run the following command:
 php vendor/bin/dep
 ```
 
-> If you have installed Deployer using **both** methods, running `dep` command will prefer composer-installed version. 
+> If you have installed Deployer using **both** methods, running `dep` command will prefer a composer-installed version. 
 
 ### Source
 
-If you want build Deployer from source code, clone the project from GitHub:
+If you want to build Deployer from the source code, clone the project from GitHub:
 
 ```sh
 git clone https://github.com/deployphp/deployer.git
@@ -67,13 +67,13 @@ This will build the `deployer.phar` phar archive.
 
 ### Autocomplete
 
-Deployer comes with autocomplete script for bash/zsh/fish, so you don't need to remember all tasks and options.
-To install run following command:
+Deployer comes with an autocomplete script for bash/zsh/fish, so you don't need to remember all tasks and options.
+To install, run the following command:
 
 ~~~bash
 dep autocomplete
 ~~~
 
-And follow instructions. 
+And follow the instructions. 
 
 Read [getting started](getting-started.md) next.
