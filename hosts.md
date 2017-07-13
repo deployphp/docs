@@ -12,7 +12,7 @@ host('domain.com')
     ->set('deploy_path', '~/app');
 ~~~
 
-Host *domain.com* has a stage `production`, a one role `app` and a config `deploy_path` = `~/app`.
+Host *domain.com* has stage `production`, one role `app` and config `deploy_path` = `~/app`.
 
 Same host can be described by using yaml syntax. Write in `hosts.yml` file next:
 
