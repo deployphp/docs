@@ -1,9 +1,9 @@
 # Hosts
 
-Host in Deployer is there are you going to deploy your application. It can be remote machine, local machine or Amazon EC2 instances.
+Host in Deployer is there necessary to deploy your application. It can be a remote machine, a local machine or Amazon EC2 instances.
 Each host contains a hostname, a stage, one or a few roles and configuration parameters. 
 
-You can define hosts with the `host` function in `deploy.php` file. Here is an example of a hosts definition:
+You can define hosts with the `host` function in `deploy.php` file. Here is an example of a host definition:
 
 ~~~php
 host('domain.com')
@@ -12,9 +12,9 @@ host('domain.com')
     ->set('deploy_path', '~/app');
 ~~~
 
-Host *domain.com* has stage `production`, one role `app` and config `deploy_path` = `~/app`.
+Host *domain.com* has a stage `production`, a one role `app` and a config `deploy_path` = `~/app`.
 
-Same host can be described using yaml syntax. Write in `hosts.yml` file next:
+Same host can be described by using yaml syntax. Write in `hosts.yml` file next:
 
 ~~~yaml
 domain.com:
@@ -23,14 +23,14 @@ domain.com:
   deploy_path: ~/app
 ~~~
 
-Then in `deploy.php`:
+Then to `deploy.php`:
 
 ~~~php
 inventory('hosts.yml');
 ~~~
 
-Make sure what you `~/.ssh/config` file contains information about your domains and how to connect.
-Or you can specify that information in `deploy.php` file itself.
+Make sure what your `~/.ssh/config` file contains information about your domains and how to connect.
+Or you can specify that information in the `deploy.php` file itself.
 
 ~~~php
 host('domain.com')
@@ -44,12 +44,12 @@ host('domain.com')
     ->addSshOption('StrictHostKeyChecking', 'no');
 ~~~
 
-> **Best practice** is to leave connecting information for hosts in `~/.ssh/config` file.
-> That way your allow different users connect in different way.
+> **Best practice** is to leave connecting information for hosts in the `~/.ssh/config` file.
+> That way you allow different users to connect in different ways.
 
 ### Overriding config per host
 
-For example, if you have some global configuration you can override it per host:
+For example, if you have some a global configuration you can override it per host:
 
 ~~~php
 set('branch', 'master');
@@ -63,7 +63,7 @@ You can branch production will be only on `prod` host, on other – master.
 
 ### Gathering host info
 
-Inside task, you can get host config with `get` function and host object with `host` function.
+Inside any task, you can get host config with the `get` function and the host object with `host` function.
 
 ~~~php
 task('...', function () {
@@ -84,7 +84,7 @@ host('110.164.16.59', '110.164.16.34', '110.164.16.50', ...)
     ...
 ~~~
 
-If your inventory `hosts.yml` file contains a few hosts, you can change configs for all of them in a same way.
+If your inventory `hosts.yml` file contains a few hosts, you can change configs for all of them in the same way.
 
 ~~~php
 inventory('hosts.yml')
@@ -94,7 +94,7 @@ inventory('hosts.yml')
 
 ### Host ranges
 
-If you have a lot of hosts following similar patterns you can do this rather than listing each hostname:
+If you have a lot of hosts following similar patterns you can describe them this rather than listing each hostname:
 
 ~~~php
 host('www[01:50].domain.com');
@@ -110,7 +110,7 @@ host('db[a:f].domain.com');
 
 ### Localhost
 
-If you need to build your release before deploy on local machine, or deploy to localhost instead of remote,
+If you need to build your release before deploying on a remote machine, or deploy to localhost instead of remote,
 you need to define localhost:
 
 ~~~php
@@ -122,7 +122,7 @@ localhost()
 
 ### Host aliases
 
-If you want to deploy same app to one host, but for example in different directories, you can describe to hosts aliases:
+If you want to deploy an app to one host, but for example in different directories, you can describe to hosts aliases:
 
 ~~~php
 host('domain.com/green', 'domain.com/blue')
@@ -130,7 +130,7 @@ host('domain.com/green', 'domain.com/blue')
     ...
 ~~~
 
-For Deployer those hosts are different ones, and after deploy to both on server will be next directory structure:
+For Deployer those hosts are different ones, and after deploying to both hosts will be the next directory structure:
 
 ~~~
 ~
@@ -141,9 +141,9 @@ For Deployer those hosts are different ones, and after deploy to both on server 
         └── ...
 ~~~
 
-### One host for a few stage
+### One host for a few stages
 
-It's often you have only one server for prod and beta stages. You can easily configure it:
+Often you have only one server for prod and beta stages. You can easily configure them:
 
 ~~~php
 host('production')
@@ -170,7 +170,7 @@ Include hosts defined in inventory files `hosts.yml` by `inventory` function:
 inventory('hosts.yml');
 ~~~
 
-Example of an inventory file `hosts.yml` with full set of configuration:
+Here an example of an inventory file `hosts.yml` with the full set of configurations
 
 ~~~yaml
 domain.com:
@@ -192,10 +192,10 @@ domain.com:
   extra_param: "foo {{hostname}}"
 ~~~
 
-> **Note** what same as with `host` function in *deploy.php* file it's better to omit information such as 
-> *user*, *port*, *identityFile*, *forwardAgent* and put it to `~/.ssh/config` file instead.
+> **Note** that same as with `host` function in *deploy.php* file it's better to omit information such as 
+> *user*, *port*, *identityFile*, *forwardAgent* and use it to the `~/.ssh/config` file instead.
 
-If you inventory file contains many similar hosts definition, you can use YAML extend syntax:
+If your inventory file contains many similar host definitions, you can use YAML extend syntax:
 
 ~~~yaml
 .base: &base
@@ -214,7 +214,7 @@ beta1.domain.com:
 ...
 ~~~
 
-Hosts what started with `.` (*dot*) called are hidden and does not visible outside that file.
+Hosts that get started with `.` (*dot*) are called hidden and does not visible outside that file.
  
 To define localhost in inventory files add `local` key:
 
@@ -237,6 +237,6 @@ host('domain.com')
 
 Deployer uses `sudo` privilege escalation method by default.
 
-> **Note** what currently become doesn't work with `tty` run option.
+> **Note** that become doesn't work with `tty` run option.
 
 Next: [deployment flow](flow.md).
