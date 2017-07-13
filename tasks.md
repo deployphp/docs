@@ -137,7 +137,7 @@ task('build', function () {
 
 ### Reconfigure
 
-You can reconfigure tasks, e.g. provided by 3rd part recipes by retrieving them by name:
+You can reconfigure tasks, e.g. provided by 3rd party recipes by retrieving them by name:
 
 ```php
 task('notify')->onStage('production');
@@ -145,7 +145,7 @@ task('notify')->onStage('production');
 
 ### Overriding tasks
 
-Some times you may want to have a different behaviour of some task from common recipes. Simply override it:
+Some times you may want to have a different behavior of some task from common recipes. Simply override it:
 
 ```php
 task('deploy:update_code', function () {
@@ -186,11 +186,11 @@ task('foo:bar', function() {
 
 ### Parallel task execution
 
-When deploying to multiple hosts, deployer will run one task on each host:
+When deploying to multiple hosts, Deployer will run one task on each host:
 
 <svg width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(456 309)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(306 271)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(156 233)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(6 195)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="43" y="24">task 2</tspan></text></g><g transform="translate(456 157)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(306 119)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(156 81)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(6 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><path d="M3 35h594.5" stroke="#EBEBEB" stroke-linecap="square" stroke-dasharray="3,5"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="497" y="25">Host 4</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="347" y="25">Host 3</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="197" y="25">Host 2</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="47" y="25">Host 1</tspan></text></g></svg>
 
-To speedup deployment add `--parallel` or `-p` option which will run tasks in parallel on each host besides hosts. If one of host tasks longer then another, deployer will wait until all hosts have finished tasks there.
+To speedup deployment add `--parallel` or `-p` option which will run tasks in parallel on each host. If execution of the task on a host takes longer then on others, Deployer will wait until all hosts have finished their tasks.
 
 <svg width="600" height="153" viewBox="0 0 600 153" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(456 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(306 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(156 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="42" y="24">task 2</tspan></text></g><g transform="translate(6 91)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="43" y="24">task 2</tspan></text></g><g transform="translate(456 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(306 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(156 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><g transform="translate(6 43)"><rect fill="#EBEBEB" width="140" height="37.176" rx="8"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="41" y="24">task 1</tspan></text></g><path d="M3 35h594.5" stroke="#EBEBEB" stroke-linecap="square" stroke-dasharray="3,5"/><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="497" y="25">Host 4</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="347" y="25">Host 3</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="197" y="25">Host 2</tspan></text><text font-family="Monaco" font-size="16" fill="#9B9B9B"><tspan x="47" y="25">Host 1</tspan></text></g></svg>
 
