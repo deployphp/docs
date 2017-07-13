@@ -16,7 +16,7 @@ dep init
 ```
 
 This command will create the `deploy.php` file in the current directory. It is called *recipe* and contains configuration and tasks for deployment.
-By default all recipes extend the [common](https://github.com/deployphp/deployer/blob/master/recipe/common.php) recipe. Place your _deploy.php_ file in root of your project and type `dep` or `dep list` command you will see list of all available tasks.
+By default all recipes extend the [common](https://github.com/deployphp/deployer/blob/master/recipe/common.php) recipe. Place your _deploy.php_ file in root of your project and type `dep` or `dep list` command you will see a list of all available tasks.
 
 > You can call `dep` command in any subdirectory of your project.
 
@@ -43,7 +43,7 @@ Hello world
 ```
 
 Now lets create some task which will run commands on a remote host. For that we must configure deployer. 
-Your newly created `deploy.php` file should contain `host` declaration like this:
+Your newly created `deploy.php` file should contain a `host` declaration like this:
  
 ```php
 host('domain.com')
@@ -51,9 +51,9 @@ host('domain.com')
     ->set('deploy_path', '/var/www/domain.com');
 ```
 
-> Also it's possible to declare hosts in separate yaml file. Find out more about [inventory](hosts.md#inventory-file).
+> Also it's possible to declare hosts in a separate yaml file. Find out more about the [inventory](hosts.md#inventory-file).
 
-You can find more about host configuration [here](hosts.md). Now let's define a task which will output a 
+You can find out more about host configurations [here](hosts.md). Now let's define a task which will output a 
 `pwd` command from the remote host:
  
 ```php
@@ -111,9 +111,9 @@ Deployer will create the following directories on the host:
 Configure your hosts to serve your public directory from `current`.
 
 > Note that deployer uses [ACL](https://en.wikipedia.org/wiki/Access_control_list) by default for setting up permissions.
-> You can change this behavior with `writable_mode` config.    
+> You can change this behaviour with `writable_mode` config.    
 
-By default deployer keeps last 5 releases, but you can increase this number by modifying the associated parameter:
+By default deployer keeps the last 5 releases, but you can increase this number by modifying the associated parameter:
  
 ```php
 set('keep_releases', 10);
@@ -126,7 +126,7 @@ simply run the following command to rollback to the previous working release:
 dep rollback
 ```
 
-You may want to run some task before/after another tasks. Configuring that is really simple!
+You may want to run some task before/after other tasks. Configuring that is really simple!
 
 Let's reload php-fpm after `deploy` finishes:
 
@@ -138,12 +138,12 @@ task('reload:php-fpm', function () {
 after('deploy', 'reload:php-fpm');
 ```
 
-If you need connect to host, Deployer has shortcut for faster access:
+If you need to connect to the host, Deployer has a shortcut for faster access:
 
 ~~~sh
 dep ssh
 ~~~
 
-This command will connect to selected host and cd to `current_path`.
+This command will connect to selected hosts and cd to `current_path`.
 
 Read more about [configuring](configuration.md) deploy. 
