@@ -8,19 +8,6 @@ Deployer can be installed in three ways:
 
 The best option for most cases is to choose  **composer package with phar only**. 
 
-Two other methods have following disadvantages:
-
-* If you will install Deployer globally as **phar archive** then it will fit your needs well until the amount of 
-  projects will increase. Its quite possible that if you have big amount of projects then you will be not able to 
-  upgrade all deploy.php configs at each project at one time to newer version of deployer. So for some time you will 
-  need to have two or more versions of deployer installed globally under different names. For example "dep" for 
-  deployer5, "dep4" for deployer4 and then run commands like "dep4 deploy production" or "dep deploy production" - 
-  depends on which project you are. Additionally if new developer is coming into project he needs to install all 
-  versions of Deployer binaries on his local computer.
-
-* If you will install Deployer as **composer package with sources** then you risk that deployer dependencies 
-  will be in conflict with your project dependencies. Its quite often the conflict with monolog/monolog package or
-  symfony/console package.
 
 ### Composer package with phar only
 
