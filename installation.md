@@ -1,50 +1,11 @@
 # Installation
 
-Deployer can be installed in three ways: 
-1) using **composer package with phar only** - later called also "Deployer Distribution" version (no dependencies)
-2) using **composer package with sources** - later called also "Deployer Source" version (dependencies but good for debug 
-   Deployer) 
-3) using direct download of **phar archive**
+There are three ways to install deployer: 
+1) download phar archive
+2) source composer installation
+3) distribution composer installation
 
-The best option for most cases is to choose  **composer package with phar only**. 
-
-
-### Composer package with phar only
-
-To install Deployer Distribution version with Composer, run the command:
-
-```sh
-composer require deployer/dist --dev
-```
-
-Then to use Deployer, run the following command:
-
-```sh
-php vendor/bin/dep
-```
-
-If you want to run deployer with `dep` only instead of `php vendor/bin/dep` then you need to add 
-`export PATH="$PATH:./vendor/bin"` to your ~/.bashrc or ~/.profile file. For security reason mind to add
-it on the very end of file so binaries read from project ./vendor/bin folder are the last taken into consideration.
-Remember that you need to open new shell after changes in ~/.bashrc or ~/.profile file so the new config is loaded.  
-
-
-### Composer package with sources
-
-To install Deployer Source version with Composer, run the command:
-
-```sh
-composer require deployer/deployer --dev
-```
-
-Then to use Deployer, run the following command:
-
-```sh
-php vendor/bin/dep
-```
-
-
-### Phar archive
+### Download phar archive
 
 To install Deployer as phar archive, run the following commands:
 
@@ -67,8 +28,47 @@ To upgrade to the next major release, if available, use the `--upgrade (-u)` opt
 dep self-update --upgrade
 ```
 
+### Source composer installation
 
-### Source
+To install Deployer source version with Composer, run the command:
+
+```sh
+composer require deployer/deployer --dev
+```
+
+You can also install it globally:
+
+``` sh
+composer global require deployer/deployer
+```
+
+More info: https://getcomposer.org/doc/03-cli.md#global
+
+Then to use Deployer, run the following command:
+
+```sh
+php vendor/bin/dep
+```
+
+> If you have installed Deployer using **both** methods, running `dep` command will prefer a composer-installed version. 
+
+> If you have dependency conflicts you can use "distribution composer installation"
+
+### Distribution composer installation
+
+To install Deployer distribution version with Composer, run the command:
+
+```sh
+composer require deployer/dist --dev
+```
+
+Then to use Deployer, run the following command:
+
+```sh
+php vendor/bin/dep
+```
+
+### Own builded phar
 
 If you want to build Deployer from the source code, clone the project from GitHub:
 
@@ -83,6 +83,7 @@ php bin/build
 ```
 
 This will build the `deployer.phar` phar archive.
+
 
 ### Autocomplete
 
