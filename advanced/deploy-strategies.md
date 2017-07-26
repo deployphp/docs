@@ -5,7 +5,7 @@
 In most cases you don't need more than one production server.
 It's better to build your release files (as cache, js/css bundles) on it machine as well. 
 So your builds don't depends on your local configuration and can be deployed from everywhere.
-By default deployer recipes designed to fullfill this king of deployments.  
+By default deployer recipes designed to fullfill this kind of deployments.  
 
 ~~~php
 desc('Deploy your project');
@@ -21,8 +21,8 @@ task('deploy', [
 
 ### Build server
 
-If you have a lot of server where are you going to deploy your application, or you are going to use CI server,
-it's better to build release on one server and upload files to application server.
+If you have a lot of servers where are you going to deploy your application, or you are going to use CI server,
+it's better to build release on one server and upload files to application servers.
 
 To do that create a build local task:
 
