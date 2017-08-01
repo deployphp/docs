@@ -37,7 +37,7 @@ The next section provides a short overview of each task.
 
 ### deploy:prepare
 
-Preeparation for deployment. Checks if `deploy_path` exists, otherwise create it. Also checks for the existence of next paths:
+Preparation for deployment. Checks if `deploy_path` exists, otherwise create it. Also checks for the existence of next paths:
 
 * `releases` – in this dir will be stored releases.
 * `shared` – shread files across all releases.
@@ -55,7 +55,7 @@ Also, if in `deploy_path` was previous release symlink, it will be deleted.
 
 ### deploy:update_code
 
-Download a new version of code using git. If using git version 2.0 and `git_cache` config is turned on, this task will use files from the previous release, so only changed files will be downloaded.
+Download a new version of code using Git. If using Git version 2.0 and `git_cache` config is turned on, this task will use files from the previous release, so only changed files will be downloaded.
 
 Override this task in `deploy.php` to create your own code transfer strategy:
 
