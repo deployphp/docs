@@ -40,7 +40,7 @@ The next section provides a short overview of each task.
 Preparation for deployment. Checks if `deploy_path` exists, otherwise create it. Also checks for the existence of next paths:
 
 * `releases` – in this dir will be stored releases.
-* `shared` – shread files across all releases.
+* `shared` – shared files across all releases.
 * `.dep` – metadata used by Deployer.
 
 ### deploy:lock
