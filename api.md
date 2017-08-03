@@ -238,7 +238,7 @@ Same as the `write` function, but also writes a new line.
 
 ### set
 
-* `set(string $name, string|int|bool $value)`
+* `set(string $name, string|int|bool|array $value)`
 * `set(string $name, callable $value)`
 
 Setup global configuration parameter. If callable passed as `$value` it will be triggered on first get of this config.
@@ -255,7 +255,7 @@ More at [configuration](configuration.md).
 
 ### get
 
-* `get(string $name, $default = null): string|int|bool`
+* `get(string $name, $default = null): string|int|bool|array`
 
 Get configuration value.
 
