@@ -1,9 +1,10 @@
 # Installation
 
 There are three ways to install deployer: 
-1) download phar archive
-2) source composer installation
-3) distribution composer installation
+
+1. download phar archive
+2. source composer installation
+3. distribution composer installation
 
 ### Download phar archive
 
