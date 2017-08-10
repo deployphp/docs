@@ -188,6 +188,14 @@ Allocate TTY for `git clone` command. `false` by default. This allow you to ente
 set('git_tty', true);
 ~~~
 
+### git_recursive
+
+Set the `--recursive` flag for git clone. `true` by default. Setting this to false will prevent submodules from being cloned as well.
+
+~~~php
+set('git_recursive', false);
+~~~
+
 ### branch
 
 Branch to deploy.
