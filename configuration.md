@@ -290,8 +290,15 @@ Composer action. Default `install`.
 
 Options for composer.
 
-### env_vars
+### env
 
-Environment variables.
+Array of environment variables.
+
+~~~php
+set('env', [
+    'VARIABLE' => 'value',
+]);
+~~~
+
 
 Read more about [task definitions](tasks.md).
