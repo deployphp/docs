@@ -135,6 +135,16 @@ task('build', function () {
 
 > Note that calling `run` inside a local task will have the same effect as calling `runLocally`. 
 
+### Once
+
+To run task only once:
+
+```php
+task('do', ...)->once();
+```
+
+Will run on first host only.
+
 ### Reconfigure
 
 You can reconfigure tasks, e.g. provided by 3rd party recipes by retrieving them by name:
