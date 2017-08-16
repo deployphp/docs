@@ -75,6 +75,30 @@ host(...)
 
 Current hostname. Automatically sets by `host` function.
 
+### user
+
+Current user name. Default to current git user name:
+
+~~~php
+set('user', function () {
+    return runLocally('git config --get user.name');
+});
+~~~
+
+You can override it in _deploy.php_ for example to use env var:
+ 
+~~~php
+set('user', function () {
+    return getenv('DEP_USER');
+});
+~~~
+
+`user` parameter can be used to configure notification systems:
+
+~~~php
+set('slack_text', '{{user}} deploying {{branch}} to {{hostname}}');
+~~~
+
 ### release_path
 
 Full path to current release directory. Current dir path in non-deploy contexts.
