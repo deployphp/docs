@@ -15,7 +15,7 @@ set('deploy_path', '~/project');
 host('project.com');
 ```
 
-If you have one host for production and another for staging next example is sufficient.
+If you have one host for production and another for staging the next example is sufficient.
 
 > Right behavior for `dep deploy` command is to _deploy staging_, and to deploy prod is `dep deploy production`.
 
