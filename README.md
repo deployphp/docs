@@ -14,3 +14,7 @@
 * [Strategy](advanced/deploy-strategies.md)
 * [Deploy and Git](advanced/deploy-and-git.md)
 * [Parallel IO](advanced/parallel-io.md)
+
+#### Examples
+
+* [Inventory]()
