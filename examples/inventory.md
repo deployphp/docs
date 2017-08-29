@@ -2,7 +2,7 @@
 
 You can choose any inventory management you want or use one of next examples.
 
-### One or two host
+### One or two hosts
 
 In most scenarios your project will have one or two hosts: one for production and one for staging.
 So there is no need to separate inventory file, you can write everything in single _deploy.php_ file.
