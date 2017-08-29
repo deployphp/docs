@@ -24,31 +24,35 @@ task('deploy', [
 If you have a lot of servers where are you going to deploy your application, or you are going to use CI server,
 it's better to build release on one server and upload files to application servers.
 
-To do that create a build local task:
+To do that create a _build_ local task:
 
 ~~~php
 task('build', function () {
-    set('deploy_path', __DIR__ . '/.build');
-    invoke('deploy:prepare');
-    invoke('deploy:release');
-    invoke('deploy:update_code');
-    invoke('deploy:vendors');
-    // Add more build steps here
-    invoke('deploy:symlink');
+    run('composer install');
+    run('npm install');
+    run('npm run build');
+    // ...
 })->local();
 ~~~
 
-Make sure what you set `deploy_path` before tasks invoking.
+> Note, you can use simple task definition too
+> ~~~php
+> task('build', '
+>     composer install
+>     npm install
+>     npm run build    
+>     ...        
+> ');
+> ~~~
 
-After create an upload task:
+After create an _upload_ task:
 
 ~~~php
 task('upload', function () {
-    upload(__DIR__ . "/.build/current/", '{{release_path}}');
+    upload(__DIR__, '{{release_path}}');
 });
 ~~~
 
-This task takes content from current symlink of `deploy_path` from build step and uploads to application `release_path` path.
 
 Next, create release and deploy tasks:
 
@@ -71,3 +75,32 @@ task('deploy', [
 ~~~
 
 Now you can run `dep deploy` command.
+
+### Reuse common recipe
+
+If you want to reuse some tasks from common recipe, make sure what you set `deploy_path` before tasks invoking.
+All common recipe tasks relying on this parameter.
+
+~~~php
+task('build', function () {
+    set('deploy_path', __DIR__ . '/.build');
+    invoke('deploy:prepare');
+    invoke('deploy:release');
+    invoke('deploy:update_code');
+    invoke('deploy:vendors');
+    // Add more build steps here
+    invoke('deploy:symlink');
+})->local();
+~~~
+
+> Make sure what you set `deploy_path` before tasks invoking.
+
+After create an upload task:
+
+~~~php
+task('upload', function () {
+    upload(__DIR__ . "/.build/current/", '{{release_path}}');
+});
+~~~
+
+This task takes content from current symlink of `deploy_path` from build step and uploads to application `release_path` path.
