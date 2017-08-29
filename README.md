@@ -17,4 +17,4 @@
 
 #### Examples
 
-* [Inventory]()
+* [Inventory](examples/inventory.md)
