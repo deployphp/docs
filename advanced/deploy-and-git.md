@@ -8,7 +8,7 @@ ssh git@github.com
 ~~~
 
 
-There are to possibilities: deploy keys and agent forwarding.
+There are two possibilities: deploy keys and agent forwarding.
 
 ## Deploy keys
 
