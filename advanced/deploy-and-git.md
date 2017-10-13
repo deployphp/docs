@@ -1,6 +1,6 @@
 # Deploy and Git
 
-To clone you repository you need to access your git server. 
+To clone your repository you need to access your git server. 
 Check if you have access from server to github with this command:
 
 ~~~bash
