@@ -29,7 +29,7 @@ Then to `deploy.php`:
 inventory('hosts.yml');
 ~~~
 
-Make sure what your `~/.ssh/config` file contains information about your domains and how to connect.
+Make sure that your `~/.ssh/config` file contains information about your domains and how to connect.
 Or you can specify that information in the `deploy.php` file itself.
 
 ~~~php
