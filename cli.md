@@ -80,7 +80,7 @@ For example, if your _deploy.php_ file contains this configuration:
 set('ssh_multiplexing', false);
 ~~~
 
-And you want to enable multiplexing without modifying file, you can pass `-o` option to `dep` command:
+And you want to enable [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) without modifying file, you can pass `-o` option to `dep` command:
 
 ~~~bash
 dep deploy -o ssh_multiplexing=true
