@@ -46,7 +46,7 @@ Call after `$when` task, `$that` task.
 
 ### fail
 
-* `fail(string $when, string $that)`
+* `fail(string $what, string $that)`
 
 If task `$what` fails, run `$that` task.
 
