@@ -1,6 +1,6 @@
 # Flow
 
-If your recipe based on *common* recipe or one of the framework recipes shipped with Deployer, then you are using one of our default flows.
+If your recipe is based on the *common* recipe or one of the framework recipes shipped with Deployer, then you are using one of our default flows.
 Each flow is described as a group of other tasks in the `deploy` name space. A common deploy flow may look like this:
 
 ~~~php
@@ -20,14 +20,14 @@ task('deploy', [
 ]);
 ~~~
 
-Framework recipes may differ in flow, but the basic structure is the same. You can create your own flow by overriding the `deploy` task, but better solution is to using the cache. 
+Framework recipes may differ in flow, but the basic structure is the same. You can create your own flow by overriding the `deploy` task, buta  better solution is to use the cache. 
 For example, if you want to run some task before you symlink the new release:
 
 ~~~php
 before('deploy:symlink', 'deploy:build');
 ~~~
 
-Or, to send some notifications after a successful deployment:
+Or, to send notifications after a successful deployment:
 
 ~~~php
 after('success', 'notify');
@@ -37,9 +37,9 @@ The next section provides a short overview of each task.
 
 ### deploy:prepare
 
-Preparation for deployment. Checks if `deploy_path` exists, otherwise create it. Also checks for the existence of next paths:
+Preparation for deployment. Checks if `deploy_path` exists, otherwise create it. Also checks for the existence of the following paths:
 
-* `releases` – in this dir will be stored releases.
+* `releases` – in this dir will be stored the releases.
 * `shared` – shared files across all releases.
 * `.dep` – metadata used by Deployer.
 
@@ -49,13 +49,13 @@ Locks deployment so only one concurrent deployment can be running. To lock deplo
 
 ### deploy:release
 
-Create a new release folder based on the `release_name` config. Also reads `.dep/releases` to get list of releases that were created before. 
+Create a new release folder based on the `release_name` config parameter. Also reads `.dep/releases` to get a list of releases that were created before. 
 
-Also, if in `deploy_path` was previous release symlink, it will be deleted.
+Also, if in the `deploy_path` there was a previous release symlink, it will be deleted.
 
 ### deploy:update_code
 
-Download a new version of code using Git. If using Git version 2.0 and `git_cache` config is turned on, this task will use files from the previous release, so only changed files will be downloaded.
+Download a new version of code using Git. If you are using Git version 2.0 and `git_cache` config is turned on, this task will use files from the previous release, so only changed files will be downloaded.
 
 Override this task in `deploy.php` to create your own code transfer strategy:
 
@@ -67,7 +67,7 @@ task('deploy:update_code', function () {
 
 ### deploy:shared
 
-Creates shared files and directories from `shared` directory to `release_path`. You can specify shared directories and files in `shared_dirs` and `shared_files` config. The process is split into a few steps:
+Creates shared files and directories from the `shared` directory into the `release_path`. You can specify shared directories and files in `shared_dirs` and `shared_files` config parameters. The process is split into the following steps:
 
 * Copy dir from `release_path` to `shared` if doesn't exists,
 * delete dir from `release_path`,
@@ -87,7 +87,7 @@ host(...)
     ->set('http_user', 'www-data');
 ~~~
 
-Also this task support other writable modes:
+Also this task supports other writable modes:
 
 * chown
 * chgrp
@@ -108,19 +108,19 @@ set('writable_use_sudo', true);
 
 ### deploy:vendors
 
-Install composer dependencies. You can configure composer options with the `composer_options` option. 
+Install composer dependencies. You can configure composer options with the `composer_options` parameter. 
 
 ### deploy:clear_paths
 
-Deletes dirs specified in `clear_paths`. This task can be run with sudo using the `clear_use_sudo` option.
+Deletes dirs specified in `clear_paths`. This task can be run with sudo using the `clear_use_sudo` parameter.
 
 ### deploy:symlink
 
-Switch `current` symlink to `release_path`. If target system supports atomic switching for symlinks it will used.
+Switch the `current` symlink to `release_path`. If target system supports atomic switching for symlinks it will used.
 
 ### deploy:unlock
 
-Deletes `.dep/deploy.lock` file. You can run this task directly to delete the lock file:
+Deletes the `.dep/deploy.lock` file. You can run this task directly to delete the lock file:
 
 ~~~sh
 dep deploy:unlock staging
@@ -128,7 +128,7 @@ dep deploy:unlock staging
 
 ### cleanup
 
-Clean up old releases using `keep_releases` option. `-1` treated as unlimited releases.
+Clean up old releases using the `keep_releases` option. `-1` is treated as unlimited releases.
 
 ### success
 
