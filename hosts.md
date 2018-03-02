@@ -1,7 +1,7 @@
 # Hosts
 
-Host in Deployer is there necessary to deploy your application. It can be a remote machine, a local machine or Amazon EC2 instances.
-Each host contains a hostname, a stage, one or a few roles and configuration parameters. 
+Defining a host in Deployer is necessary to deploy your application. It can be a remote machine, a local machine or Amazon EC2 instances.
+Each host contains a hostname, a stage, one or more roles and configuration parameters. 
 
 You can define hosts with the `host` function in `deploy.php` file. Here is an example of a host definition:
 
@@ -12,9 +12,9 @@ host('domain.com')
     ->set('deploy_path', '~/app');
 ~~~
 
-Host *domain.com* has stage `production`, one role `app` and config `deploy_path` = `~/app`.
+Host *domain.com* has stage `production`, one role `app` and a configuration parameter `deploy_path` = `~/app`.
 
-Same host can be described by using yaml syntax. Write in `hosts.yml` file next:
+Hosts can also be described by using yaml syntax. Write this in a `hosts.yml` file:
 
 ~~~yaml
 domain.com:
@@ -59,11 +59,11 @@ host('prod')
     ->set('branch', 'production');
 ~~~
 
-Now on _prod_ host branch setted to `production`, on other to `master`.
+Now onthe  _prod_ host the branch is set to `production`, on others to `master`.
 
 ### Gathering host info
 
-Inside any task, you can get host config with the `get` function and the host object with `host` function.
+Inside any task, you can get host config with the `get` function, and the host object with the `host` function.
 
 ~~~php
 task('...', function () {
@@ -76,7 +76,7 @@ task('...', function () {
 
 ### Multiple hosts
 
-You can pass a few hosts to `host` function:
+You can pass multiple hosts to the `host` function:
 
 ~~~php
 host('110.164.16.59', '110.164.16.34', '110.164.16.50', ...)
@@ -84,7 +84,7 @@ host('110.164.16.59', '110.164.16.34', '110.164.16.50', ...)
     ...
 ~~~
 
-If your inventory `hosts.yml` file contains a few hosts, you can change configs for all of them in the same way.
+If your inventory `hosts.yml` file contains multiple, you can change the config for all of them in the same way.
 
 ~~~php
 inventory('hosts.yml')
@@ -94,7 +94,7 @@ inventory('hosts.yml')
 
 ### Host ranges
 
-If you have a lot of hosts following similar patterns you can describe them this rather than listing each hostname:
+If you have a lot of hosts following similar patterns, you can describe them like this rather than listing each hostname:
 
 ~~~php
 host('www[01:50].domain.com');
@@ -130,7 +130,7 @@ host('domain.com/green', 'domain.com/blue')
     ...
 ~~~
 
-For Deployer those hosts are different ones, and after deploying to both hosts will be the next directory structure:
+For Deployer, those hosts are different ones, and after deploying to both hosts you will see this directory structure:
 
 ~~~
 ~
@@ -155,7 +155,7 @@ host('beta')
     ->set('deploy_path', '~/beta.domain.com');    
 ~~~
 
-Now you can deploy with this commands:
+Now you can deploy with these commands:
 
 ~~~sh
 dep deploy production
@@ -170,7 +170,7 @@ Include hosts defined in inventory files `hosts.yml` by `inventory` function:
 inventory('hosts.yml');
 ~~~
 
-Here an example of an inventory file `hosts.yml` with the full set of configurations
+Here an example of an inventory file `hosts.yml` with the full set of configuration ettings
 
 ~~~yaml
 domain.com:
@@ -192,8 +192,8 @@ domain.com:
   extra_param: "foo {{hostname}}"
 ~~~
 
-> **Note** that same as with `host` function in *deploy.php* file it's better to omit information such as 
-> *user*, *port*, *identityFile*, *forwardAgent* and use it to the `~/.ssh/config` file instead.
+> **Note** that, as with the `host` function in the *deploy.php* file, it's better to omit information such as 
+> *user*, *port*, *identityFile*, *forwardAgent* and use it from the `~/.ssh/config` file instead.
 
 If your inventory file contains many similar host definitions, you can use YAML extend syntax:
 
@@ -214,9 +214,9 @@ beta1.domain.com:
 ...
 ~~~
 
-Hosts that get started with `.` (*dot*) are called hidden and does not visible outside that file.
+Hosts that start with `.` (*dot*) are called hidden and are not visible outside that file.
  
-To define localhost in inventory files add `local` key:
+To define localhost in inventory files add a `local` key:
 
 ~~~yaml
 localhost:
