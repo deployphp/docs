@@ -1,9 +1,9 @@
 # Dealing with IO in parallel mode
 
-If you try to make task which will be asking user, for example about a branch,
-but you still want to use parallel deploy, you may notice what it's now working and program doesn't waits for used input.
+If you try to make a task which will be asking a user, for example about a branch,
+but you still want to use parallel deploy, you may notice that it's now working and the program doesn't wait for user input.
 
-To workaround this problem you need to create a local task and ask user about branch there:
+To workaround this problem, you need to create a local task and ask the user about the branch there:
 
 ~~~php
 task('what_branch', function () {
@@ -15,13 +15,13 @@ task('what_branch', function () {
 })->local();
 ~~~
 
-And call this task before `deploy` task:
+And call this task before the `deploy` task:
 
 ~~~php
 before('deploy', 'what_branch');
 ~~~
 
-Now it should work as expected and user will be asked for branch only once.
+Now it should work as expected and the user will be asked for the branch only once.
 
 ~~~sh
 $ dep deploy -p
