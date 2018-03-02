@@ -1,6 +1,6 @@
 # Configuration
 
-To setup configuration param use `set` function, and to get it inside task use `get` function.
+To setup a configuration parameter, use `set` function, and to get it inside task use `get` function.
 
 ~~~php
 set('param', 'value');
@@ -10,7 +10,7 @@ task('deploy', function () {
 });
 ~~~
 
-Each param can be overridden for each host:
+Each parameter can be overridden for each host:
   
 ~~~php
 host(...)
@@ -25,13 +25,13 @@ set('current_path', function () {
 });
 ~~~
 
-You can use param's values inside `run` calls with `{{ }}`, instead of doing this:
+You can use a param's values inside `run` calls with `{{ }}`, instead of doing this:
 
 ~~~php
 run('cd ' . get('release_path') . ' && command');
 ~~~
 
-You can do it:
+You can do this:
 
 ~~~php
 run('cd {{release_path}} && command');
@@ -63,7 +63,7 @@ Below is a list of common variables.
 
 ### deploy_path
 
-There to deploy application on remote host. You should define this variable for all of your hosts.
+Where to deploy application on remote host. You should define this variable for all of your hosts.
 For example, if you want to deploy your app to home directory:
 
 ~~~php
@@ -73,11 +73,11 @@ host(...)
 
 ### hostname
 
-Current hostname. Automatically sets by `host` function.
+Current hostname. Automatically set by `host` function.
 
 ### user
 
-Current user name. Default to current git user name:
+Current user name. Defaults to the current git user name:
 
 ~~~php
 set('user', function () {
@@ -101,7 +101,7 @@ set('slack_text', '{{user}} deploying {{branch}} to {{hostname}}');
 
 ### release_path
 
-Full path to current release directory. Current dir path in non-deploy contexts.
+Full path to the current release directory. Current dir path in non-deploy contexts.
 Use it as working path for your build:
 
 ~~~php
@@ -132,7 +132,7 @@ task('npm', function () {
 
 ### ssh_multiplexing
 
-Use [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) for speedup native ssh client.
+Use [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) to speedup the native ssh client.
 
 ~~~php
 set('ssh_multiplexing', true);
@@ -140,7 +140,7 @@ set('ssh_multiplexing', true);
 
 ### default_stage
 
-If hosts declaration have stages, this option allow you to select default stage to deploy with `dep deploy`.
+If the hosts declaration has stages, this option allows you to select the default stage to deploy with `dep deploy`.
 
 ~~~php
 set('default_stage', 'prod');
@@ -149,32 +149,31 @@ host(...)
     ->stage('prod');
 ~~~
 
-You can also set callable as argument if you need some more complex ways to determine default stage.
+You can also set callable as an argument if you need some more complex ways to determine default stage.
 
-Having callable in set() allows to not set the value at once when declared but later when used. There is no difference 
-when we assign simple string but when we assign value of function then this function must be called at once if not used 
-as callable. With callable it can be called when used so function which determine variable can be overwritten by user 
-with its own function. This is the great power of having callable in set() instead of direct function calls.
+Having callable in set() allows you to not set the value when declaring it, but later when it is used. There is no difference 
+when we assign a simple string. But when we assign value of a function, then this function must be called at once, if not used 
+as callable. With callable, it can be called when used, so a function which determines a variable can be overwritten by the user with its own function. This is the great power of having callable in set() instead of direct in function calls.
 
 **Example 1: Direct function assign in set()**
 
-Lets assume that we must include some third party recipe that is setting 'default_stage' like that:
+Lets assume that we must include some third party recipe that is setting 'default_stage' like this:
 ~~~php
 set('default_stage', \ThirdPartyVendor\getDefaultStage());
 ~~~
 
-And we want to overwrite this in our deploy.php with own value:
+And we want to overwrite this in our deploy.php with our own value:
 ~~~php
 set('default_stage', \MyVendor\getDefaultStage());
 ~~~
 
-Third party recipe should avoid direct function call because it will be called always even if overwrite it with 
-our own set('default_stage', \MyVendor\getDefaultStage()). Look for next example how third party recipe should use
+Third party recipe should avoid a direct function call, because it will be called always even if we overwrite it with 
+our own set('default_stage', \MyVendor\getDefaultStage()). Look at the next example how the third party recipe should use
 callable in that case.
 
 **Example 2: Callable assign in set()**
 
-Lets assume that we must include some third party recipe that is setting 'default_stage' like that:
+Lets assume that we must include some third party recipe that is setting 'default_stage' like this:
 ~~~php
 set('default_stage', function() {
     return \ThirdPartyVendor\getDefaultStage();
@@ -188,7 +187,7 @@ set('default_stage', function() {
 });
 ~~~
 
-Result is that only \MyVendor\getDefaultStage() is run.
+The result is that only \MyVendor\getDefaultStage() is run.
 
 ### keep_releases
 
@@ -196,17 +195,17 @@ Number of releases to keep. `-1` for unlimited releases. Default to `5`.
 
 ### repository
 
-Git repository of application.
+Git repository of the application.
 
-To use a private repository it needs to generate a SSH-key on your host and add to the repository
+To use a private repository, you need to generate a SSH-key on your host and add it to the repository
 as a Deploy Key (a.k.a. Access Key). This key allows your host to pull out the code. Or use can use agent forwarding. 
 
-Note that at the first time host can ask to add host in `known_hosts` file. The easiest way to do it is
-running `git clone <repo>` on your host and saying `yes`.
+Note that the first time a host connects, it can ask to add host in `known_hosts` file. The easiest way to do this is
+by running `git clone <repo>` on your host and saying `yes` when prompted.
 
 ### git_tty
 
-Allocate TTY for `git clone` command. `false` by default. This allow you to enter passphrase for keys or add host to `known_hosts`.
+Allocate TTY for `git clone` command. `false` by default. This allow you to enter a passphrase for keys or add host to `known_hosts`.
 
 ~~~php
 set('git_tty', true);
@@ -214,7 +213,7 @@ set('git_tty', true);
 
 ### git_recursive
 
-Set the `--recursive` flag for git clone. `true` by default. Setting this to false will prevent submodules from being cloned as well.
+Set the `--recursive` flag for git clone. `true` by default. Setting this to `false` will prevent submodules from being cloned as well.
 
 ~~~php
 set('git_recursive', false);
@@ -224,7 +223,7 @@ set('git_recursive', false);
 
 Branch to deploy.
 
-If you want to deploy a specific tag or a revision, you can use `--tag` and `--revision` options while running `dep deploy`. F.e.
+If you want to deploy a specific tag or a revision, you can use `--tag` and `--revision` options while running `dep deploy`. E.g.
 
 ~~~bash
 dep deploy --tag="v0.1"
@@ -268,11 +267,11 @@ Writable mode
 
 ### writable_use_sudo
 
-Use or not `sudo` with writable command. Default to `false`.
+Whether to use `sudo` with writable command. Default to `false`.
 
 ### writable_chmod_mode
 
-Mode for using then `writable_mode` in `chmod`. Default: `0755`.
+Mode for setting `writable_mode` in `chmod`. Default: `0755`.
 
 ### writable_chmod_recursive
 
@@ -280,7 +279,7 @@ Whether to set `chmod` on dirs recursively or not. Default: `true`.
 
 ### http_user
 
-User of web server. If this parameter does not configured, deployer try to detect it from process list. 
+User the web server runs as. If this parameter is not configured, deployer try to detect it from the process list. 
 
 ### clear_paths
 
@@ -292,27 +291,27 @@ Use or not `sudo` with clear_paths. Default to `false`.
 
 ### cleanup_use_sudo
 
-Use or not `sudo` with `cleanup` task. Default to `false`.
+Whether to use `sudo` with `cleanup` task. Default to `false`.
 
 ### use_relative_symlink
 
-Use or not relative symlinks. By default deployer will detect if system supports relative symlinks and use it.
+Whether to use relative symlinks. By default deployer will detect if the system supports relative symlinks and use them.
 
 > Relative symlink used by default, if your system supports it.
 
 ### use_atomic_symlink
 
-Use or not atomic symlinks. By default deployer will detect if system supports atomic symlinks and use it.
+Whether to use atomic symlinks. By default deployer will detect if system supports atomic symlinks and use them.
 
-> Atomic symlinking used by default, if your system supports it.
+> Atomic symlinking is used by default, if your system supports it.
 
 ### composer_action
 
-Composer action. Default `install`.
+Composer action. Default is `install`.
 
 ### composer_options
 
-Options for composer.
+Options for Composer.
 
 ### env
 
