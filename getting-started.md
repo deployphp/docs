@@ -15,8 +15,8 @@ Open up a terminal in your project directory and run:
 dep init
 ```
 
-This command will create the `deploy.php` file in the current directory. It is called *recipe* and contains configuration and tasks for deployment.
-By default all recipes extend the [common](https://github.com/deployphp/deployer/blob/master/recipe/common.php) recipe. Place your _deploy.php_ file in root of your project and type `dep` or `dep list` command you will see a list of all available tasks.
+This command will create the `deploy.php` file in the current directory. It is called a *recipe* and contains configuration and tasks for deployment.
+By default all recipes extend the [common](https://github.com/deployphp/deployer/blob/master/recipe/common.php) recipe. Place your _deploy.php_ file in root of your project and type `dep` or `dep list` command. You will see a list of all available tasks.
 
 > You can call `dep` command in any subdirectory of your project.
 
@@ -42,7 +42,7 @@ Hello world
 ✔ Ok
 ```
 
-Now lets create some task which will run commands on a remote host. For that we must configure deployer. 
+Now let's create a task which will run commands on a remote host. For that we must configure deployer. 
 Your newly created `deploy.php` file should contain a `host` declaration like this:
  
 ```php
@@ -71,7 +71,7 @@ Current dir: /var/www/domain.com
 ✔ Ok
 ```
 
-Now lets prepare for our first deploy. You need to configure parameters such as `repository`, `shared_files,` and others:
+Now let's prepare for our first deploy. You need to configure parameters such as `repository`, `shared_files,` and others:
    
 ```php
 set('repository', 'git@domain.com:username/repository.git');
@@ -87,7 +87,7 @@ host('domain.com')
     ->set('shared_files', [...]);
 ```
 
-More about configuration can be found [here](configuration.md).
+Read more about [configuring](configuration.md) deploy.
 
 
 Now let's deploy our application:
