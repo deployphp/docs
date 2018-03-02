@@ -3,9 +3,9 @@
 ### Single server
 
 In most cases you don't need more than one production server.
-It's better to build your release files (as cache, js/css bundles) on it machine as well. 
+It's better to build your release files (as cache, js/css bundles) on that machine as well. 
 So your builds don't depends on your local configuration and can be deployed from everywhere.
-By default deployer recipes designed to fullfill this kind of deployments.  
+By default Deployer recipes are designed to fullfill these kind of deployments.  
 
 ~~~php
 desc('Deploy your project');
@@ -21,8 +21,8 @@ task('deploy', [
 
 ### Build server
 
-If you have a lot of servers where are you going to deploy your application, or you are going to use CI server,
-it's better to build release on one server and upload files to application servers.
+If you have a lot of servers where are you going to deploy your application, or you are going to use a CI server,
+it's better to build your release on one server and then upload files to the application servers.
 
 To do that create a _build_ local task:
 
@@ -35,7 +35,7 @@ task('build', function () {
 })->local();
 ~~~
 
-> Note, you can use simple task definition too
+> Note, you can use a simple task definition too
 > ~~~php
 > task('build', '
 >     composer install
@@ -74,12 +74,12 @@ task('deploy', [
 ]);
 ~~~
 
-Now you can run `dep deploy` command.
+Now you can run the `dep deploy` command.
 
 ### Reuse common recipe
 
-If you want to reuse some tasks from common recipe, make sure what you set `deploy_path` before tasks invoking.
-All common recipe tasks relying on this parameter.
+If you want to reuse some tasks from the common recipe, make sure that you set the `deploy_path` before invoking tasks.
+All common recipe tasks rely on this parameter.
 
 ~~~php
 task('build', function () {
@@ -93,7 +93,7 @@ task('build', function () {
 })->local();
 ~~~
 
-> Make sure what you set `deploy_path` before tasks invoking.
+> Make sure that you set `deploy_path` before invoking tasks.
 
 After create an upload task:
 
@@ -103,4 +103,4 @@ task('upload', function () {
 });
 ~~~
 
-This task takes content from current symlink of `deploy_path` from build step and uploads to application `release_path` path.
+This task takes content from the current symlink of `deploy_path` from the build step and then uploads it to the application `release_path` path.
