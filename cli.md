@@ -1,9 +1,9 @@
 # CLI Usage
 
-After [installation](installation.md) on deployer you will have an ability to run `dep` command from terminal.
+After [installation](installation.md) of Deployer you will have the ability to run the `dep` command from your terminal.
 
-To get list of all available task run `dep`. You can run it from any subdirectories of you project, 
-deployer will automatically find project root dir. 
+To get list of all available tasks run the `dep` command. You can run it from any subdirectories of you project; 
+Deployer will automatically find project root dir. 
  
 ~~~bash
 Deployer
@@ -30,15 +30,15 @@ Available commands:
   ssh          Connect to host through ssh
 ~~~
 
-Best way to configure your `deploy.php` to automatically deploy to staging on this command:
+The best way to configure your `deploy.php` is to automatically deploy to staging on this command:
  
 ~~~bash
 dep deploy
 ~~~
 
-So somebody can't accidentally deploy production (for production `dep deploy production` explicitly stage is required).
+This is so somebody can't accidentally deploy to production (for production deployment, the `dep deploy production` command explicitly lists the required production stage).
 
-You get info about available options and usage use `help` command:
+You need info about available options and usage use the `help` command:
  
 ~~~bash
 $ dep help deploy
@@ -80,13 +80,13 @@ For example, if your _deploy.php_ file contains this configuration:
 set('ssh_multiplexing', false);
 ~~~
 
-And you want to enable [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) without modifying file, you can pass `-o` option to `dep` command:
+And you want to enable [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) without modifying the file, you can pass the `-o` option to the `dep` command:
 
 ~~~bash
 dep deploy -o ssh_multiplexing=true
 ~~~
 
-To override multiple config options, pass a few `-o` args:
+To override multiple config options, you can pass multiple `-o` args:
 
 ~~~bash
 dep deploy -o ssh_multiplexing=true -o branch=master
@@ -94,13 +94,13 @@ dep deploy -o ssh_multiplexing=true -o branch=master
 
 ### Running arbitrary commands
  
-Deployer comes with command to run any valid command of you server without modifying _deploy.php_
+Deployer comes with a command to run any valid command on you server without modifying _deploy.php_
  
 ~~~bash
 dep run 'ls -la'
 ~~~
 
-To specify hosts this command have corresponding options:
+To specify the hosts this command has the corresponding options:
 
 ~~~
   --stage=STAGE    Stage to deploy
@@ -110,7 +110,7 @@ To specify hosts this command have corresponding options:
 
 ### Getting help
 
-You can get more info about any commands by help command:
+You can get more info about any commands by using the help command:
 
 ~~~
 dep help [command]
@@ -118,8 +118,8 @@ dep help [command]
 
 ### Autocomplete
 
-Deployer comes with autocomplete script for bash/zsh/fish, so you don't need to remember all tasks and options.
-To install run following command:
+Deployer comes with an autocomplete script for bash/zsh/fish, so you don't need to remember all the tasks and options.
+To install it run following command:
 
 ~~~bash
 dep autocomplete
