@@ -16,13 +16,13 @@ Define a localhost.
 
 * `inventory(string $file): Host[]`
 
-Load list of hosts from file.
+Load a list of hosts from a file.
 
 ### desc
 
 * `desc(string $description)`
 
-Set task description.
+Set a task description.
 
 ### task
 
@@ -30,7 +30,7 @@ Set task description.
 * `task(string $name, callable $callable)`
 * `task(string $name): Task`
 
-Define task or get task. More at [tasks](tasks.md).
+Define a task or get a task. More at [tasks](tasks.md).
 
 ### before
 
@@ -54,13 +54,13 @@ If task `$what` fails, run `$that` task.
 
 * `argument($name, $mode = null, $description = '', $default = null)`
 
-Add users cli arguments.
+Add user's cli arguments.
 
 ### option
 
 * `option($name, $shortcut=null, $mode=null, $description='', $default=null)`
 
-Add users cli options.
+Add user's cli options.
 
 ### cd
 
@@ -101,20 +101,20 @@ workingPath() == '/var/www/app/releases/1';
 
 * `run(string $command, $options = []): Result`
 
-Run command on remote host. Available options:
+Run a command on remote host. Available options:
 
 * `timeout` — Sets the process timeout (max. runtime).  
   To disable the timeout, set this value to null.  
   The timeout in seconds (default: 300 sec)
 * `tty` — Enables or disables the TTY mode (default: false)
 
-For example if you private key contains passphrase, enable tty and you'll see git prompt for password. 
+For example, if your private key contains a passphrase, enable tty and you'll see git prompt for a password. 
 
 ~~~php
 run('git clone ...', ['timeout' => null, 'tty' => true]);
 ~~~
 
-`run` function returns instance of `Result` class, which can be easily casted to string:
+`run` function returns an instance of the `Result` class, which can be easily cast to string:
    
 ~~~php
 $path = run('readlink {{deploy_path}}/current');
@@ -125,7 +125,7 @@ run("echo $path");
 
 * `runLocally($command, $options = []): Result`
 
-Run command on localhost. Available options:
+Run a command on localhost. Available options:
 
 * `timeout` — The timeout in seconds (default: 300 sec)
 * `tty` — The TTY mode (default: false)
@@ -134,7 +134,7 @@ Run command on localhost. Available options:
 
 * `test(string $command): bool`
 
-Run test command.
+Run a test command.
  
 ~~~php
 if (test('[ -d {{release_path}} ]')) {
@@ -146,14 +146,14 @@ if (test('[ -d {{release_path}} ]')) {
 
 * `testLocally(string $command): bool`
 
-Run test command locally.
+Run a test command locally.
 
 ### on
 
 * `on(Host $host, callable $callback)`
 * `on(Host[] $host, callable $callback)`
 
-Execute `$callback` on specified hosts.
+Execute a `$callback` on the specified hosts.
 
 ~~~php
 on(host('domain.com'), function ($host) {
@@ -177,13 +177,13 @@ on(Deployer::get()->hosts, function ($host) {
 
 * `roles(string ...$role): Host[]`
 
-Return list of hosts by roles.
+Return a list of hosts by roles.
 
 ### invoke
 
 * `invoke(string $task)`
 
-Run task on current host. 
+Run a task on the current host. 
 
 ~~~php
 task('deploy', function () {
@@ -199,7 +199,7 @@ task('deploy', function () {
 
 * `upload(string $source, string $destination, $config = [])`
 
-Upload files from `$source` to `$destination` on remote host.
+Upload files from `$source` to `$destination` on the remote host.
 
 ~~~php
 upload('build/', '{{release_path}}/public');
@@ -220,7 +220,7 @@ Available options:
 
 * `download(string $source, string $destination, $config = [])`
 
-Download files from remote host `$source` to `$destination` on local machine.
+Download files from the remote host `$source` to `$destination` on the local machine.
 
 Available options:
 
@@ -229,7 +229,7 @@ Available options:
 
 ### write
 
-Write message in the output. 
+Write a message in the output. 
 You can format the message with the tags `<info>...</info>`, `<comment></comment>` or `<error></error>` (see [Symfony Console](http://symfony.com/doc/current/console/coloring.html)).
 
 ### writeln
@@ -241,7 +241,7 @@ Same as the `write` function, but also writes a new line.
 * `set(string $name, string|int|bool|array $value)`
 * `set(string $name, callable $value)`
 
-Setup global configuration parameter. If callable passed as `$value` it will be triggered on first get of this config.
+Setup a global configuration parameter. If callable is passed as `$value` it will be triggered on the first get of this config.
 
 More at [configuration](configuration.md).
 
@@ -257,7 +257,7 @@ More at [configuration](configuration.md).
 
 * `get(string $name, $default = null): string|int|bool|array`
 
-Get configuration value.
+Get a configuration value.
 
 More at [configuration](configuration.md).
 
@@ -265,7 +265,7 @@ More at [configuration](configuration.md).
 
 * `has(string $name): bool`
 
-Check if config option exists.
+Check if a config option exists.
 
 More at [configuration](configuration.md).
 
@@ -281,7 +281,7 @@ Ask the user for input.
 
 Ask the user to select from multiple key/value options and return an array. 
 Multiselect enables selection of multiple comma separated choices. 
-Default value will be used in quiet mode otherwise the first available choice will be accepted.
+The default value will be used in quiet mode, otherwise the first available choice will be accepted.
 
 ### askConfirmation
 
@@ -311,32 +311,32 @@ Get the current console output.
 
 * `isQuiet(): bool`
 
-Check if dep command was started with `-q` option.
+Check if th `dep` command was started with the `-q` option.
 
 ### isVerbose
 
 * `isVerbose(): bool`
 
-Check if dep command was started with `-v` option.
+Check if the `dep` command was started with the `-v` option.
 
 ### isVeryVerbose
 
 * `isVeryVerbose(): bool`
 
-Check if dep command was started with `-vv` option.
+Check if th `dep` command was started with the `-vv` option.
 
 ### isDebug
 
 * `isDebug(): bool`
 
-Check if dep command was started with `-vvv` option.
+Check if the `dep` command was started with the `-vvv` option.
 
 
 ### commandExist
 
 * `commandExist(string $command): bool`
 
-Check if command exists.
+Check if a command exists.
 
 ~~~php
 if (commandExist('composer')) {
