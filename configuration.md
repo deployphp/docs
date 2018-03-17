@@ -118,7 +118,7 @@ task('build', function () {
 
 ### previous_release
 
-Points to previous release if it exists. Otherwise variable doesn't exists.
+Points to previous release if it exists. Otherwise variable doesn't exist.
 
 ~~~php
 task('npm', function () {
