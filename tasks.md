@@ -191,7 +191,7 @@ task('foo:bar', function() {
     if (input()->hasOption('tag')) {
         $tag = input()->getOption('tag');
     }
-}
+});
 ```
 
 ### Parallel task execution
