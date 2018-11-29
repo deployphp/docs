@@ -20,7 +20,7 @@ task('deploy', [
 ]);
 ~~~
 
-Framework recipes may differ in flow, but the basic structure is the same. You can create your own flow by overriding the `deploy` task, buta  better solution is to use the cache. 
+Framework recipes may differ in flow, but the basic structure is the same. You can create your own flow by overriding the `deploy` task, but a better solution is to use the cache. 
 For example, if you want to run some task before you symlink the new release:
 
 ~~~php
