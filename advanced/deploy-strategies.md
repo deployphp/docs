@@ -49,7 +49,7 @@ After create an _upload_ task:
 
 ~~~php
 task('upload', function () {
-    upload(__DIR__, '{{release_path}}');
+    upload(__DIR__ . "/", '{{release_path}}');
 });
 ~~~
 
