@@ -99,7 +99,7 @@ workingPath() == '/var/www/app/releases/1';
 
 ### run
 
-* `run(string $command, $options = []): Result`
+* `run(string $command, $options = []): string`
 
 Run a command on remote host. Available options:
 
@@ -114,7 +114,7 @@ For example, if your private key contains a passphrase, enable tty and you'll se
 run('git clone ...', ['timeout' => null, 'tty' => true]);
 ~~~
 
-`run` function returns an instance of the `Result` class, which can be easily cast to string:
+`run` function returns the output of the command as a string:
    
 ~~~php
 $path = run('readlink {{deploy_path}}/current');
@@ -123,7 +123,7 @@ run("echo $path");
 
 ### runLocally
 
-* `runLocally($command, $options = []): Result`
+* `runLocally($command, $options = []): string`
 
 Run a command on localhost. Available options:
 
