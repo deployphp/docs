@@ -1,4 +1,6 @@
-# Deployer Documentation
+# Documentation
+
+## Main Concepts
 
 * [Getting started](getting-started.md)
 * [Installation](installation.md)
@@ -9,12 +11,12 @@
 * [CLI Usage](cli.md)
 * [API Reference](api.md)
 
-#### Advanced
+## Advanced
 
 * [Strategy](advanced/deploy-strategies.md)
 * [Deploy and Git](advanced/deploy-and-git.md)
 * [Parallel IO](advanced/parallel-io.md)
 
-#### Examples
+## Examples
 
 * [Inventory](examples/inventory.md)
