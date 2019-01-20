@@ -1,4 +1,4 @@
-# How to deploy Laravel application 
+# How to deploy Laravel 
 
 Apparently you already have some **Laravel application** and some **server** or **shared hosting**. 
 Now you need to automate the process of **deployment**. 
