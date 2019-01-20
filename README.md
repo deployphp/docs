@@ -17,6 +17,10 @@
 * [Deploy and Git](advanced/deploy-and-git.md)
 * [Parallel IO](advanced/parallel-io.md)
 
+## How To
+
+* [How to deploy Laravel](how-to-deploy-laravel.md)
+
 ## Examples
 
 * [Inventory](examples/inventory.md)

@@ -4,7 +4,7 @@ Apparently you already have some **Laravel application** and some **server** or 
 Now you need to automate the process of **deployment**. 
 Deployer will helps you in this as it ships with some ready to use recipes for **Laravel** based application. 
 
-Let's start with [installation](/docs/installation) of Deployer. Run next commands in terminal: 
+Let's start with [installation](installation.md) of Deployer. Run next commands in terminal: 
 
 ```sh
 curl -LO https://deployer.org/deployer.phar
@@ -79,7 +79,7 @@ server {
 Now you will be able to serve you **laravel project**:
 
 <div style="text-align: center; margin: 50px 0;">
-    <img src="laravel.png" alt="Deploy Laravel Application" style="width: 60%; box-shadow: 0px 10px 30px rgba(128, 128, 128, 0.52);">
+    <img src="images/laravel.png" alt="Deploy Laravel Application" style="width: 60%; box-shadow: 0px 10px 30px rgba(128, 128, 128, 0.52);">
 </div>
 
 If you want to automatically migrate database, *Laravel* recipe ships with `artisan:migrate` task. Add this lines to your `deploy.php`:
@@ -88,6 +88,6 @@ If you want to automatically migrate database, *Laravel* recipe ships with `arti
 after('deploy:update_code', 'artisan:migrate');
 ```
 
-More about configuration and task declarations in our [documentation](/docs).
+More about configuration and task declarations in our [documentation](getting-started.md).
 
 ...
