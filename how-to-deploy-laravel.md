@@ -78,9 +78,7 @@ server {
 
 Now you will be able to serve you **laravel project**:
 
-<div style="text-align: center; margin: 50px 0;">
-    <img src="images/laravel.png" alt="Deploy Laravel Application" style="width: 60%; box-shadow: 0px 10px 30px rgba(128, 128, 128, 0.52);">
-</div>
+![Laravel App](images/laravel.png)
 
 If you want to automatically migrate database, *Laravel* recipe ships with `artisan:migrate` task. Add this lines to your `deploy.php`:
 
