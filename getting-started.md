@@ -8,7 +8,7 @@ mv deployer.phar /usr/local/bin/dep
 chmod +x /usr/local/bin/dep
 ```
 
-Now you can use Deployer via the `dep` command. 
+Now you can use Deployer via the `dep` command.
 Open up a terminal in your project directory and run:
 
 ```sh
@@ -21,7 +21,7 @@ By default all recipes extend the [common](https://github.com/deployphp/deployer
 > You can call `dep` command in any subdirectory of your project.
 
 Defining your task is really simple:
- 
+
 ```php
 task('test', function () {
     writeln('Hello world');
@@ -42,24 +42,27 @@ Hello world
 ✔ Ok
 ```
 
-Now lets create some task which will run commands on a remote host. For that we must configure deployer. 
+Now lets create some task which will run commands on a remote host. For that we must configure deployer.
 Your newly created `deploy.php` file should contain a `host` declaration like this:
- 
+
 ```php
 host('domain.com')
-    ->stage('production')    
+    ->stage('production')
+    ->user('deployer')
     ->set('deploy_path', '/var/www/domain.com');
 ```
 
 > Also it's possible to declare hosts in a separate yaml file. Find out more about the [inventory](hosts.md#inventory-file).
 
-You can find out more about host configurations [here](hosts.md). Now let's define a task which will output a 
+You can find out more about host configurations [here](hosts.md). Now let's define a task which will output a
 `pwd` command from the remote host:
- 
+
 ```php
 task('pwd', function () {
     $result = run('pwd');
-    writeln("Current dir: $result");
+    writeln("Current dir [Home Path]: $result");
+    $result = run('cd {{deploy_path}} && pwd');
+    writeln("Current dir [Deploy Path]: $result");
 });
 ```
 
@@ -67,18 +70,19 @@ Run `dep pwd`, and you will get this:
 
 ```text
 ➤ Executing task pwd
-Current dir: /var/www/domain.com
+Current dir [Home Path]: /home/deployer
+Current dir [Deploy Path]: /var/www/domain.com
 ✔ Ok
 ```
 
 Now lets prepare for our first deploy. You need to configure parameters such as `repository`, `shared_files,` and others:
-   
+
 ```php
 set('repository', 'git@domain.com:username/repository.git');
 set('shared_files', [...]);
 ```
 
-You can return the parameter values in each task using the `get` function. 
+You can return the parameter values in each task using the `get` function.
 Also you can override each configuration for each host:
 
 ```php
@@ -91,17 +95,17 @@ More about configuration can be found [here](configuration.md).
 
 
 Now let's deploy our application:
- 
+
 ```sh
 dep deploy
 ```
 
-To include extra details in the output, you can increase verbosity with the `--verbose` option: 
+To include extra details in the output, you can increase verbosity with the `--verbose` option:
 
 * `-v`  for normal output,
 * `-vv`  for more verbose output,
 * `-vvv`  for debug.
- 
+
 Deployer will create the following directories on the host:
 
 * `releases`  contains releases dirs,
@@ -111,15 +115,15 @@ Deployer will create the following directories on the host:
 Configure your hosts to serve your public directory from `current`.
 
 > Note that deployer uses [ACL](https://en.wikipedia.org/wiki/Access_control_list) by default for setting up permissions.
-> You can change this behavior with `writable_mode` config.    
+> You can change this behavior with `writable_mode` config.
 
 By default deployer keeps the last 5 releases, but you can increase this number by modifying the associated parameter:
- 
+
 ```php
 set('keep_releases', 10);
 ```
 
-If there is an error in the deployment process, or something is wrong with your new release, 
+If there is an error in the deployment process, or something is wrong with your new release,
 simply run the following command to rollback to the previous working release:
 
 ```sh
@@ -146,4 +150,4 @@ dep ssh
 
 This command will connect to selected hosts and cd to `current_path`.
 
-Read more about [configuring](configuration.md) deploy. 
+Read more about [configuring](configuration.md) deploy.
