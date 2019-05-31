@@ -11,7 +11,7 @@ task('deploy', function () {
 ~~~
 
 Each parameter can be overridden for each host:
-  
+
 ~~~php
 host(...)
     ->set('param', 'new value');
@@ -61,7 +61,7 @@ dep config:hosts
 
 Below is a list of common variables.
 
-### deploy_path
+### deploy\_path
 
 Where to deploy application on remote host. You should define this variable for all of your hosts.
 For example, if you want to deploy your app to home directory:
@@ -86,7 +86,7 @@ set('user', function () {
 ~~~
 
 You can override it in _deploy.php_ for example to use env var:
- 
+
 ~~~php
 set('user', function () {
     return getenv('DEP_USER');
@@ -99,7 +99,7 @@ set('user', function () {
 set('slack_text', '{{user}} deploying {{branch}} to {{hostname}}');
 ~~~
 
-### release_path
+### release\_path
 
 Full path to the current release directory. Current dir path in non-deploy contexts.
 Use it as working path for your build:
@@ -116,7 +116,7 @@ task('build', function () {
 > task('build', 'webpack -p');
 > ~~~
 
-### previous_release
+### previous\_release
 
 Points to previous release if it exists. Otherwise variable doesn't exist.
 
@@ -130,7 +130,7 @@ task('npm', function () {
 });
 ~~~
 
-### ssh_multiplexing
+### ssh\_multiplexing
 
 Use [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) to speedup the native ssh client.
 
@@ -138,7 +138,7 @@ Use [ssh multiplexing](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexi
 set('ssh_multiplexing', true);
 ~~~
 
-### default_stage
+### default\_stage
 
 If the hosts declaration has stages, this option allows you to select the default stage to deploy with `dep deploy`.
 
@@ -189,7 +189,7 @@ set('default_stage', function() {
 
 The result is that only \MyVendor\getDefaultStage() is run.
 
-### keep_releases
+### keep\_releases
 
 Number of releases to keep. `-1` for unlimited releases. Default to `5`.
 
@@ -203,7 +203,7 @@ as a Deploy Key (a.k.a. Access Key). This key allows your host to pull out the c
 Note that the first time a host connects, it can ask to add host in `known_hosts` file. The easiest way to do this is
 by running `git clone <repo>` on your host and saying `yes` when prompted.
 
-### git_tty
+### git\_tty
 
 Allocate TTY for `git clone` command. `false` by default. This allow you to enter a passphrase for keys or add host to `known_hosts`.
 
@@ -211,7 +211,7 @@ Allocate TTY for `git clone` command. `false` by default. This allow you to ente
 set('git_tty', true);
 ~~~
 
-### git_recursive
+### git\_recursive
 
 Set the `--recursive` flag for git clone. `true` by default. Setting this to `false` will prevent submodules from being cloned as well.
 
@@ -232,7 +232,7 @@ dep deploy --revision="5daefb59edbaa75"
 
 Note that `tag` has higher priority than `branch` and lower than `revision`.
 
-### shared_dirs
+### shared\_dirs
 
 List of shared dirs.
 
@@ -244,19 +244,19 @@ set('shared_dirs', [
 ]);
 ~~~
 
-### shared_files
+### shared\_files
 
 List of shared files.
 
-### copy_dirs
+### copy\_dirs
 
 List of files to copy between release.
 
-### writable_dirs
+### writable\_dirs
 
 List of dirs which must be writable for web server.
 
-### writable_mode
+### writable\_mode
 
 Writable mode
 
@@ -265,51 +265,51 @@ Writable mode
 * `chown` use unix `chown` command,
 * `chgrp` use unix `chgrp` command,
 
-### writable_use_sudo
+### writable\_use\_sudo
 
 Whether to use `sudo` with writable command. Default to `false`.
 
-### writable_chmod_mode
+### writable\_chmod\_mode
 
 Mode for setting `writable_mode` in `chmod`. Default: `0755`.
 
-### writable_chmod_recursive
+### writable\_chmod\_recursive
 
 Whether to set `chmod` on dirs recursively or not. Default: `true`.
 
-### http_user
+### http\_user
 
 User the web server runs as. If this parameter is not configured, deployer try to detect it from the process list. 
 
-### clear_paths
+### clear\_paths
 
 List of paths which need to be deleted in release after updating code. 
 
-### clear_use_sudo
+### clear\_use\_sudo
 
-Use or not `sudo` with clear_paths. Default to `false`.
+Use or not `sudo` with clear\_paths. Default to `false`.
 
-### cleanup_use_sudo
+### cleanup\_use\_sudo
 
 Whether to use `sudo` with `cleanup` task. Default to `false`.
 
-### use_relative_symlink
+### use\_relative\_symlink
 
 Whether to use relative symlinks. By default deployer will detect if the system supports relative symlinks and use them.
 
 > Relative symlink used by default, if your system supports it.
 
-### use_atomic_symlink
+### use\_atomic\_symlink
 
 Whether to use atomic symlinks. By default deployer will detect if system supports atomic symlinks and use them.
 
 > Atomic symlinking is used by default, if your system supports it.
 
-### composer_action
+### composer\_action
 
 Composer action. Default is `install`.
 
-### composer_options
+### composer\_options
 
 Options for Composer.
 
