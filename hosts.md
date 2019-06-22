@@ -170,7 +170,7 @@ Include hosts defined in inventory files `hosts.yml` by `inventory` function:
 inventory('hosts.yml');
 ~~~
 
-Here an example of an inventory file `hosts.yml` with the full set of configuration ettings
+Here an example of an inventory file `hosts.yml` with the full set of configuration settings
 
 ~~~yaml
 domain.com:
