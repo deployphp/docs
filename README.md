@@ -1,3 +1,7 @@
+>
+> ### Documentation migrated into [deployer repository](https://github.com/deployphp/deployer/tree/master/docs)
+>
+
 # Documentation
 
 ## Main Concepts
