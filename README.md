@@ -1,4 +1,5 @@
 >
+> # This repo has been depreciated and is no longer used
 > ### Documentation migrated into [deployer repository](https://github.com/deployphp/deployer/tree/master/docs)
 >
 
