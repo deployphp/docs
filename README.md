@@ -1,6 +1,6 @@
 >
-> # This repo has been depreciated and is no longer used
-> ### Documentation migrated into [deployer repository](https://github.com/deployphp/deployer/tree/master/docs)
+> # This is documentation for v6.x version
+> ### Documentation for v7.x migrated into [deployer repository](https://github.com/deployphp/deployer/tree/master/docs)
 >
 
 # Documentation
