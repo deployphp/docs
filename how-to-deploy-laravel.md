@@ -34,7 +34,7 @@ host('domain.org')
     ->set('deploy_path', '/var/www/html');
 ```
 
-Make sure what `~/.ssh/config` contains `domain.org` and you can connect to host thought ssh.
+Make sure what `~/.ssh/config` contains `domain.org` and you can connect to host using ssh.
 
 Another important parameter it is `deploy_path`, where you project will be located on remote host. 
 
